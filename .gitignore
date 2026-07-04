@@ -1,0 +1,10 @@
+# Temporary screenshots stay local — never uploaded to GitHub
+temp_screenshots/*
+!temp_screenshots/.gitkeep
+
+# Dependencies (if Puppeteer is installed later for screenshots)
+node_modules/
+
+# OS clutter
+.DS_Store
+Thumbs.db
