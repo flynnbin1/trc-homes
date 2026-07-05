@@ -15,3 +15,9 @@ Thumbs.db
 assets/hero-video/*.mp4
 assets/hero-video/frames/
 assets/keyframes/kling/
+
+# Portrait/mobile source media — filed locally, not used by the live site yet.
+# Keep out of git history (raw stills + clips are heavy); commit only if a
+# mobile hero actually ships them.
+assets/hero-video/mobile/
+assets/keyframes/source/
