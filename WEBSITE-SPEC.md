@@ -12,13 +12,13 @@ Cork homeowners aged 25–50 who bought an older house, arriving from ads. They 
 
 - Plain HTML/CSS/JS only — no frameworks, no build step; deploys to Vercel as static files.
 - GSAP ScrollTrigger + Lenis smooth scroll, loaded from CDN.
-- Hero imagery: five renovation keyframes in `assets/keyframes/web/` — WebP tiers at 1284px / 1920px / 2880px, chosen by physical screen resolution. Source PNGs stay in `assets/` untouched.
+- Hero imagery: three straight-on renovation clips stitched into one continuous 79-frame WebP sequence, in two tiers — `assets/hero-video/frames-hd/` (1920px, desktop) and `assets/hero-video/frames-mobile/` (960px, <768px). Source clips live in `assets/hero-video/`. (The earlier five-keyframe wipe set in `assets/keyframes/web/` is retained for the preserved hero snapshot — see §5.)
 - All animations respect `prefers-reduced-motion` and simplify below 768px.
 - Form and call button always reachable within one thumb-tap on mobile.
 
 ## 4. Page Sections (in order)
 
-1. HERO — five-keyframe wipe scrub
+1. HERO — continuous renovation video scrub
 2. THE SITUATION — short lines appearing on scroll
 3. SERVICES — cards with gold keystone accents
 4. GRANTS — "We handle the grant paperwork"
@@ -26,19 +26,20 @@ Cork homeowners aged 25–50 who bought an older house, arriving from ads. They 
 6. PROOF — project photos placeholder
 7. CTA — form placeholder + phone button, Deep Pine footer
 
-## 5. Hero — Five-Keyframe Wipe Scrub
+## 5. Hero — Continuous Renovation Video Scrub
 
-- Full-viewport pinned hero. Five keyframes of the same house (as bought → works begin → structure → late build → finished home) reveal in sequence as the user scrolls: each stage holds, then the next wipes in left-to-right behind a fine 1px Muted Gold edge. Wipes, not crossfades — the keyframes are not camera-registered, so overlapping opacities ghost. GSAP ScrollTrigger + Lenis from CDN.
-- Stage mapping: the five stages play across the first ~85% of the pin distance; the finished home holds for the final ~15% (the settle) before the page releases.
-- Stage markers: 01–05 on the hero's right edge (Jost 500 numbers + fine rules, gold active state, slight Deep Pine text-shadow for legibility). Pressing a number scrolls the pin to that stage; markers track the scrub live. Hidden under reduced motion.
-- Two-beat pinned headline (Marcellus, H1 scale): "You've bought the house." through the early stages, crossfading (opacity only — text has no registration problem) to "Now make it home." as the finished home arrives.
-- Subline "Full renovations, extensions and retrofits across Cork." (Jost 400) and button "FREE CONSULTATION" (Jost 500, 14px, caps, gold 1px border) below the headline — visible from first paint, never waiting for images.
-- Subtle Deep Pine gradients only: slim top band for nav legibility, soft bottom-left pool behind the copy — must not muddy the imagery.
+- Full-viewport pinned hero. Three straight-on, locked-camera renovation clips (dated pebble-dash house → strip-out/scaffold → render + new windows → finished home with solar) are stitched into ONE continuous timeline and exported as a 79-frame image sequence (seam-deduplicated at the two clip joins). As the user scrolls, the sequence scrubs frame-by-frame on a `<canvas>` (object-fit: cover), so the same house transforms start to finish. GSAP ScrollTrigger + Lenis from CDN. Implemented in `js/hero-video.js`.
+- Timeline mapping: the renovation plays across the first ~85% of the pin distance; the finished home holds for the final ~15% (the settle) before the page releases.
+- No discrete stage markers — a continuous video has no clean stage boundaries, so the 01–05 markers of the previous keyframe hero are dropped.
+- Two-beat pinned headline (Marcellus, H1 scale): "You've bought the house." through the renovation, crossfading (opacity only) to "Now make it home." as the finished home arrives (over the final quarter of the sequence).
+- Subline "Full renovations, extensions and retrofits across Cork." (Jost 400) and button "FREE CONSULTATION" (Jost 500, 14px, caps) below the headline — visible from first paint, never waiting for frames. The button fills solid Off-White (Deep Pine text) once the finished home settles in, and eases back on scroll-up.
+- Subtle Deep Pine gradient overlay only: slim top band for nav legibility, soft bottom-left pool behind the copy. The video hero drops the separate blurred copy-pool of the keyframe hero; the gradient carries legibility. (Watch contrast over the brightest finished-home frames.)
 - 1px Muted Gold progress hairline at the hero's bottom edge, tracking scrub progress.
-- Loading: stage 1 eager, stages 2–5 stream in behind it; the scrub never shows a gap while images load.
-- Image sets: WebP tiers at 1284px / 1920px / 2880px in `assets/keyframes/web/`, selected by viewport width × devicePixelRatio so no screen ever upscales.
-- Reduced motion: no pin, no wipes — static finished-home image with "Now make it home.", subline and button.
-- Below 768px: shorter pin distance, same wipe sequence (tier selection handles image size).
+- Loading: frames stream in order; a contiguous-load guard means the scrub never shows a gap while later frames arrive, and frame 1 paints as soon as it decodes.
+- Frame tiers: two WebP sets of the identical 79-frame sequence — `assets/hero-video/frames-hd/` (1920px long edge, quality 88) and `assets/hero-video/frames-mobile/` (960px long edge, quality 80) — selected on the 768px breakpoint. Source clips (`1-dated-to-stripout.mp4`, `2-stripout-to-render.mp4`, `3-render-to-finished.mp4`) live in `assets/hero-video/`.
+- Reduced motion: no pin, no scrub — static finished-home frame with "Now make it home.", subline and the white button.
+- Below 768px: shorter pin distance, lighter mobile frame tier.
+- **Preserved alternative:** the original five-keyframe wipe hero is kept verbatim at `hero-keyframes-demo.html` (backed by the unchanged `js/hero.js` and `assets/keyframes/web/`), so it can be restored if we go back to it.
 
 ## 6. Content Sections
 

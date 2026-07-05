@@ -8,3 +8,10 @@ node_modules/
 # OS clutter
 .DS_Store
 Thumbs.db
+
+# Hero video: keep the runtime frame tiers (frames-hd/, frames-mobile/) but
+# NOT the heavy source clips or intermediate/superseded frame sets — those
+# stay local (only needed to regenerate frames), out of git history.
+assets/hero-video/*.mp4
+assets/hero-video/frames/
+assets/keyframes/kling/

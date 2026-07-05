@@ -61,27 +61,15 @@
          scrolled state are testable. Each section gets designed
          and built in its own phase, per WEBSITE-SPEC.md §4. -->
 
-    <!-- HERO — five renovation keyframes crossfade on scroll (js/hero.js).
-         Stage 1 loads eagerly via <picture>; stages 2-5 stream in behind it.
-         prefers-reduced-motion gets a static stage-5 hero (.hero--static). -->
-    <section class="hero" id="top">
+    <!-- HERO — three renovation clips as ONE continuous 79-frame scrub, drawn
+         to a canvas (js/hero-video.js). Frames stream from assets/hero-video/
+         frames-hd (desktop) / frames-mobile (<768px). The finished home holds
+         the final 15% settle; prefers-reduced-motion gets a static finished
+         frame (.hero--static). The original five-keyframe wipe hero is preserved
+         verbatim at hero-keyframes-demo.html (js/hero.js is unchanged). -->
+    <section class="hero hero--video" id="top">
       <div class="hero-media" aria-hidden="true">
-        <!-- Each stage sits in an overflow-hidden clip wrapper. The wipe is
-             driven by compositor-only translate3d on wrapper + image (no
-             per-frame clip-path repaints) — see js/hero.js render(). -->
-        <div class="hero-stage-clip" data-stage="0">
-          <img class="hero-stage" data-stage="0"
-               src="assets/keyframes/web/stage-1-as-bought-1920.webp"
-               srcset="assets/keyframes/web/stage-1-as-bought-1284.webp 1284w,
-                       assets/keyframes/web/stage-1-as-bought-1920.webp 1920w,
-                       assets/keyframes/web/stage-1-as-bought-2880.webp 2880w"
-               sizes="100vw" alt="" decoding="async">
-        </div>
-        <div class="hero-stage-clip" data-stage="1"><img class="hero-stage" data-stage="1" data-stem="stage-2-works-begin" alt="" decoding="async"></div>
-        <div class="hero-stage-clip" data-stage="2"><img class="hero-stage" data-stage="2" data-stem="stage-3-structure" alt="" decoding="async"></div>
-        <div class="hero-stage-clip" data-stage="3"><img class="hero-stage" data-stage="3" data-stem="stage-4-late-build" alt="" decoding="async"></div>
-        <div class="hero-stage-clip" data-stage="4"><img class="hero-stage" data-stage="4" data-stem="stage-5-finished" alt="" decoding="async"></div>
-        <div class="hero-wipe-edge"></div>
+        <canvas class="hero-frames"></canvas>
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-copy">
@@ -93,13 +81,6 @@
         <a class="btn-consult btn-consult--hero" href="#enquire">Free Consultation</a>
       </div>
       <div class="hero-progress" aria-hidden="true"></div>
-      <nav class="hero-stages" aria-label="Renovation stages">
-        <button type="button" data-jump="0" aria-label="Stage 1 — as bought">01</button>
-        <button type="button" data-jump="1" aria-label="Stage 2 — works begin">02</button>
-        <button type="button" data-jump="2" aria-label="Stage 3 — structure">03</button>
-        <button type="button" data-jump="3" aria-label="Stage 4 — late build">04</button>
-        <button type="button" data-jump="4" aria-label="Stage 5 — finished home">05</button>
-      </nav>
     </section>
 
     <!-- THE SITUATION — five lines revealing on scroll (js/situation.js).
@@ -337,7 +318,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="js/nav.js"></script>
-  <script src="js/hero.js"></script>
+  <script src="js/hero-video.js"></script>
   <script src="js/situation.js"></script>
   <script src="js/services.js"></script>
   <script src="js/grants.js"></script>
