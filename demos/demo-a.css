@@ -1,0 +1,81 @@
+/* TRC Homes — Demo A · Editorial / asymmetric
+   Left-ragged copy, offset service rows, large-first proof, asymmetric grants,
+   vertical steps spine. Variance ~6, held inside §10 restraint. */
+
+.demo--a .hero-copy { max-width: var(--maxw); }
+.demo--a .hero-headline { max-width: 12ch; }
+
+/* THE SITUATION — pushed off-centre to the left, large editorial lines */
+.demo--a .situation { background: var(--offwhite); }
+.demo--a .situation-inner { display: grid; grid-template-columns: minmax(0, 0.9fr) 1.4fr; gap: clamp(24px, 5vw, 72px); }
+.demo--a .sit-lines { grid-column: 2; }
+.demo--a .sit-line { font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 34px); line-height: 1.3; color: rgba(30,58,47,0.45); max-width: 22ch; }
+.demo--a .sit-line + .sit-line { margin-top: 10px; }
+.demo--a .sit-line--build { color: var(--forest); }
+
+/* SERVICES — offset numbered rows on Stone, alternating indent */
+.demo--a .services { background: var(--stone); }
+.demo--a .svc-head { max-width: 30ch; margin-bottom: clamp(40px, 6vw, 72px); }
+.demo--a .svc-head .eyebrow { display: block; margin-bottom: 18px; }
+.demo--a .svc-list { display: grid; gap: 0; }
+.demo--a .svc-row { display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: start; padding: 28px 0; border-top: 1px solid rgba(176,141,87,0.4); max-width: 760px; }
+.demo--a .svc-row:last-child { border-bottom: 1px solid rgba(176,141,87,0.4); }
+.demo--a .svc-row:nth-child(even) { margin-left: auto; }        /* asymmetric offset */
+.demo--a .svc-idx { font-family: var(--font-display); font-size: 22px; color: var(--gold); }
+.demo--a .svc-row h3 { margin-bottom: 6px; }
+.demo--a .svc-row p { color: rgba(30,58,47,0.75); }
+
+/* PROOF — large feature tile + supporting grid */
+.demo--a .proof { background: var(--offwhite); }
+.demo--a .pf-head { margin-bottom: clamp(32px, 5vw, 56px); }
+.demo--a .pf-head .eyebrow { display: block; margin-bottom: 16px; }
+.demo--a .pf-grid { display: grid; grid-template-columns: 1.6fr 1fr; grid-auto-rows: 220px; gap: 16px; }
+.demo--a .pf-feature { grid-row: span 2; }
+.demo--a .pf-tile--pine.pf-feature { min-height: 456px; }
+
+/* GRANTS — Forest band, copy left-weighted / photo right */
+.demo--a .grants { background: var(--forest); color: var(--offwhite); }
+.demo--a .grants-inner { display: grid; grid-template-columns: 1.3fr 0.85fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.demo--a .grants .eyebrow { display: block; margin-bottom: 16px; }
+.demo--a .gr-headline { color: var(--offwhite); margin-bottom: 22px; }
+.demo--a .gr-lead { color: rgba(247,245,239,0.82); }
+.demo--a .gr-points { list-style: none; margin: 28px 0 32px; }
+.demo--a .gr-points li { position: relative; padding-left: 22px; margin-bottom: 12px; color: rgba(247,245,239,0.9); font-size: 15px; }
+.demo--a .gr-points li::before { content: ''; position: absolute; left: 0; top: 9px; width: 8px; height: 8px; background: var(--gold); }
+
+/* HOW IT WORKS — vertical spine, key step pulled forward */
+.demo--a .steps { background: var(--offwhite); }
+.demo--a .st-head { margin-bottom: clamp(40px, 6vw, 64px); }
+.demo--a .st-head .eyebrow { display: block; margin-bottom: 16px; }
+.demo--a .st-spine { list-style: none; max-width: 760px; border-left: 1px solid rgba(176,141,87,0.5); }
+.demo--a .st-step { display: grid; grid-template-columns: 72px 1fr; gap: 20px; padding: 26px 0 26px 28px; position: relative; }
+.demo--a .st-step::before { content: ''; position: absolute; left: -5px; top: 34px; width: 9px; height: 9px; background: var(--offwhite); border: 1px solid var(--gold); }
+.demo--a .st-step--key::before { background: var(--gold); }
+.demo--a .st-step--key { margin-left: 24px; }        /* pulled out */
+.demo--a .st-num { font-family: var(--font-display); font-size: 26px; color: var(--gold); }
+.demo--a .st-step--key h3 { color: var(--forest); }
+.demo--a .st-step p { color: rgba(30,58,47,0.75); margin-top: 4px; }
+
+/* CTA — Deep Pine, copy left / form right */
+.demo--a .enquire { background: var(--pine); color: var(--offwhite); }
+.demo--a .enquire-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); }
+.demo--a .enquire .eyebrow { display: block; margin-bottom: 16px; }
+.demo--a .enq-headline { color: var(--offwhite); margin-bottom: 20px; }
+.demo--a .enq-lead { color: rgba(247,245,239,0.8); }
+.demo--a .enq-phone { display: inline-block; font-family: var(--font-display); font-size: 30px; color: var(--offwhite); text-decoration: none; margin-top: 28px; }
+.demo--a .enq-area { font-size: 13px; color: rgba(247,245,239,0.6); margin-top: 8px; }
+.demo--a .enq-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.demo--a .enq-field label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(247,245,239,0.7); }
+.demo--a .enq-field input, .demo--a .enq-field textarea { font-family: var(--font-ui); font-size: 16px; color: var(--offwhite); background: transparent; border: 0; border-bottom: 1px solid rgba(247,245,239,0.35); padding: 8px 0; }
+.demo--a .enq-field input:focus, .demo--a .enq-field textarea:focus { outline: none; border-bottom-color: var(--gold); }
+.demo--a .enq-form .btn { margin-top: 8px; color: var(--offwhite); }
+
+@media (max-width: 768px) {
+  .demo--a .situation-inner { grid-template-columns: 1fr; }
+  .demo--a .sit-lines { grid-column: 1; }
+  .demo--a .svc-row, .demo--a .svc-row:nth-child(even) { margin-left: 0; max-width: none; }
+  .demo--a .pf-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+  .demo--a .pf-tile--pine.pf-feature { min-height: 200px; grid-row: auto; }
+  .demo--a .grants-inner, .demo--a .enquire-inner { grid-template-columns: 1fr; }
+  .demo--a .st-step--key { margin-left: 0; }
+}

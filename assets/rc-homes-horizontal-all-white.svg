@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="140" viewBox="0 0 560 140" role="img" aria-label="RC Homes">
+  <defs>
+    
+  </defs>
+  
+  <g transform="translate(10, 22)">
+    <path d="M 10 62 L 48 24 L 86 62" stroke="#FFFFFF" stroke-width="7" fill="none"></path>
+    <path d="M 10 81 L 86 81" stroke="#FFFFFF" stroke-width="7" fill="none"></path>
+    <rect x="43.5" y="62.5" width="9" height="9" fill="#FFFFFF"></rect>
+  </g>
+  
+  <rect x="128" y="34" width="1.5" height="72" fill="#FFFFFF" opacity="0.4"></rect>
+  
+  <text class="wm" x="162" y="76" font-size="42" letter-spacing="10.9" fill="#FFFFFF">RC HOMES</text>
+  <text class="wm" x="163" y="106" font-size="13.5" letter-spacing="6.75" fill="#FFFFFF">CORK · IRELAND</text>
+</svg>

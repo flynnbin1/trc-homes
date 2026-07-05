@@ -1,0 +1,1835 @@
+/* TRC Homes — navigation + placeholder scaffold
+   Spec: WEBSITE-SPEC.md §9 (typography, locked) and §10 (design direction, binding).
+   Palette per brand_assets/brand-guidelines.md. Sharp corners (max 2px). */
+
+:root {
+  --forest: #1E3A2F;
+  --gold: #B08D57;
+  --offwhite: #F7F5EF;
+  --stone: #E9E5DA;
+  --pine: #152B22;
+
+  --font-display: 'Marcellus', Georgia, serif;
+  --font-ui: 'Jost', 'Century Gothic', sans-serif;
+
+  --nav-h: 88px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+}
+
+/* While Lenis is smoothing (it stamps .lenis-smooth on <html>), native CSS
+   smooth-scroll must stand down — otherwise the browser animates toward every
+   scroll position Lenis sets and the two fight, making the scroll feel laggy.
+   Only active when Lenis runs, so the no-JS/CDN-blocked anchor fallback keeps
+   its native smooth scroll. */
+html.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--forest);
+  background: var(--offwhite);
+}
+
+/* ---------- Nav ---------- */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: var(--nav-h);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding-inline: clamp(24px, 5vw, 64px);
+}
+
+/* Two stacked background layers so gradient-to-solid can crossfade
+   (background-image itself cannot transition) */
+.site-nav::before,
+.site-nav::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-out);
+}
+
+.site-nav::before {
+  /* over the hero: Deep Pine fade for legibility */
+  background: linear-gradient(to bottom, rgba(21, 43, 34, 0.6) 0%, rgba(21, 43, 34, 0) 100%);
+  opacity: 1;
+}
+
+.site-nav::after {
+  /* past the hero: solid Forest Green */
+  background: var(--forest);
+  opacity: 0;
+}
+
+.site-nav.is-solid::before { opacity: 0; }
+.site-nav.is-solid::after  { opacity: 1; }
+
+/* Brand */
+
+.brand {
+  justify-self: start;
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  min-height: 44px;
+}
+
+/* Full lockup in both nav states: all-white over the hero,
+   gold keystone + gold locale once the nav goes solid */
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-icon {
+  display: none;
+}
+
+.brand-mark rect {
+  fill: var(--offwhite);
+  transition: fill 0.35s var(--ease-out);
+}
+
+.site-nav.is-solid .brand-mark rect {
+  fill: var(--gold);
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+.brand-divider {
+  width: 1px;
+  height: 34px;
+  background: rgba(247, 245, 239, 0.35);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--offwhite);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.brand-locale {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--offwhite); /* all-white over the hero */
+  transition: color 0.35s var(--ease-out);
+  line-height: 1;
+}
+
+.site-nav.is-solid .brand-locale {
+  color: var(--gold); /* coloured lockup on the solid bar */
+}
+
+/* Centre links */
+
+.nav-links {
+  justify-self: center;
+  display: flex;
+  gap: clamp(8px, 2vw, 24px);
+}
+
+.nav-link {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--offwhite);
+  padding: 12px 10px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+/* 1px gold underline, grows on hover — transform only */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 8px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current]::after {
+  transform: scaleX(1);
+}
+
+/* Right: consultation button + mobile toggle */
+
+.nav-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-consult {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--offwhite);
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  padding: 13px 22px 11px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+
+.btn-consult:hover {
+  background: var(--gold);
+  color: var(--pine);
+}
+
+.btn-consult:active {
+  transform: translateY(1px);
+}
+
+/* Overlay copy of the CTA: mobile menu only */
+.btn-consult--menu {
+  display: none;
+}
+
+.nav-toggle {
+  display: none;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--offwhite);
+  background: transparent;
+  border: none;
+  padding: 12px 10px;
+  min-height: 44px;
+  min-width: 44px;
+  cursor: pointer;
+}
+
+/* Focus — fine gold rule language, visible on every interactive element */
+.brand:focus-visible,
+.nav-link:focus-visible,
+.btn-consult:focus-visible,
+.nav-toggle:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* ---------- Hero — keyframe crossfade scrub ---------- */
+
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--pine); /* behind images while stage 1 paints */
+}
+
+.hero-media,
+.hero-media picture {
+  position: absolute;
+  inset: 0;
+}
+
+/* Stages reveal by wipe (clip-path), not crossfade — the keyframes are not
+   camera-registered, so overlapping opacities ghost. Later stages sit on top
+   and sweep in left-to-right behind a gold edge. */
+/* Overflow-hidden clip window per stage. The wipe front is this wrapper's
+   right edge, moved with translate3d — composited, so no per-frame repaint. */
+.hero-stage-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.hero-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* Reveal 0 (hidden): wrapper shifted fully off to the left, image
+   counter-shifted so it stays pinned in the viewport. JS interpolates both
+   toward translate3d(0) as the stage wipes in. Stage 0 stays fully revealed. */
+.hero-stage-clip:not([data-stage="0"]) { transform: translate3d(-100%, 0, 0); }
+.hero-stage:not([data-stage="0"]) { transform: translate3d(100%, 0, 0); }
+
+/* Fine gold rule riding the wipe front — visible only mid-transition */
+.hero-wipe-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--gold);
+  opacity: 0;
+  will-change: transform;
+  z-index: 1;
+}
+
+/* Deep Pine, subtle: top band for the nav, soft pool bottom-left behind the copy */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(21, 43, 34, 0.45) 0%, rgba(21, 43, 34, 0) 18%),
+    radial-gradient(ellipse 90% 70% at 12% 100%, rgba(21, 43, 34, 0.55) 0%, rgba(21, 43, 34, 0) 62%);
+}
+
+.hero-copy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(24px, 5vw, 64px);
+  right: clamp(24px, 5vw, 64px);
+  bottom: clamp(64px, 10vh, 110px);
+}
+
+/* Localised Deep Pine pool: a blurred solid behind the copy block only.
+   Core opacity 0.78 with >=48px bleed before the 52px blur starts eating
+   in, guaranteeing ~0.75 effective cover under every glyph — enough for
+   WCAG AA off-white text even over pure white imagery. Feathers to
+   nothing so the rest of the frame stays bright. */
+.hero-copy::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -56px -80px -48px -72px;
+  background: rgba(21, 43, 34, 0.78);
+  border-radius: 120px;
+  filter: blur(52px);
+  pointer-events: none;
+}
+
+/* Two-beat headline: both lines share one cell, opacity swaps on scrub */
+.hero-headline {
+  display: grid;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 4.6vw, 56px);
+  line-height: 1.12;
+  color: var(--offwhite);
+}
+
+.hero-headline .beat {
+  grid-area: 1 / 1;
+}
+
+.hero-headline .beat--2 {
+  opacity: 0;
+}
+
+.hero-subline {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--offwhite); /* full off-white for AA over imagery */
+  margin-top: 20px;
+  max-width: 32em;
+}
+
+.btn-consult--hero {
+  margin-top: 36px;
+  border-color: var(--offwhite); /* off-white border over imagery (user override of §5 gold) */
+}
+
+.btn-consult--hero:hover {
+  background: var(--offwhite);
+  color: var(--pine);
+}
+
+/* Copy never waits for images — pure CSS entrance */
+.hero-headline,
+.hero-subline,
+.btn-consult--hero {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: hero-rise 0.8s var(--ease-out) forwards;
+}
+
+.hero-subline { animation-delay: 0.15s; }
+.btn-consult--hero { animation-delay: 0.3s; }
+
+@keyframes hero-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 1px gold hairline at the hero's bottom edge, tracks scrub progress */
+.hero-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 3;
+}
+
+/* Stage markers — numbers + fine rules, right edge, click to jump */
+.hero-stages {
+  position: absolute;
+  right: clamp(24px, 5vw, 64px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-stages button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-height: 40px;
+  min-width: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: rgba(247, 245, 239, 0.8);
+  text-shadow: 0 1px 2px rgba(21, 43, 34, 0.35); /* legibility over bright frames, not a glow */
+  transition: color 0.3s var(--ease-out);
+}
+
+.hero-stages button::before {
+  content: '';
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s var(--ease-out), background-color 0.3s var(--ease-out);
+}
+
+.hero-stages button:hover {
+  color: var(--offwhite);
+}
+
+.hero-stages button.is-active {
+  color: var(--gold);
+}
+
+.hero-stages button.is-active::before {
+  width: 30px;
+}
+
+.hero-stages button:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* Static hero (reduced motion / JS applies the class): finished home, second beat */
+/* Reduced motion: no scrub runs, so reset every clip/stage to fully revealed.
+   Stage 4 is topmost and opaque (object-fit: cover), so it shows the finished
+   home over the stack. */
+.hero--static .hero-stage-clip,
+.hero--static .hero-stage { transform: none; }
+.hero--static .beat--1 { opacity: 0; }
+.hero--static .beat--2 { opacity: 1; }
+.hero--static .hero-progress,
+.hero--static .hero-wipe-edge,
+.hero--static .hero-stages { display: none; }
+
+/* ---------- The Situation — typographic scroll narrative ---------- */
+
+.situation {
+  background: var(--offwhite);
+  padding: clamp(120px, 16vh, 190px) clamp(24px, 5vw, 64px);
+}
+
+.situation-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.sit-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: clamp(48px, 8vh, 84px);
+}
+
+.sit-eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.sit-line {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(24px, 2.6vw, 32px); /* between H3 and H2 */
+  line-height: 1.3;
+  color: var(--forest);
+  max-width: 22em;
+  /* asymmetric editorial placement: the narrative sits right of a deep
+     left margin; the payoff line breaks back out toward the edge */
+  margin-left: clamp(0px, 16vw, 300px);
+}
+
+.sit-line + .sit-line {
+  margin-top: clamp(28px, 6vh, 56px);
+}
+
+.sit-line--build {
+  font-size: clamp(38px, 4.6vw, 56px); /* H1 territory — size, never faux-bold */
+  line-height: 1.12;
+  margin-left: clamp(0px, 7vw, 130px);
+  margin-top: clamp(44px, 9vh, 80px);
+}
+
+/* Gold keystone above the payoff line — the brand mark's square */
+.sit-line--build::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  margin-bottom: clamp(20px, 3vh, 30px);
+}
+
+/* Reveal + reading-focus states exist only when JS opts in (.js-animate) —
+   no JS or reduced motion means every line is simply there at full opacity */
+.situation.js-animate .sit-eyebrow {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.situation.js-animate .sit-eyebrow.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.situation.js-animate .sit-line {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+/* revealed but no longer the line being read: soften */
+.situation.js-animate .sit-line.is-in {
+  opacity: 0.4;
+  transform: none;
+}
+
+/* the current beat of the story holds full strength */
+.situation.js-animate .sit-line.is-in.is-current {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .situation {
+    padding: 72px 24px;
+  }
+
+  .sit-line,
+  .sit-line--build {
+    margin-left: 0; /* single column, no asymmetry on small screens */
+  }
+}
+
+/* ---------- Services — six offerings on Stone panels ---------- */
+
+.services {
+  background: var(--offwhite);
+  padding: clamp(120px, 15vh, 170px) clamp(24px, 5vw, 64px);
+}
+
+.services-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.svc-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.svc-eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* offset intro — asymmetric editorial touch, echoing the Situation's indent */
+.svc-intro {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 38px); /* H2 scale */
+  line-height: 1.25;
+  color: var(--forest);
+  max-width: 19em;
+  margin-top: clamp(32px, 5vh, 48px);
+  margin-left: clamp(0px, 12vw, 220px);
+}
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.2vw, 28px);
+  margin-top: clamp(56px, 9vh, 96px);
+}
+
+.svc-card {
+  background: var(--stone);
+  border-radius: 2px; /* sharp — brand max */
+  padding: clamp(28px, 3vw, 40px);
+  display: flex;
+  flex-direction: column; /* lets .svc-learn sit at the card bottom (margin-top:auto) */
+}
+
+/* the brand keystone carries the design — no icons */
+.svc-card::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  margin-bottom: clamp(20px, 2.5vh, 28px);
+}
+
+.svc-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 27px; /* H3 */
+  line-height: 1.2;
+  color: var(--forest);
+}
+
+.svc-copy {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 17px;
+  color: rgba(30, 58, 47, 0.8);
+  margin-top: 12px;
+}
+
+/* Learn More — quiet gold micro-label (§9 eyebrow style, §10 gold micro-label).
+   margin-top:auto pins it to the card bottom so all six align across the grid;
+   align-self keeps the trailing arrow hugging the text, not the full width. */
+.svc-learn {
+  margin-top: auto;
+  align-self: flex-start;
+  padding-top: clamp(20px, 2.4vh, 26px);
+  position: relative;              /* sit above the hover fill (.svc-card::after) */
+  z-index: 1;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.25em;          /* matches the eyebrow */
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.35s ease;
+}
+
+.svc-learn::after {
+  content: ' \2192';               /* trailing arrow — typography, not an icon font */
+}
+
+.svc-learn:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* Reveal states only when JS opts in — otherwise simply visible */
+.services.js-animate .svc-eyebrow,
+.services.js-animate .svc-intro,
+.services.js-animate .svc-card {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.services.js-animate .svc-eyebrow.is-in,
+.services.js-animate .svc-intro.is-in,
+.services.js-animate .svc-card.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* generous stagger across the grid as rows enter together */
+.services.js-animate .svc-card:nth-child(2).is-in { transition-delay: 0.12s; }
+.services.js-animate .svc-card:nth-child(3).is-in { transition-delay: 0.24s; }
+.services.js-animate .svc-card:nth-child(4).is-in { transition-delay: 0.12s; }
+.services.js-animate .svc-card:nth-child(5).is-in { transition-delay: 0.24s; }
+.services.js-animate .svc-card:nth-child(6).is-in { transition-delay: 0.36s; }
+
+.services.js-animate .svc-intro.is-in { transition-delay: 0.1s; }
+
+/* ---------- Services card hover / focus (Services section only) ----------
+   Hover (real cursor only) and keyboard focus flip a card to Forest Green with
+   Off-White text; the gold keystone stays gold. Colour-only transition (0.35s),
+   no lift / scale / shadow / bounce (§10), corners stay 2px.
+   The green fill is a pseudo-element (::after) so it never collides with the
+   card's reveal transition (opacity/transform) or its per-card stagger delay,
+   which sit on .svc-card itself. Text/keystone recolour on the children, which
+   the reveal never transitions. */
+.svc-card { position: relative; }
+
+.svc-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;                      /* match card — brand max */
+  background-color: rgba(30, 58, 47, 0);   /* transparent Forest; fades to solid */
+  transition: background-color 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keystone + text ride above the fill (relative + z-index, no layout shift) */
+.svc-card::before,
+.svc-title,
+.svc-copy { position: relative; z-index: 1; }
+
+.svc-title,
+.svc-copy { transition: color 0.35s ease; }
+.svc-card::before { transition: background-color 0.35s ease; } /* ready if keystone recolours */
+
+/* Keyboard focus — intentionally OUTSIDE @media (hover) so it works on every
+   device. Cards are not focusable today (no interactive content / tabindex);
+   these hooks activate the moment one becomes focusable. */
+.svc-card:focus-within::after,
+.svc-card:focus-visible::after { background-color: var(--forest); }
+.svc-card:focus-within .svc-title,
+.svc-card:focus-visible .svc-title,
+.svc-card:focus-within .svc-copy,
+.svc-card:focus-visible .svc-copy,
+.svc-card:focus-within .svc-learn,
+.svc-card:focus-visible .svc-learn { color: var(--offwhite); }
+.svc-card:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+
+/* Hover — gated to real cursors so touch devices get no sticky-hover */
+@media (hover: hover) {
+  .svc-card:hover::after { background-color: var(--forest); }
+  .svc-card:hover .svc-title,
+  .svc-card:hover .svc-copy,
+  .svc-card:hover .svc-learn { color: var(--offwhite); }
+}
+
+/* Keystone → Off-White alternative (built gold; uncomment to compare on localhost):
+.svc-card:hover::before,
+.svc-card:focus-within::before,
+.svc-card:focus-visible::before { background: var(--offwhite); }
+*/
+
+@media (max-width: 1023px) {
+  .svc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .services {
+    padding: 72px 24px;
+  }
+
+  .svc-intro {
+    margin-left: 0;
+  }
+
+  .svc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Grants — reversed Forest Green band ---------- */
+
+.grants {
+  background: var(--forest);
+  padding: clamp(120px, 15vh, 170px) clamp(24px, 5vw, 64px);
+}
+
+.grants-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1.3fr 0.85fr; /* demo A: copy-weighted split */
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center; /* demo A: photo centred against the copy */
+}
+
+.gr-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold); /* brand micro-label on reversed ground, per logo lockup */
+}
+
+.gr-eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.gr-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 38px); /* H2 */
+  line-height: 1.2;
+  color: var(--offwhite);
+  margin-top: clamp(32px, 5vh, 48px);
+  max-width: 14em;
+}
+
+.gr-lead {
+  font-family: var(--font-ui);
+  font-size: 17px;
+  color: rgba(247, 245, 239, 0.85);
+  margin-top: 24px;
+  max-width: 34em;
+}
+
+/* demo A: bordered button CTA (system letter-spacing kept) */
+.gr-link {
+  display: inline-block;
+  margin-top: 32px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--offwhite);
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  padding: 15px 30px 13px;
+  transition: background-color 0.35s var(--ease-out), color 0.35s var(--ease-out);
+}
+
+.gr-link:hover {
+  background: var(--gold);
+  color: var(--pine);
+}
+
+.gr-link:active {
+  transform: translateY(1px);
+}
+
+.gr-link:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* demo A: compact points with small gold keystone bullets */
+.gr-points {
+  list-style: none;
+  margin-top: 28px;
+  max-width: 34em;
+}
+
+.gr-points li {
+  position: relative;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: rgba(247, 245, 239, 0.9);
+  padding-left: 22px;
+  margin-bottom: 12px;
+}
+
+.gr-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+}
+
+/* photo placeholder — demo A: centred panel, keystone pinned top-left,
+   Marcellus note; swaps for a real image later */
+.gr-photo {
+  position: relative;
+  min-height: 320px;
+  background: var(--pine);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gr-photo-keystone {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+}
+
+.gr-photo-note {
+  font-family: var(--font-display);
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.4;
+  color: rgba(247, 245, 239, 0.75);
+}
+
+/* Reveal states only when JS opts in */
+.grants.js-animate .gr-eyebrow,
+.grants.js-animate .gr-headline,
+.grants.js-animate .gr-lead,
+.grants.js-animate .gr-link,
+.grants.js-animate .gr-photo,
+.grants.js-animate .gr-points li {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.grants.js-animate .is-in,
+.grants.js-animate .gr-points li.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.grants.js-animate .gr-headline.is-in { transition-delay: 0.08s; }
+.grants.js-animate .gr-lead.is-in { transition-delay: 0.16s; }
+.grants.js-animate .gr-link.is-in { transition-delay: 0.24s; }
+.grants.js-animate .gr-points li:nth-child(2).is-in { transition-delay: 0.1s; }
+.grants.js-animate .gr-points li:nth-child(3).is-in { transition-delay: 0.2s; }
+.grants.js-animate .gr-points li:nth-child(4).is-in { transition-delay: 0.3s; }
+
+@media (max-width: 900px) {
+  .grants-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .gr-photo {
+    min-height: 240px;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 767px) {
+  .grants {
+    padding: 72px 24px;
+  }
+}
+
+/* ---------- How It Works — four steps on a Stone break ---------- */
+
+.steps {
+  background: var(--stone);
+  padding: clamp(120px, 15vh, 170px) clamp(24px, 5vw, 64px);
+}
+
+.steps-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.st-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.st-eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.st-intro {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 38px); /* H2 */
+  line-height: 1.25;
+  color: var(--forest);
+  max-width: 19em;
+  margin-top: clamp(32px, 5vh, 48px);
+  margin-left: clamp(0px, 12vw, 220px); /* the section system's offset intro */
+}
+
+.st-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 2.2vw, 28px);
+  margin-top: clamp(56px, 9vh, 96px);
+  align-items: stretch;
+}
+
+.st-step {
+  border-top: 1px solid rgba(176, 141, 87, 0.5); /* fine gold rule, not a card */
+  padding: clamp(24px, 3vh, 32px) 0 0;
+}
+
+.st-num {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 38px; /* large numbers — sanctioned Marcellus use */
+  line-height: 1;
+  color: var(--forest);
+}
+
+.st-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 27px; /* H3 */
+  line-height: 1.2;
+  color: var(--forest);
+  margin-top: clamp(20px, 3vh, 32px);
+}
+
+.st-copy {
+  font-family: var(--font-ui);
+  font-size: 17px;
+  color: rgba(30, 58, 47, 0.8);
+  margin-top: 12px;
+}
+
+/* the key step: free consultation on a reversed Forest Green panel */
+.st-step--key {
+  background: var(--forest);
+  border-top: none;
+  border-radius: 2px;
+  padding: clamp(24px, 3vh, 32px) clamp(20px, 2vw, 28px) clamp(24px, 3vh, 32px);
+  margin-top: -12px; /* slight lift above the row — quietly the main event */
+}
+
+.st-step--key .st-num {
+  color: var(--gold);
+}
+
+.st-step--key .st-title {
+  color: var(--offwhite);
+}
+
+.st-step--key .st-copy {
+  color: rgba(247, 245, 239, 0.85);
+}
+
+/* the process, literally: quiet timelapse loop below the steps */
+.st-media {
+  margin-top: clamp(56px, 9vh, 96px);
+}
+
+.st-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1840 / 1080;
+  object-fit: cover;
+  border-radius: 2px;
+  background: var(--pine);
+}
+
+.st-media-caption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.st-media-caption::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* Reveal states only when JS opts in */
+.steps.js-animate .st-eyebrow,
+.steps.js-animate .st-intro,
+.steps.js-animate .st-media,
+.steps.js-animate .st-step {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.steps.js-animate .st-eyebrow.is-in,
+.steps.js-animate .st-intro.is-in,
+.steps.js-animate .st-media.is-in,
+.steps.js-animate .st-step.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.steps.js-animate .st-intro.is-in { transition-delay: 0.1s; }
+.steps.js-animate .st-step:nth-child(2).is-in { transition-delay: 0.12s; }
+.steps.js-animate .st-step:nth-child(3).is-in { transition-delay: 0.24s; }
+.steps.js-animate .st-step:nth-child(4).is-in { transition-delay: 0.36s; }
+
+@media (max-width: 1023px) {
+  .st-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .st-step--key {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .steps {
+    padding: 72px 24px;
+  }
+
+  .st-intro {
+    margin-left: 0;
+  }
+
+  .st-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Proof / Projects — placeholder gallery ---------- */
+
+.proof {
+  background: var(--offwhite);
+  padding: clamp(120px, 15vh, 170px) clamp(24px, 5vw, 64px);
+}
+
+.proof-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.pf-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.pf-eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.pf-intro {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 38px); /* H2 */
+  line-height: 1.25;
+  color: var(--forest);
+  max-width: 17em;
+  margin-top: clamp(32px, 5vh, 48px);
+  margin-left: clamp(0px, 12vw, 220px);
+}
+
+/* asymmetric gallery: wide + tall tiles alternate, never a uniform grid */
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(20px, 2.2vw, 28px);
+  margin-top: clamp(56px, 9vh, 96px);
+}
+
+.pf-tile {
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 320px;
+}
+
+.pf-tile--wide { grid-column: span 4; }
+.pf-tile--tall { grid-column: span 2; min-height: 380px; }
+
+.pf-tile--pine { background: var(--pine); }
+.pf-tile--stone { background: var(--stone); }
+
+.pf-keystone {
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+}
+
+.pf-caption {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.pf-tile--pine .pf-caption { color: rgba(247, 245, 239, 0.6); }
+.pf-tile--stone .pf-caption { color: rgba(30, 58, 47, 0.6); }
+
+.pf-note {
+  font-family: var(--font-ui);
+  font-size: 17px;
+  color: rgba(30, 58, 47, 0.6);
+  margin-top: clamp(32px, 5vh, 48px);
+  max-width: 34em;
+}
+
+/* Reveal states only when JS opts in */
+.proof.js-animate .pf-eyebrow,
+.proof.js-animate .pf-intro,
+.proof.js-animate .pf-tile,
+.proof.js-animate .pf-note {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.proof.js-animate .pf-eyebrow.is-in,
+.proof.js-animate .pf-intro.is-in,
+.proof.js-animate .pf-tile.is-in,
+.proof.js-animate .pf-note.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.proof.js-animate .pf-intro.is-in { transition-delay: 0.1s; }
+.proof.js-animate .pf-tile:nth-child(2).is-in { transition-delay: 0.12s; }
+.proof.js-animate .pf-tile:nth-child(3).is-in { transition-delay: 0.12s; }
+.proof.js-animate .pf-tile:nth-child(4).is-in { transition-delay: 0.24s; }
+
+@media (max-width: 900px) {
+  .pf-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pf-tile--wide,
+  .pf-tile--tall {
+    grid-column: span 2;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 767px) {
+  .proof {
+    padding: 72px 24px;
+  }
+
+  .pf-intro {
+    margin-left: 0;
+  }
+
+  .pf-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pf-tile--wide,
+  .pf-tile--tall {
+    grid-column: auto;
+  }
+}
+
+/* ---------- Enquire — Deep Pine close ---------- */
+
+.enquire {
+  background: var(--pine);
+  padding: clamp(120px, 15vh, 170px) clamp(24px, 5vw, 64px);
+}
+
+.enquire-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(48px, 6vw, 96px);
+  align-items: start;
+}
+
+.enq-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.enq-eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.enq-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 38px);
+  line-height: 1.2;
+  color: var(--offwhite);
+  margin-top: clamp(32px, 5vh, 48px);
+}
+
+.enq-lead {
+  font-family: var(--font-ui);
+  font-size: 17px;
+  color: rgba(247, 245, 239, 0.85);
+  margin-top: 24px;
+  max-width: 30em;
+}
+
+.enq-phone {
+  display: inline-block;
+  margin-top: 36px;
+  font-family: var(--font-display);
+  font-size: 27px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: var(--offwhite);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--gold);
+  transition: color 0.3s var(--ease-out);
+}
+
+.enq-phone:hover { color: var(--gold); }
+
+.enq-phone:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.enq-area {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: rgba(247, 245, 239, 0.6);
+  margin-top: 16px;
+}
+
+/* form: labels above inputs, quiet fields on the pine ground */
+.enq-field + .enq-field { margin-top: 22px; }
+
+.enq-field label {
+  display: block;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.enq-field input,
+.enq-field textarea {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: 17px;
+  color: var(--offwhite);
+  background: transparent;
+  border: 1px solid rgba(247, 245, 239, 0.3);
+  border-radius: 2px;
+  padding: 13px 14px;
+  transition: border-color 0.3s var(--ease-out);
+}
+
+.enq-field input:focus,
+.enq-field textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.enq-submit {
+  margin-top: 30px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--offwhite);
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  padding: 16px 30px 14px;
+  min-height: 48px;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+
+.enq-submit:hover {
+  background: var(--gold);
+  color: var(--pine);
+}
+
+.enq-submit:active { transform: translateY(1px); }
+
+.enq-submit:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.enq-form-note {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: rgba(247, 245, 239, 0.75);
+  margin-top: 14px;
+}
+
+/* Reveal states only when JS opts in */
+.enquire.js-animate .enq-copy > *,
+.enquire.js-animate .enq-form {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.enquire.js-animate .enq-copy > .is-in,
+.enquire.js-animate .enq-form.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.enquire.js-animate .enq-form.is-in { transition-delay: 0.15s; }
+
+/* ---------- Footer — editorial close on Deep Pine ---------- */
+
+.site-footer {
+  background: var(--pine);
+  border-top: 1px solid rgba(176, 141, 87, 0.4);
+  padding: clamp(64px, 9vh, 104px) clamp(24px, 5vw, 64px) 0;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr; /* brand leads, asymmetric */
+  gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+}
+
+.brand--footer { min-height: 0; }
+
+.brand-locale--footer { color: var(--offwhite); } /* footer lockup: all white */
+
+.footer-tagline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 27px; /* H3 */
+  line-height: 1.3;
+  color: var(--offwhite);
+  margin-top: clamp(28px, 4vh, 40px);
+}
+
+.footer-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.footer-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.footer-link {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 17px;
+  text-decoration: none;
+  color: rgba(247, 245, 239, 0.8);
+  padding: 8px 0;
+  transition: color 0.3s var(--ease-out);
+}
+
+.footer-link:hover { color: var(--offwhite); }
+
+.footer-phone {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 27px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: var(--offwhite);
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--gold);
+  transition: color 0.3s var(--ease-out);
+}
+
+.footer-phone:hover { color: var(--gold); }
+
+.footer-area {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(247, 245, 239, 0.6);
+  margin-top: 18px;
+}
+
+.footer-link:focus-visible,
+.footer-phone:focus-visible,
+.footer-top:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.footer-base {
+  max-width: 1200px;
+  margin-inline: auto;
+  margin-top: clamp(56px, 8vh, 88px);
+  padding: 26px 0;
+  border-top: 1px solid rgba(176, 141, 87, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-base p {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: rgba(247, 245, 239, 0.5);
+}
+
+.footer-top {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(247, 245, 239, 0.7);
+  transition: color 0.3s var(--ease-out);
+}
+
+.footer-top:hover { color: var(--gold); }
+
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+/* ---------- Mobile thumb bar ---------- */
+
+.thumb-bar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .thumb-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--pine);
+    border-top: 1px solid var(--gold);
+    transition: transform 0.35s var(--ease-out);
+  }
+
+  .thumb-bar.is-hidden {
+    transform: translateY(100%);
+  }
+
+  .thumb-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--offwhite);
+  }
+
+  .thumb-bar .thumb-call {
+    border-right: 1px solid rgba(176, 141, 87, 0.4);
+  }
+
+  .thumb-bar a:active { background: rgba(176, 141, 87, 0.15); }
+
+  .thumb-bar a:focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: -4px;
+  }
+
+  /* keep page content clear of the fixed bar */
+  .site-footer { padding-bottom: 96px; }
+
+  .enquire { padding: 72px 24px; }
+
+  .enquire-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 767px) {
+  .site-nav {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    height: 72px;
+    padding-inline: 20px;
+  }
+
+  :root { --nav-h: 72px; }
+
+  .brand-mark,
+  .brand-icon { width: 34px; height: 34px; }
+  .brand-lockup { gap: 10px; }
+  .brand-name { font-size: 14px; letter-spacing: 0.18em; }
+  .brand-locale { display: none; }
+  .brand-divider { height: 28px; }
+
+  /* Bar carries only logo + toggle; the CTA lives inside the overlay */
+  .btn-consult--bar { display: none; }
+
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 10px;
+  }
+
+  /* Links become a full-screen Deep Pine overlay.
+     justify-self must be reset: on a fixed grid child it would
+     shrink-wrap and centre the overlay instead of filling the screen. */
+  .nav-links {
+    justify-self: unset;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    z-index: -2; /* behind nav bar until opened */
+    background: var(--pine);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 120px 32px 48px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.35s var(--ease-out), visibility 0s linear 0.35s;
+  }
+
+  .nav-links.is-open {
+    visibility: visible;
+    opacity: 1;
+    z-index: 5;
+    transition: opacity 0.35s var(--ease-out);
+  }
+
+  /* Overlay links: Marcellus at H2 scale (38px), quiet rise on open */
+  .nav-links .nav-link {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 38px;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 14px 0;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  }
+
+  .nav-links.is-open .nav-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links.is-open .nav-link:nth-child(2) { transition-delay: 0.06s; }
+  .nav-links.is-open .nav-link:nth-child(3) { transition-delay: 0.12s; }
+  .nav-links.is-open .nav-link:nth-child(4) { transition-delay: 0.18s; }
+
+  /* CTA inside the overlay: full-width, gold rule border, same quiet rise */
+  .btn-consult--menu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: auto; /* links sit high, CTA anchors toward the bottom */
+    padding: 16px 22px 14px;
+    min-height: 52px;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  }
+
+  .nav-links.is-open .btn-consult--menu {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.24s;
+  }
+
+  .nav-links .nav-link::after {
+    left: 0;
+    right: auto;
+    width: 44px;
+    bottom: 6px;
+  }
+
+  /* Keep nav bar contents above the open overlay */
+  .site-nav { z-index: 10; }
+  .brand, .nav-actions { position: relative; z-index: 6; }
+
+  .ph { padding: 64px 20px; }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .site-nav::before,
+  .site-nav::after,
+  .brand-lockup,
+  .brand-icon,
+  .brand-mark rect,
+  .brand-locale,
+  .nav-link::after,
+  .btn-consult,
+  .nav-links,
+  .nav-links .nav-link {
+    transition: none;
+  }
+
+  .nav-links .nav-link,
+  .nav-links.is-open .btn-consult--menu {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-headline,
+  .hero-subline,
+  .btn-consult--hero {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .thumb-bar {
+    transition: none;
+  }
+}

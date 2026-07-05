@@ -1,0 +1,79 @@
+/* TRC Homes — Demo B · Centred / classical
+   Symmetric, centred eyebrows/headlines, even grids, generous centred rhythm.
+   Variance ~3 — the calm brochure reading of the brand. */
+
+.demo--b .hero-headline { max-width: 14ch; }
+
+/* Centred section heads */
+.demo--b .eyebrow { display: block; text-align: center; margin-bottom: 16px; }
+.demo--b .svc-head, .demo--b .pf-head, .demo--b .st-head { text-align: center; margin-inline: auto; margin-bottom: clamp(40px, 6vw, 72px); max-width: 40ch; }
+.demo--b h2 { text-align: center; }
+
+/* THE SITUATION — centred column of lines */
+.demo--b .situation { background: var(--offwhite); }
+.demo--b .situation-inner { text-align: center; }
+.demo--b .sit-lines { max-width: 30ch; margin-inline: auto; }
+.demo--b .sit-line { font-family: var(--font-display); font-size: clamp(23px, 3vw, 32px); line-height: 1.4; color: rgba(30,58,47,0.45); }
+.demo--b .sit-line + .sit-line { margin-top: 6px; }
+.demo--b .sit-line--build { color: var(--forest); margin-top: 14px; }
+
+/* SERVICES — even 3×2 grid of Stone cards with keystone accents */
+.demo--b .services { background: var(--stone); }
+.demo--b .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(176,141,87,0.4); border: 1px solid rgba(176,141,87,0.4); }
+.demo--b .svc-card { background: var(--stone); padding: clamp(28px, 3vw, 40px); text-align: center; }
+.demo--b .svc-card .keystone { margin-bottom: 18px; }
+.demo--b .svc-card h3 { margin-bottom: 10px; }
+.demo--b .svc-card p { color: rgba(30,58,47,0.75); margin-inline: auto; }
+
+/* PROOF — even 4-column grid */
+.demo--b .proof { background: var(--offwhite); }
+.demo--b .pf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.demo--b .pf-tile { min-height: 300px; }
+.demo--b .pf-note { text-align: center; }
+
+/* GRANTS — centred Forest band */
+.demo--b .grants { background: var(--forest); color: var(--offwhite); text-align: center; }
+.demo--b .grants-inner { max-width: 780px; }
+.demo--b .gr-headline { color: var(--offwhite); margin-bottom: 22px; }
+.demo--b .gr-lead { color: rgba(247,245,239,0.82); margin-inline: auto; }
+.demo--b .gr-points { list-style: none; margin: 30px auto; display: inline-grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; text-align: left; }
+.demo--b .gr-points li { position: relative; padding-left: 22px; color: rgba(247,245,239,0.9); font-size: 15px; }
+.demo--b .gr-points li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; background: var(--gold); }
+
+/* HOW IT WORKS — even 4-across row, centred, key step accented */
+.demo--b .steps { background: var(--offwhite); }
+.demo--b .st-grid { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.demo--b .st-step { text-align: center; padding-top: 28px; border-top: 1px solid rgba(176,141,87,0.5); }
+.demo--b .st-step--key { border-top-color: var(--gold); }
+.demo--b .st-num { font-family: var(--font-display); font-size: 30px; color: var(--gold); margin-bottom: 10px; }
+.demo--b .st-step h3 { margin-bottom: 8px; }
+.demo--b .st-step p { color: rgba(30,58,47,0.75); margin-inline: auto; }
+.demo--b .st-step--key h3 { color: var(--forest); }
+
+/* CTA — centred stack, Deep Pine */
+.demo--b .enquire { background: var(--pine); color: var(--offwhite); text-align: center; }
+.demo--b .enquire-inner { max-width: 640px; }
+.demo--b .enq-headline { color: var(--offwhite); margin-bottom: 18px; }
+.demo--b .enq-lead { color: rgba(247,245,239,0.8); margin-inline: auto; margin-bottom: 40px; }
+.demo--b .enq-form { text-align: left; }
+.demo--b .enq-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.demo--b .enq-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.demo--b .enq-field label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(247,245,239,0.7); }
+.demo--b .enq-field input, .demo--b .enq-field textarea { font-family: var(--font-ui); font-size: 16px; color: var(--offwhite); background: transparent; border: 0; border-bottom: 1px solid rgba(247,245,239,0.35); padding: 8px 0; }
+.demo--b .enq-field input:focus, .demo--b .enq-field textarea:focus { outline: none; border-bottom-color: var(--gold); }
+.demo--b .enq-form .btn { display: block; width: 100%; margin-top: 10px; color: var(--offwhite); }
+.demo--b .enq-phone { display: inline-block; font-family: var(--font-display); font-size: 28px; color: var(--offwhite); text-decoration: none; margin-top: 36px; }
+.demo--b .enq-area { font-size: 13px; color: rgba(247,245,239,0.6); margin-top: 8px; }
+
+@media (max-width: 900px) {
+  .demo--b .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  .demo--b .pf-grid { grid-template-columns: repeat(2, 1fr); }
+  .demo--b .st-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+}
+@media (max-width: 768px) {
+  .demo--b .svc-grid { grid-template-columns: 1fr; }
+  .demo--b .pf-grid { grid-template-columns: 1fr; }
+  .demo--b .st-grid { grid-template-columns: 1fr; }
+  .demo--b .gr-points { grid-template-columns: 1fr; }
+  .demo--b .enq-row { grid-template-columns: 1fr; gap: 0; }
+}

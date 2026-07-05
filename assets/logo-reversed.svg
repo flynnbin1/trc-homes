@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="56" viewBox="0 0 280 56" role="img" aria-label="TRC Homes — Cork, Ireland">
+  <!-- Reversed lockup: off-white marks + muted gold keystone, per variation 04 of the logo sheet.
+       Wordmark uses Marcellus / Jost — load them on the page when inlining this SVG. -->
+  <g fill="none" stroke="#F7F5EF" stroke-width="3.2">
+    <path d="M8 36 L30 12 L52 36"/>
+    <path d="M13 44 H47"/>
+  </g>
+  <rect x="27.5" y="31" width="5" height="5" fill="#B08D57"/>
+  <line x1="68" y1="10" x2="68" y2="46" stroke="#F7F5EF" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="84" y="30" font-family="Marcellus, Georgia, serif" font-size="21" letter-spacing="4.6" fill="#F7F5EF">TRC HOMES</text>
+  <text x="85" y="45" font-family="Jost, 'Century Gothic', sans-serif" font-size="9" font-weight="500" letter-spacing="3.4" fill="#B08D57">CORK &#183; IRELAND</text>
+</svg>

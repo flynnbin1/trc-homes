@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRC Homes — Full Renovations, Extensions &amp; Retrofits, Cork</title>
+  <meta name="description" content="TRC Homes handles full home renovations, extensions and retrofits across Cork under one roof — design, planning, grants and build.">
+  <link rel="icon" type="image/svg+xml" href="assets/trc-homes-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-nav">
+    <!-- Logo inlined (not <img src="assets/trc-homes-horizontal-reversed.svg">) because that
+         export has a baked-in green background, no font reference, and reads "RC HOMES".
+         Artwork below is the same lockup, corrected. Replace when a clean export arrives. -->
+    <a class="brand" href="#top" aria-label="TRC Homes — Cork, Ireland — back to top">
+      <!-- Reversed coloured lockup (logo sheet variation 04): off-white marks, gold keystone -->
+      <span class="brand-lockup">
+        <svg class="brand-mark" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+          <path d="M 10 62 L 48 24 L 86 62" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+          <path d="M 10 81 L 86 81" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+          <rect x="43.5" y="62.5" width="9" height="9" fill="#B08D57"/>
+        </svg>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">TRC Homes</span>
+          <span class="brand-locale">Cork &middot; Ireland</span>
+        </span>
+      </span>
+      <!-- State 2 (nav solid, past hero): compact white icon mark -->
+      <svg class="brand-icon" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+        <path d="M 10 62 L 48 24 L 86 62" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+        <path d="M 10 81 L 86 81" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+        <rect x="43.5" y="62.5" width="9" height="9" fill="#F7F5EF"/>
+      </svg>
+    </a>
+
+    <nav class="nav-links" id="site-menu" aria-label="Site sections">
+      <a class="nav-link" href="#services">Services</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#grants">Grants</a>
+      <!-- ABOUT anchors to How It Works until a dedicated About block exists -->
+      <a class="nav-link" href="#how-it-works">About</a>
+      <!-- Mobile only: consultation CTA lives inside the overlay -->
+      <a class="btn-consult btn-consult--menu" href="#enquire">Free Consultation</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn-consult btn-consult--bar" href="#enquire">Free Consultation</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">Menu</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ PLACEHOLDER SCAFFOLD ============
+         Everything below exists only so the nav anchors and its
+         scrolled state are testable. Each section gets designed
+         and built in its own phase, per WEBSITE-SPEC.md §4. -->
+
+    <!-- HERO — five renovation keyframes crossfade on scroll (js/hero.js).
+         Stage 1 loads eagerly via <picture>; stages 2-5 stream in behind it.
+         prefers-reduced-motion gets a static stage-5 hero (.hero--static). -->
+    <section class="hero" id="top">
+      <div class="hero-media" aria-hidden="true">
+        <!-- Each stage sits in an overflow-hidden clip wrapper. The wipe is
+             driven by compositor-only translate3d on wrapper + image (no
+             per-frame clip-path repaints) — see js/hero.js render(). -->
+        <div class="hero-stage-clip" data-stage="0">
+          <img class="hero-stage" data-stage="0"
+               src="assets/keyframes/web/stage-1-as-bought-1920.webp"
+               srcset="assets/keyframes/web/stage-1-as-bought-1284.webp 1284w,
+                       assets/keyframes/web/stage-1-as-bought-1920.webp 1920w,
+                       assets/keyframes/web/stage-1-as-bought-2880.webp 2880w"
+               sizes="100vw" alt="" decoding="async">
+        </div>
+        <div class="hero-stage-clip" data-stage="1"><img class="hero-stage" data-stage="1" data-stem="stage-2-works-begin" alt="" decoding="async"></div>
+        <div class="hero-stage-clip" data-stage="2"><img class="hero-stage" data-stage="2" data-stem="stage-3-structure" alt="" decoding="async"></div>
+        <div class="hero-stage-clip" data-stage="3"><img class="hero-stage" data-stage="3" data-stem="stage-4-late-build" alt="" decoding="async"></div>
+        <div class="hero-stage-clip" data-stage="4"><img class="hero-stage" data-stage="4" data-stem="stage-5-finished" alt="" decoding="async"></div>
+        <div class="hero-wipe-edge"></div>
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-copy">
+        <h1 class="hero-headline">
+          <span class="beat beat--1">You&rsquo;ve bought the house.</span>
+          <span class="beat beat--2">Now make it home.</span>
+        </h1>
+        <p class="hero-subline">Full renovations, extensions and retrofits across Cork.</p>
+        <a class="btn-consult btn-consult--hero" href="#enquire">Free Consultation</a>
+      </div>
+      <div class="hero-progress" aria-hidden="true"></div>
+      <nav class="hero-stages" aria-label="Renovation stages">
+        <button type="button" data-jump="0" aria-label="Stage 1 — as bought">01</button>
+        <button type="button" data-jump="1" aria-label="Stage 2 — works begin">02</button>
+        <button type="button" data-jump="2" aria-label="Stage 3 — structure">03</button>
+        <button type="button" data-jump="3" aria-label="Stage 4 — late build">04</button>
+        <button type="button" data-jump="4" aria-label="Stage 5 — finished home">05</button>
+      </nav>
+    </section>
+
+    <!-- THE SITUATION — five lines revealing on scroll (js/situation.js).
+         Without JS or with reduced motion, all lines are simply visible. -->
+    <section class="situation" id="situation">
+      <div class="situation-inner">
+        <p class="sit-eyebrow">The Situation</p>
+        <p class="sit-line">A family home for forty years.</p>
+        <p class="sit-line">Nothing done since.</p>
+        <p class="sit-line">Cold rooms, old windows, a kitchen from another decade.</p>
+        <p class="sit-line">You can see what it could be.</p>
+        <p class="sit-line sit-line--build">We build it.</p>
+      </div>
+    </section>
+
+    <!-- SERVICES — six offerings on Stone panels (js/services.js for reveal).
+         No JS / reduced motion: everything simply visible. -->
+    <section class="services" id="services">
+      <div class="services-inner">
+        <p class="svc-eyebrow">What We Do</p>
+        <h2 class="svc-intro">One call. One team. One finished home. No&nbsp;juggling five different trades.</h2>
+        <div class="svc-grid">
+          <!-- TODO: point to /services/[name] when service pages are built -->
+          <article class="svc-card">
+            <h3 class="svc-title">Full Renovations</h3>
+            <p class="svc-copy">Whole-house transformations, planned, managed and built by one dedicated team.</p>
+            <a class="svc-learn" href="#" data-service="full-renovations">Learn More</a>
+          </article>
+          <article class="svc-card">
+            <h3 class="svc-title">Extensions</h3>
+            <p class="svc-copy">More room for your family, designed around how you actually live.</p>
+            <a class="svc-learn" href="#" data-service="extensions">Learn More</a>
+          </article>
+          <article class="svc-card">
+            <h3 class="svc-title">Retrofitting</h3>
+            <p class="svc-copy">Insulation, airtightness and ventilation done properly for a warmer, quieter home.</p>
+            <a class="svc-learn" href="#" data-service="retrofitting">Learn More</a>
+          </article>
+          <article class="svc-card">
+            <h3 class="svc-title">Solar</h3>
+            <p class="svc-copy">Rooftop panels that cut your electricity bills from the very first day.</p>
+            <a class="svc-learn" href="#" data-service="solar">Learn More</a>
+          </article>
+          <article class="svc-card">
+            <h3 class="svc-title">Heat Pumps</h3>
+            <p class="svc-copy">Efficient, modern heating that helps bring your home to an A-rating.</p>
+            <a class="svc-learn" href="#" data-service="heat-pumps">Learn More</a>
+          </article>
+          <article class="svc-card">
+            <h3 class="svc-title">Grants — One Stop Shop</h3>
+            <p class="svc-copy">We handle every form and application. You simply get the funding.</p>
+            <a class="svc-learn" href="#" data-service="grants-one-stop-shop">Learn More</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF / PROJECTS — placeholder gallery (js/proof.js for reveal).
+         Each tile swaps for a real <img> when client photography arrives;
+         captions are draft labels. Layout will not change. -->
+    <section class="proof" id="projects">
+      <div class="proof-inner">
+        <p class="pf-eyebrow">Projects</p>
+        <h2 class="pf-intro">Built across Cork. Judged by the finish.</h2>
+        <div class="pf-grid">
+          <figure class="pf-tile pf-tile--wide pf-tile--pine">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">Full renovation &mdash; Douglas</figcaption>
+          </figure>
+          <figure class="pf-tile pf-tile--tall pf-tile--stone">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">Extension &mdash; Ballincollig</figcaption>
+          </figure>
+          <figure class="pf-tile pf-tile--tall pf-tile--stone">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">Deep retrofit &mdash; Carrigaline</figcaption>
+          </figure>
+          <figure class="pf-tile pf-tile--wide pf-tile--pine">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">Renovation &amp; extension &mdash; Blackrock</figcaption>
+          </figure>
+        </div>
+        <p class="pf-note">Project photography is being prepared &mdash; completed Cork projects will appear here.</p>
+      </div>
+    </section>
+
+    <!-- GRANTS — reversed Forest Green band, One Stop Shop front and centre.
+         Copy is a working draft pending client sign-off. -->
+    <section class="grants" id="grants">
+      <div class="grants-inner">
+        <div class="grants-copy">
+          <p class="gr-eyebrow">Grants</p>
+          <h2 class="gr-headline">We handle the grant paperwork.</h2>
+          <p class="gr-lead">Through the SEAI One Stop Shop scheme, a deep retrofit can come with substantial grant support. We manage the whole application &mdash; assessment, forms, approvals &mdash; so the funding is worked into your quote from day one, not chased afterwards.</p>
+          <ul class="gr-points">
+            <li>One application, handled for you</li>
+            <li>Grant support built into your quote up front</li>
+            <li>BER assessment and paperwork included</li>
+            <li>One team accountable from survey to sign-off</li>
+          </ul>
+          <a class="gr-link" href="#enquire">Ask about your grant eligibility</a>
+        </div>
+        <!-- PLACEHOLDER — swap this <figure> content for a real <img> when
+             client photography arrives (e.g. paperwork/consultation shot) -->
+        <figure class="gr-photo" role="img" aria-label="Project photograph placeholder">
+          <span class="gr-photo-keystone" aria-hidden="true"></span>
+          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS — four steps, free consultation emphasised (js/steps.js).
+         ABOUT in the nav anchors here until a dedicated About block exists.
+         Copy is a working draft pending client sign-off. -->
+    <section class="steps" id="how-it-works">
+      <div class="steps-inner">
+        <p class="st-eyebrow">How It Works</p>
+        <h2 class="st-intro">From first call to finished home.</h2>
+        <ol class="st-grid">
+          <li class="st-step">
+            <p class="st-num">01</p>
+            <h3 class="st-title">Enquire</h3>
+            <p class="st-copy">Send the form or call. Tell us about your house and what you&rsquo;re hoping for.</p>
+          </li>
+          <li class="st-step st-step--key">
+            <p class="st-num">02</p>
+            <h3 class="st-title">Free Consultation</h3>
+            <p class="st-copy">We visit, walk the house with you, and talk through what&rsquo;s possible. No cost, no obligation.</p>
+          </li>
+          <li class="st-step">
+            <p class="st-num">03</p>
+            <h3 class="st-title">Plan</h3>
+            <p class="st-copy">Design, costings and grant applications locked down before work starts.</p>
+          </li>
+          <li class="st-step">
+            <p class="st-num">04</p>
+            <h3 class="st-title">Build</h3>
+            <p class="st-copy">One accountable team on site, start to finish.</p>
+          </li>
+        </ol>
+        <figure class="st-media">
+          <video class="st-video" muted loop playsinline preload="none"
+                 poster="assets/timelapse-poster.webp"
+                 aria-label="Timelapse of a full house renovation, start to finish">
+            <source src="assets/how-it-works-timelapse.mp4" type="video/mp4">
+          </video>
+          <figcaption class="st-media-caption">A full renovation in ten seconds</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CTA / ENQUIRE — Deep Pine close (js/enquire.js).
+         Form is a PLACEHOLDER: submit is intercepted with an honest note
+         until a real endpoint is connected. Copy is a working draft. -->
+    <section class="enquire" id="enquire">
+      <div class="enquire-inner">
+        <div class="enq-copy">
+          <p class="enq-eyebrow">Get Started</p>
+          <h2 class="enq-headline">Tell us about your house.</h2>
+          <p class="enq-lead">A free consultation at your home &mdash; we walk it with you, talk through what&rsquo;s possible, and you&rsquo;ll know where you stand. No cost, no obligation.</p>
+          <a class="enq-phone" href="tel:+353210000000">021&nbsp;000&nbsp;0000</a>
+          <p class="enq-area">Serving Cork &mdash; city and county.</p>
+        </div>
+        <form class="enq-form" novalidate>
+          <div class="enq-field">
+            <label for="enq-name">Name</label>
+            <input id="enq-name" name="name" type="text" autocomplete="name">
+          </div>
+          <div class="enq-field">
+            <label for="enq-phone-input">Phone</label>
+            <input id="enq-phone-input" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="enq-field">
+            <label for="enq-email">Email</label>
+            <input id="enq-email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="enq-field">
+            <label for="enq-message">Tell us about the house</label>
+            <textarea id="enq-message" name="message" rows="4"></textarea>
+          </div>
+          <button class="enq-submit" type="submit">Request My Free Consultation</button>
+          <p class="enq-form-note" hidden>The form isn&rsquo;t connected yet &mdash; call us on 021&nbsp;000&nbsp;0000 instead.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand brand--footer" href="#top" aria-label="TRC Homes — back to top">
+          <svg class="brand-mark" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+            <path d="M 10 62 L 48 24 L 86 62" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+            <path d="M 10 81 L 86 81" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+            <rect x="43.5" y="62.5" width="9" height="9" fill="#F7F5EF"/>
+          </svg>
+          <span class="brand-divider" aria-hidden="true"></span>
+          <span class="brand-text">
+            <span class="brand-name">TRC Homes</span>
+            <span class="brand-locale brand-locale--footer">Cork &middot; Ireland</span>
+          </span>
+        </a>
+        <p class="footer-tagline">You&rsquo;ve bought the house.<br>Now make it home.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Footer">
+        <p class="footer-label">Explore</p>
+        <a class="footer-link" href="#services">Services</a>
+        <a class="footer-link" href="#projects">Projects</a>
+        <a class="footer-link" href="#grants">Grants</a>
+        <a class="footer-link" href="#how-it-works">How It Works</a>
+        <a class="footer-link" href="#enquire">Enquire</a>
+      </nav>
+
+      <div class="footer-col">
+        <p class="footer-label">Contact</p>
+        <a class="footer-phone" href="tel:+353210000000">021&nbsp;000&nbsp;0000</a>
+        <p class="footer-area">Serving Cork &mdash; city and county.<br>Free consultations at your home.</p>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <p>&copy; 2026 TRC Homes &middot; Full renovations, extensions and retrofits</p>
+      <a class="footer-top" href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <!-- Mobile thumb bar: call + enquire always one tap away (hides over the enquiry section) -->
+  <div class="thumb-bar" aria-hidden="false">
+    <a class="thumb-call" href="tel:+353210000000">Call</a>
+    <a class="thumb-enquire" href="#enquire">Enquire</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/situation.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/grants.js"></script>
+  <script src="js/steps.js"></script>
+  <script src="js/proof.js"></script>
+  <script src="js/enquire.js"></script>
+</body>
+</html>

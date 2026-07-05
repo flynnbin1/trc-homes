@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRC Homes — Home Page Demos</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="../assets/trc-homes-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Marcellus&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest:#1E3A2F; --gold:#B08D57; --offwhite:#F7F5EF; --stone:#E9E5DA; --pine:#152B22;
+      --font-display:'Marcellus',Georgia,serif; --font-ui:'Jost','Century Gothic',sans-serif;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:var(--font-ui);color:var(--offwhite);background:var(--pine);min-height:100dvh;
+      display:flex;flex-direction:column;padding:clamp(40px,7vw,88px) clamp(24px,5vw,64px)}
+    .lede{max-width:1100px;margin-inline:auto;width:100%}
+    .kicker{font-size:12px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+    h1{font-family:var(--font-display);font-weight:400;font-size:clamp(34px,5vw,52px);line-height:1.1;margin-bottom:16px}
+    .sub{color:rgba(247,245,239,0.7);max-width:60ch;line-height:1.6}
+    .grid{max-width:1100px;margin:clamp(36px,5vw,56px) auto 0;width:100%;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{display:flex;flex-direction:column;background:rgba(247,245,239,0.04);
+      border:1px solid rgba(176,141,87,0.35);border-radius:2px;padding:28px;text-decoration:none;color:inherit;
+      transition:border-color .35s cubic-bezier(0.16,1,0.3,1),background .35s cubic-bezier(0.16,1,0.3,1)}
+    .card:hover{border-color:var(--gold);background:rgba(247,245,239,0.07)}
+    .card .tag{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+    .card h2{font-family:var(--font-display);font-weight:400;font-size:26px;margin-bottom:10px}
+    .card p{font-size:14px;color:rgba(247,245,239,0.7);line-height:1.6;flex:1}
+    .card .go{margin-top:22px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--offwhite)}
+    .card .go::after{content:' \2192';color:var(--gold)}
+    .note{max-width:1100px;margin:clamp(32px,4vw,48px) auto 0;width:100%;
+      font-size:13px;color:rgba(247,245,239,0.5);line-height:1.7;border-top:1px solid rgba(247,245,239,0.12);padding-top:20px}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="lede">
+    <p class="kicker">TRC Homes · Layout Study</p>
+    <h1>Three home-page arrangements.</h1>
+    <p class="sub">Same brand, same copy, same locked type and colour — three different editorial layouts of the seven sections. Open each, scroll it on localhost, and pick the arrangement that feels most like TRC. The winner gets ported into the real animated build.</p>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="demo-a.html">
+      <span class="tag">Demo A</span>
+      <h2>Editorial</h2>
+      <p>Asymmetric and architectural. Off-centre copy, offset numbered service rows, a large-first project feature, and a vertical steps spine with the free consultation pulled forward.</p>
+      <span class="go">View Demo A</span>
+    </a>
+    <a class="card" href="demo-b.html">
+      <span class="tag">Demo B</span>
+      <h2>Centred</h2>
+      <p>Calm and classical. Symmetric centred headings, an even 3×2 service grid, a four-tile project row, and a centred four-across process — the printed-brochure reading.</p>
+      <span class="go">View Demo B</span>
+    </a>
+    <a class="card" href="demo-c.html">
+      <span class="tag">Demo C</span>
+      <h2>Gallery-led</h2>
+      <p>Imagery-first. Projects pulled up near the top as a large mosaic, services quietened to a numbered list, a wide grants band, and a horizontal process track.</p>
+      <span class="go">View Demo C</span>
+    </a>
+  </div>
+
+  <p class="note">Static layout demos — no scroll hero, no form backend, placeholder project imagery. Nothing here touches the live index.html, css/ or js/. Reduced motion and mobile fallbacks are in place. Reviewed manually on localhost.</p>
+</body>
+</html>
