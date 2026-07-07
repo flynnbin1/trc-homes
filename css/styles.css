@@ -164,6 +164,12 @@ body {
   color: var(--gold); /* coloured lockup on the solid bar */
 }
 
+/* Footer logo: icon (keystone mark) only — no "TRC Homes" wordmark. The header
+   keeps the full lockup, and the link's aria-label still names TRC Homes for
+   screen readers. */
+.brand--footer .brand-text,
+.brand--footer .brand-divider { display: none; }
+
 /* Centre links */
 
 .nav-links {
