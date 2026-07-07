@@ -40,9 +40,9 @@
     </a>
 
     <nav class="nav-links" id="site-menu" aria-label="Site sections">
-      <a class="nav-link" href="#services">Services</a>
+      <a class="nav-link" href="services.html">Services</a>
       <a class="nav-link" href="#projects">Projects</a>
-      <a class="nav-link" href="#grants">Grants</a>
+      <a class="nav-link" href="services/grants.html">Grants</a>
       <!-- ABOUT anchors to How It Works until a dedicated About block exists -->
       <a class="nav-link" href="#how-it-works">About</a>
       <!-- Mobile only: consultation CTA lives inside the overlay -->
@@ -107,32 +107,32 @@
           <article class="svc-card">
             <h3 class="svc-title">Full Renovations</h3>
             <p class="svc-copy">Whole-house transformations, planned, managed and built by one dedicated team.</p>
-            <a class="svc-learn" href="#" data-service="full-renovations">Learn More</a>
+            <a class="svc-learn" href="services/full-renovations.html" data-service="full-renovations">Learn More</a>
           </article>
           <article class="svc-card">
             <h3 class="svc-title">Extensions</h3>
             <p class="svc-copy">More room for your family, designed around how you actually live.</p>
-            <a class="svc-learn" href="#" data-service="extensions">Learn More</a>
+            <a class="svc-learn" href="services/extensions.html" data-service="extensions">Learn More</a>
           </article>
           <article class="svc-card">
             <h3 class="svc-title">Retrofitting</h3>
             <p class="svc-copy">Insulation, airtightness and ventilation done properly for a warmer, quieter home.</p>
-            <a class="svc-learn" href="#" data-service="retrofitting">Learn More</a>
+            <a class="svc-learn" href="services/retrofitting.html" data-service="retrofitting">Learn More</a>
           </article>
           <article class="svc-card">
             <h3 class="svc-title">Solar</h3>
             <p class="svc-copy">Rooftop panels that cut your electricity bills from the very first day.</p>
-            <a class="svc-learn" href="#" data-service="solar">Learn More</a>
+            <a class="svc-learn" href="services/solar.html" data-service="solar">Learn More</a>
           </article>
           <article class="svc-card">
             <h3 class="svc-title">Heat Pumps</h3>
             <p class="svc-copy">Efficient, modern heating that helps bring your home to an A-rating.</p>
-            <a class="svc-learn" href="#" data-service="heat-pumps">Learn More</a>
+            <a class="svc-learn" href="services/heat-pumps.html" data-service="heat-pumps">Learn More</a>
           </article>
           <article class="svc-card">
             <h3 class="svc-title">Grants — One Stop Shop</h3>
             <p class="svc-copy">We handle every form and application. You simply get the funding.</p>
-            <a class="svc-learn" href="#" data-service="grants-one-stop-shop">Learn More</a>
+            <a class="svc-learn" href="services/grants.html" data-service="grants-one-stop-shop">Learn More</a>
           </article>
         </div>
       </div>
@@ -147,23 +147,26 @@
         <h2 class="pf-intro">Built across Cork. Judged by the finish.</h2>
         <div class="pf-grid">
           <figure class="pf-tile pf-tile--wide pf-tile--pine">
+            <img class="pf-photo" src="assets/full-renovation-cork.webp" alt="Full home renovation in Cork by TRC Homes — white rendered semi-detached house with black-framed windows and a newly paved driveway" loading="lazy" decoding="async">
             <span class="pf-keystone" aria-hidden="true"></span>
             <figcaption class="pf-caption">Full renovation &mdash; Douglas</figcaption>
           </figure>
           <figure class="pf-tile pf-tile--tall pf-tile--stone">
+            <img class="pf-photo" src="assets/period-home-renovation-cork.webp" alt="Period home renovation in Cork by TRC Homes — restored red-brick two-storey house with sash windows and a gravel driveway" loading="lazy" decoding="async">
             <span class="pf-keystone" aria-hidden="true"></span>
-            <figcaption class="pf-caption">Extension &mdash; Ballincollig</figcaption>
+            <figcaption class="pf-caption">Period home renovation &mdash; Ballincollig</figcaption>
           </figure>
           <figure class="pf-tile pf-tile--tall pf-tile--stone">
+            <img class="pf-photo" src="assets/deep-retrofit-cork.webp" alt="Deep retrofit in Cork by TRC Homes — rendered house with black roof-mounted solar panels and an external heat pump" loading="lazy" decoding="async">
             <span class="pf-keystone" aria-hidden="true"></span>
             <figcaption class="pf-caption">Deep retrofit &mdash; Carrigaline</figcaption>
           </figure>
           <figure class="pf-tile pf-tile--wide pf-tile--pine">
+            <img class="pf-photo" src="assets/renovation-extension-cork.webp" alt="Renovation and extension in Cork by TRC Homes — restored stone cottage with a modern flat-roof glass extension" loading="lazy" decoding="async">
             <span class="pf-keystone" aria-hidden="true"></span>
             <figcaption class="pf-caption">Renovation &amp; extension &mdash; Blackrock</figcaption>
           </figure>
         </div>
-        <p class="pf-note">Project photography is being prepared &mdash; completed Cork projects will appear here.</p>
       </div>
     </section>
 
@@ -232,37 +235,75 @@
       </div>
     </section>
 
-    <!-- CTA / ENQUIRE — Deep Pine close (js/enquire.js).
-         Form is a PLACEHOLDER: submit is intercepted with an honest note
-         until a real endpoint is connected. Copy is a working draft. -->
-    <section class="enquire" id="enquire">
-      <div class="enquire-inner">
-        <div class="enq-copy">
-          <p class="enq-eyebrow">Get Started</p>
-          <h2 class="enq-headline">Tell us about your house.</h2>
-          <p class="enq-lead">A free consultation at your home &mdash; we walk it with you, talk through what&rsquo;s possible, and you&rsquo;ll know where you stand. No cost, no obligation.</p>
-          <a class="enq-phone" href="tel:+353210000000">021&nbsp;000&nbsp;0000</a>
-          <p class="enq-area">Serving Cork &mdash; city and county.</p>
-        </div>
-        <form class="enq-form" novalidate>
-          <div class="enq-field">
-            <label for="enq-name">Name</label>
-            <input id="enq-name" name="name" type="text" autocomplete="name">
+    <!-- CTA / ENQUIRE — Deep Pine close with the 3-step enquiry form
+         (js/enquiry-form.js), the same form used on the service pages.
+         Front-end only: submit shows an honest inline note, no backend yet. -->
+    <section class="cta-band" id="enquire">
+      <div class="cta-band-inner">
+        <span class="cta-keystone" aria-hidden="true"></span>
+        <h2 class="enq-headline">Ready to start?</h2>
+        <p class="enq-lead">Answer three quick questions and we&rsquo;ll be in touch.</p>
+        <form class="stepform stepform--card" id="enquiry-form" novalidate aria-label="Request a free consultation">
+          <div class="sf-progress" aria-hidden="true">
+            <span class="sf-dot is-on"></span>
+            <span class="sf-dot"></span>
+            <span class="sf-dot"></span>
+            <span class="sf-step-label">Step 1 of 3</span>
           </div>
-          <div class="enq-field">
-            <label for="enq-phone-input">Phone</label>
-            <input id="enq-phone-input" name="phone" type="tel" autocomplete="tel">
-          </div>
-          <div class="enq-field">
-            <label for="enq-email">Email</label>
-            <input id="enq-email" name="email" type="email" autocomplete="email">
-          </div>
-          <div class="enq-field">
-            <label for="enq-message">Tell us about the house</label>
-            <textarea id="enq-message" name="message" rows="4"></textarea>
-          </div>
-          <button class="enq-submit" type="submit">Request My Free Consultation</button>
-          <p class="enq-form-note" hidden>The form isn&rsquo;t connected yet &mdash; call us on 021&nbsp;000&nbsp;0000 instead.</p>
+
+          <!-- Step 1 -->
+          <fieldset class="sf-step" data-step="1">
+            <legend class="sf-q">What are you planning?</legend>
+            <div class="sf-options">
+              <label class="sf-option"><input type="radio" name="planning" value="Full renovation">Full renovation</label>
+              <label class="sf-option"><input type="radio" name="planning" value="Extension">Extension</label>
+              <label class="sf-option"><input type="radio" name="planning" value="Retrofit or upgrade">Retrofit or upgrade</label>
+              <label class="sf-option"><input type="radio" name="planning" value="Not sure yet">Not sure yet</label>
+            </div>
+            <div class="sf-nav">
+              <button type="button" class="btn-consult sf-next">Next</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 2 -->
+          <fieldset class="sf-step" data-step="2" hidden>
+            <legend class="sf-q">Tell us about the house</legend>
+            <div class="enq-field">
+              <label for="sf-about">About the house</label>
+              <textarea id="sf-about" name="about" rows="3" placeholder="1970s semi-d in Douglas, needs a full going-over"></textarea>
+            </div>
+            <div class="enq-field">
+              <label for="sf-area">Where in Cork? (optional)</label>
+              <input id="sf-area" name="area" type="text" placeholder="Douglas, Ballincollig, Glanmire&hellip;">
+            </div>
+            <div class="sf-nav">
+              <button type="button" class="sf-back">Back</button>
+              <button type="button" class="btn-consult sf-next">Next</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 3 -->
+          <fieldset class="sf-step" data-step="3" hidden>
+            <legend class="sf-q">Where will we send your consultation details?</legend>
+            <div class="enq-field">
+              <label for="sf-name">Name</label>
+              <input id="sf-name" name="name" type="text" autocomplete="name">
+            </div>
+            <div class="enq-field">
+              <label for="sf-phone">Phone</label>
+              <input id="sf-phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="enq-field">
+              <label for="sf-email">Email</label>
+              <input id="sf-email" name="email" type="email" autocomplete="email">
+            </div>
+            <div class="sf-nav">
+              <button type="button" class="sf-back">Back</button>
+              <button type="submit" class="btn-consult sf-submit">Request My Free Consultation</button>
+            </div>
+          </fieldset>
+
+          <p class="sf-note" role="status" hidden>Thanks &mdash; we&rsquo;ll be in touch. Prefer to talk now? <a href="tel:+353210000000">Call us</a>.</p>
         </form>
       </div>
     </section>
@@ -288,9 +329,9 @@
 
       <nav class="footer-col" aria-label="Footer">
         <p class="footer-label">Explore</p>
-        <a class="footer-link" href="#services">Services</a>
+        <a class="footer-link" href="services.html">Services</a>
         <a class="footer-link" href="#projects">Projects</a>
-        <a class="footer-link" href="#grants">Grants</a>
+        <a class="footer-link" href="services/grants.html">Grants</a>
         <a class="footer-link" href="#how-it-works">How It Works</a>
         <a class="footer-link" href="#enquire">Enquire</a>
       </nav>
@@ -324,6 +365,6 @@
   <script src="js/grants.js"></script>
   <script src="js/steps.js"></script>
   <script src="js/proof.js"></script>
-  <script src="js/enquire.js"></script>
+  <script src="js/enquiry-form.js"></script>
 </body>
 </html>

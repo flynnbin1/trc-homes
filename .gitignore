@@ -9,6 +9,9 @@ node_modules/
 .DS_Store
 Thumbs.db
 
+# Firecrawl search cache (tool output — not part of the site)
+.firecrawl/
+
 # Hero video: keep the runtime frame tiers (frames-hd/, frames-mobile/) but
 # NOT the heavy source clips or intermediate/superseded frame sets — those
 # stay local (only needed to regenerate frames), out of git history.

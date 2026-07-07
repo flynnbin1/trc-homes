@@ -1299,6 +1299,29 @@ body {
 .pf-tile--pine .pf-caption { color: rgba(247, 245, 239, 0.6); }
 .pf-tile--stone .pf-caption { color: rgba(30, 58, 47, 0.6); }
 
+/* Real project photos: the image fills the tile; the caption becomes a bottom
+   label with a subtle Deep Pine scrim so it stays legible over the photo.
+   :has() scopes this to tiles that hold a photo, leaving placeholder tiles as-is. */
+.pf-tile { position: relative; overflow: hidden; }
+.pf-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.pf-tile:has(.pf-photo) { justify-content: flex-end; }
+.pf-tile:has(.pf-photo) .pf-keystone { display: none; }
+.pf-tile .pf-caption { position: relative; z-index: 1; }
+.pf-tile:has(.pf-photo) .pf-caption {
+  width: 100%;
+  text-align: left;
+  color: var(--offwhite);
+  padding: clamp(48px, 9vh, 72px) clamp(18px, 2vw, 24px) clamp(16px, 2.4vh, 22px);
+  background: linear-gradient(to top, rgba(21, 43, 34, 0.72) 0%, rgba(21, 43, 34, 0.2) 58%, rgba(21, 43, 34, 0) 100%);
+}
+
 .pf-note {
   font-family: var(--font-ui);
   font-size: 17px;
@@ -1863,4 +1886,751 @@ body {
   .thumb-bar {
     transition: none;
   }
+
+  .btn-line { transition: none; }
+  .faq summary::after { transition: none; }
+}
+
+/* ================================================================
+   Interior pages — Services hub + individual service pages
+   Reuses the homepage system: same tokens, §9 type scale, §10 gold-rule
+   language and section rhythm (padding clamp(120px…), 1200px measure, sharp
+   2px corners, quiet motion). No new colours, fonts or effects — the classes
+   below carry the SAME values the homepage sections use, so interior pages
+   match exactly. A solid nav from the top is handled by nav.js (these pages
+   have no #top hero for it to sit over).
+   ================================================================ */
+
+/* Section rhythm — mirrors .services / .grants / .enquire */
+.sec { padding: clamp(120px, 15vh, 170px) clamp(24px, 5vw, 64px); background: var(--offwhite); }
+.sec--stone { background: var(--stone); }
+.sec-inner { max-width: 1200px; margin-inline: auto; }
+.sec-inner--narrow { max-width: 860px; } /* keeps prose to a 65–75 char measure */
+
+/* Eyebrow — identical to .svc-eyebrow (gold micro-label + 36px rule) */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
+
+/* Page hero — light band under the solid nav; H1 at §9 scale */
+.page-hero {
+  background: var(--offwhite);
+  padding: calc(var(--nav-h) + clamp(48px, 9vh, 104px)) clamp(24px, 5vw, 64px) clamp(72px, 11vh, 118px);
+}
+.page-hero-inner { max-width: 1200px; margin-inline: auto; }
+.page-h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 4.6vw, 56px); /* H1 */
+  line-height: 1.12;
+  color: var(--forest);
+  margin-top: clamp(28px, 4vh, 40px);
+  max-width: 15em;
+}
+.page-sub {
+  font-family: var(--font-ui);
+  font-size: 19px;
+  line-height: 1.55;
+  color: rgba(30, 58, 47, 0.8);
+  margin-top: 22px;
+  max-width: 34em;
+}
+
+/* Compact banner hero (services.html) — background image + Deep Pine gradient,
+   copy bottom-left in off-white. Reuses the homepage hero's overlay treatment
+   (§10): slim top band for nav legibility, deeper pool bottom-left behind the
+   copy. Not full-viewport (~60vh) so content stays near the fold. id="top" on
+   the section lets nav.js run the same transparent→solid nav behaviour. */
+.svc-banner {
+  position: relative;
+  height: 60vh;
+  min-height: 460px;
+  max-height: 660px;
+  display: flex;
+  align-items: flex-end; /* copy anchors to the bottom */
+  overflow: hidden;
+  background: var(--pine); /* shown behind the image while it decodes */
+}
+.svc-banner-media { position: absolute; inset: 0; }
+.svc-banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.svc-banner-overlay {
+  position: absolute;
+  inset: 0;
+  /* Deepened for AA legibility of the off-white copy over the bright finished
+     house/sky. Deep-Pine pool weighted to the lower-left behind the copy column,
+     easing toward the right and top edges so the image still reads there. Values
+     computed to clear AA across eyebrow, headline, subline and button (desktop +
+     mobile crops). Deep Pine token only — no new colours. */
+  background:
+    linear-gradient(to bottom, rgba(21, 43, 34, 0.5) 0%, rgba(21, 43, 34, 0) 16%),
+    linear-gradient(to right, rgba(21, 43, 34, 0.85) 0%, rgba(21, 43, 34, 0.72) 34%, rgba(21, 43, 34, 0.56) 56%, rgba(21, 43, 34, 0.47) 72%, rgba(21, 43, 34, 0.12) 82%, rgba(21, 43, 34, 0) 92%),
+    linear-gradient(to top, rgba(21, 43, 34, 0.5) 0%, rgba(21, 43, 34, 0.25) 30%, rgba(21, 43, 34, 0.06) 48%, rgba(21, 43, 34, 0) 60%),
+    radial-gradient(ellipse 120% 125% at 0% 106%, rgba(21, 43, 34, 0.55) 0%, rgba(21, 43, 34, 0.28) 45%, rgba(21, 43, 34, 0.06) 72%, rgba(21, 43, 34, 0) 90%);
+}
+.svc-banner-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 0 clamp(24px, 5vw, 64px) clamp(44px, 8vh, 76px);
+}
+.svc-banner-h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 4.6vw, 56px); /* H1 */
+  line-height: 1.12;
+  color: var(--offwhite);
+  margin-top: clamp(20px, 3vh, 30px);
+  max-width: 15em;
+}
+.svc-banner-sub {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--offwhite);
+  margin-top: 18px;
+  max-width: 34em;
+}
+.svc-banner-cta { margin-top: clamp(26px, 4vh, 36px); }
+
+@media (max-width: 767px) {
+  .svc-banner { height: 62vh; min-height: 420px; }
+}
+
+/* Section headings / prose */
+.sec-h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 38px); /* H2 */
+  line-height: 1.25;
+  color: var(--forest);
+  max-width: 18em;
+  margin-top: clamp(28px, 4vh, 40px);
+}
+.sec-lead {
+  font-family: var(--font-ui);
+  font-size: 19px;
+  line-height: 1.6;
+  color: rgba(30, 58, 47, 0.82);
+  margin-top: 24px;
+  max-width: 34em;
+}
+.sec-body {
+  font-family: var(--font-ui);
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(30, 58, 47, 0.82);
+  margin-top: 20px;
+  max-width: 38em;
+}
+.sec-body + .sec-body { margin-top: 16px; }
+
+/* Two-column split (used by the Why TRC strip): copy left, photo placeholder
+   right, vertically centred — same copy-weighted split as the grants band.
+   Stacks below 768px (copy on top, placeholder below). Layout only: reuses
+   .gr-photo for the placeholder, adds no new colours, type or effects. */
+.why-split {
+  display: grid;
+  grid-template-columns: 1.3fr 0.85fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .why-split { grid-template-columns: 1fr; }
+}
+
+/* Closing CTA band (services.html) — Deep Pine anchor before the footer.
+   Reuses the enquire section's off-white-on-pine type (.enq-headline /
+   .enq-lead) and the dark-section button (.btn-consult); the footer's existing
+   gold border-top keeps the two pine blocks visually distinct. No new colours,
+   type or effects — just this centred pine wrapper + a small gold keystone. */
+.cta-band {
+  position: relative;
+  overflow: hidden;
+  background: var(--pine); /* fallback behind the image while it decodes */
+  padding: clamp(100px, 14vh, 150px) clamp(24px, 5vw, 64px);
+  text-align: center;
+}
+/* Background image + Deep Pine gradient — same method as the top banner, tuned
+   lighter so the finished house reads through: a deeper pool behind the centred
+   copy easing to the lighter edges; deeper again at the bottom so it blends
+   into the solid-pine footer below (kept distinct by the footer's gold rule). */
+.cta-band-media { position: absolute; inset: 0; }
+.cta-band-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cta-band-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 82% 88% at 50% 50%, rgba(21, 43, 34, 0.76) 0%, rgba(21, 43, 34, 0.5) 48%, rgba(21, 43, 34, 0.3) 100%),
+    linear-gradient(to bottom, rgba(21, 43, 34, 0.4) 0%, rgba(21, 43, 34, 0) 24%, rgba(21, 43, 34, 0) 76%, rgba(21, 43, 34, 0.55) 100%);
+}
+.cta-band-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin-inline: auto;
+}
+.cta-keystone {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--gold); /* brand keystone — sharp, no radius */
+}
+.cta-band .enq-headline { margin-top: 22px; }
+.cta-band .enq-lead { margin-top: 16px; margin-inline: auto; }
+.cta-band .btn-consult { margin-top: clamp(30px, 5vh, 40px); }
+
+@media (max-width: 767px) {
+  .cta-band { padding: 72px 24px; }
+}
+
+/* Service-page template helpers (full-renovations) — reuse-only layout, no new
+   colours/type/effects. Breadcrumb legibility over the banner image; a reversed
+   image/text split for the alternating editorial layout; a vertical stack for
+   the reused .st-step points. */
+.svc-banner .crumb { color: rgba(247, 245, 239, 0.72); }
+.svc-banner .crumb a { color: var(--gold); }
+
+.why-split--rev { grid-template-columns: 0.85fr 1.3fr; }
+.why-split--rev > .why-copy { order: 2; }
+.why-split--rev > .gr-photo { order: 1; }
+
+.feature-stack {
+  display: grid;
+  gap: clamp(16px, 2.4vh, 24px);
+  margin-top: clamp(28px, 4vh, 40px);
+}
+
+@media (max-width: 767px) {
+  .why-split--rev { grid-template-columns: 1fr; }
+  .why-split--rev > .why-copy,
+  .why-split--rev > .gr-photo { order: 0; }
+}
+
+/* Service-page closing CTA keeps its eyebrow + a compact contact line (phone +
+   services link) centred over the hub's Deep-Pine image band, light-linked for
+   the dark ground. These selectors don't match the hub's minimal band, so it is
+   unaffected. */
+.cta-band .eyebrow { justify-content: center; }
+.cta-band .enq-area { margin-top: 22px; }
+.cta-band .enq-area a {
+  color: var(--offwhite);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 3px;
+}
+
+/* ============ 3-step enquiry form (service-page template) ============
+   Front-end step logic only (js/enquiry-form.js) — no backend. Off-white on
+   Deep Pine to sit in the .cta-band; text fields reuse .enq-field. Sharp 2px
+   corners, opacity/translate motion only. No new colours/fonts/effects. */
+.stepform {
+  max-width: 620px;
+  margin: clamp(28px, 4vh, 40px) auto 0;
+  text-align: left; /* form reads left within the centred CTA band */
+}
+
+/* progress — three keystone dots + step label */
+.sf-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: clamp(24px, 3.5vh, 32px);
+}
+.sf-dot {
+  width: 9px;
+  height: 9px;
+  background: rgba(247, 245, 239, 0.28);
+  transition: background-color 0.3s var(--ease-out);
+}
+.sf-dot.is-on { background: var(--gold); }
+.sf-step-label {
+  margin-left: 6px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(247, 245, 239, 0.6);
+}
+
+/* step container: only the active step shows; quiet fade-in on each change */
+.sf-step {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
+}
+.sf-step[hidden] { display: none; }
+.sf-step:not([hidden]) { animation: sf-in 0.45s var(--ease-out); }
+@keyframes sf-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* step question — Marcellus heading (legend) */
+.sf-q {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 30px);
+  line-height: 1.2;
+  color: var(--offwhite);
+  margin-bottom: clamp(20px, 3vh, 28px);
+}
+
+/* step 1 — large tappable option tiles (single-select radios) */
+.sf-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.sf-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 14px 18px;
+  border: 1px solid rgba(247, 245, 239, 0.3);
+  border-radius: 2px;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  color: var(--offwhite);
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease-out), background-color 0.25s var(--ease-out);
+}
+.sf-option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.sf-option:hover { border-color: rgba(176, 141, 87, 0.7); }
+.sf-option:has(input:checked),
+.sf-option.is-selected {
+  border-color: var(--gold);
+  background: rgba(176, 141, 87, 0.14);
+}
+.sf-option:focus-within { outline: 1px solid var(--gold); outline-offset: 3px; }
+
+/* nav row — Back (quiet) + Next/Submit (.btn-consult) */
+.sf-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: clamp(24px, 3.5vh, 32px);
+}
+.sf-back {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247, 245, 239, 0.7);
+  padding: 12px 4px;
+  min-height: 44px;
+}
+.sf-back:hover { color: var(--offwhite); }
+.sf-back:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+
+/* honest confirmation note (shown on submit; no reload, no fake success screen) */
+.sf-note {
+  font-family: var(--font-ui);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--offwhite);
+}
+.sf-note a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.stepform.is-done .sf-progress,
+.stepform.is-done .sf-step { display: none; }
+
+/* text fields (steps 2–3) reuse .enq-field; add stacking gap */
+.stepform .enq-field + .enq-field { margin-top: 20px; }
+
+/* Hero quick-start: Step 1 only, over the banner image. Selecting an option
+   scrolls to the full form and advances it to step 2. */
+.hero-quickstart { margin-top: clamp(24px, 4vh, 34px); }
+.sf-qlabel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.sf-qlabel::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
+.hero-qopts { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-qopt {
+  min-height: 48px;
+  padding: 13px 20px 11px;
+  border: 1px solid rgba(247, 245, 239, 0.55);
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--offwhite);
+  transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+.hero-qopt:hover { background: var(--offwhite); color: var(--pine); border-color: var(--offwhite); }
+.hero-qopt:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+
+@media (max-width: 767px) {
+  .sf-options { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sf-step:not([hidden]) { animation: none; }
+  .sf-dot { transition: none; }
+}
+
+/* Closing-CTA form on an Off-White card (full-renovations): the band is solid
+   Deep Pine; the form sits in a white panel with dark-on-light field treatment
+   for legibility. Sharp 2px corners, no shadow. §9/§10. */
+.stepform--card {
+  background: var(--offwhite);
+  border-radius: 2px;
+  padding: clamp(28px, 4vw, 48px);
+}
+.stepform--card .sf-q { color: var(--forest); }
+.stepform--card .sf-dot { background: rgba(30, 58, 47, 0.22); }
+.stepform--card .sf-dot.is-on { background: var(--gold); }
+.stepform--card .sf-step-label { color: rgba(30, 58, 47, 0.6); }
+.stepform--card .sf-option { color: var(--forest); border-color: rgba(30, 58, 47, 0.25); }
+.stepform--card .sf-option:hover { border-color: rgba(176, 141, 87, 0.8); }
+.stepform--card .sf-option:has(input:checked),
+.stepform--card .sf-option.is-selected { border-color: var(--gold); background: rgba(176, 141, 87, 0.12); }
+.stepform--card .enq-field label { color: var(--forest); }
+.stepform--card .enq-field input,
+.stepform--card .enq-field textarea {
+  color: var(--forest);
+  background: var(--offwhite);
+  border-color: rgba(30, 58, 47, 0.28);
+}
+.stepform--card .enq-field input::placeholder,
+.stepform--card .enq-field textarea::placeholder { color: rgba(30, 58, 47, 0.45); }
+.stepform--card .enq-field input:focus,
+.stepform--card .enq-field textarea:focus { border-color: var(--gold); }
+.stepform--card .sf-back { color: rgba(30, 58, 47, 0.7); }
+.stepform--card .sf-back:hover { color: var(--forest); }
+.stepform--card .btn-consult { color: var(--forest); }
+.stepform--card .sf-note { color: var(--forest); }
+.stepform--card .sf-note a { color: var(--forest); text-decoration-color: var(--gold); }
+
+/* Hero breathing room (services/full-renovations.html only). The banner copy is
+   bottom-anchored (align-items: flex-end, matching the hub), so the lever for
+   clear space above the heading is the banner height — raised here on the same
+   vh scale the base banner uses. Scoped so the hub banner is untouched. */
+.svc-banner--roomy {
+  height: 70vh;
+  min-height: 560px;
+  max-height: 760px;
+}
+@media (max-width: 767px) {
+  .svc-banner--roomy { height: 68vh; min-height: 500px; }
+}
+
+/* ---------- Testimonial slider ("In Their Words", full-renovations) ----------
+   Vanilla slider (js/testimonials.js) on the Stone band: Marcellus forest
+   quotes, gold micro-attribution + keystone dots. Sharp corners, quiet motion. */
+.tsl-note {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: rgba(30, 58, 47, 0.55);
+  margin-top: 12px;
+}
+.tslider { margin-top: clamp(28px, 4vh, 44px); }
+.tsl-viewport { overflow: hidden; }
+.tsl-track {
+  list-style: none;
+  display: flex;
+  transition: transform 0.55s var(--ease-out);
+}
+.tsl-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  padding-right: 2px;
+}
+.tsl-quote {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.32;
+  color: var(--forest);
+  max-width: 20em;
+}
+.tsl-attr {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(20px, 3vh, 28px);
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.tsl-attr::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.tsl-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: clamp(28px, 4vh, 40px);
+}
+.tsl-prev,
+.tsl-next {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid rgba(30, 58, 47, 0.3);
+  border-radius: 2px;
+  color: var(--forest);
+  font-size: 18px;
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease-out), color 0.25s var(--ease-out);
+}
+.tsl-prev:hover,
+.tsl-next:hover { border-color: var(--gold); color: var(--gold); }
+.tsl-prev:focus-visible,
+.tsl-next:focus-visible,
+.tsl-dot:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+.tsl-dots { display: flex; gap: 2px; margin-left: 4px; }
+.tsl-dot {
+  width: 32px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.tsl-dot::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  background: rgba(30, 58, 47, 0.25);
+  transition: background-color 0.25s var(--ease-out);
+}
+.tsl-dot.is-on::before { background: var(--gold); }
+@media (prefers-reduced-motion: reduce) {
+  .tsl-track { transition: none; }
+}
+
+/* Light-ground CTA — same mechanics as .btn-consult, forest text for AA
+   contrast on Off-White (a legibility variant, not a new style): gold 1px
+   border, gold fill + pine text on hover. */
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  margin-top: clamp(30px, 5vh, 44px);
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--forest);
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  padding: 16px 32px 14px;
+  min-height: 48px;
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+.btn-line:hover { background: var(--gold); color: var(--pine); }
+.btn-line:active { transform: translateY(1px); }
+.btn-line:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+
+/* "What's involved" checklist — gold keystone bullets (mirrors .gr-points,
+   recoloured for the light section) */
+.spec-list {
+  list-style: none;
+  margin-top: clamp(32px, 5vh, 44px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 44px;
+  max-width: 920px;
+}
+.spec-list li {
+  position: relative;
+  padding-left: 22px;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(30, 58, 47, 0.85);
+}
+.spec-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+}
+
+/* Why-TRC feature blocks — reuse the Stone-panel + keystone look of .svc-card */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.2vw, 28px);
+  margin-top: clamp(40px, 7vh, 72px);
+}
+.feature { background: var(--stone); border-radius: 2px; padding: clamp(28px, 3vw, 40px); }
+.feature::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  margin-bottom: clamp(20px, 2.5vh, 28px);
+}
+.feature h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 27px; /* H3 */
+  line-height: 1.2;
+  color: var(--forest);
+}
+.feature p {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(30, 58, 47, 0.8);
+  margin-top: 12px;
+}
+
+/* Hub: the six service cards become links; reuse .svc-grid/.svc-card exactly */
+a.svc-card { text-decoration: none; }
+
+/* FAQ — native <details>, fine gold rules, Marcellus questions, quiet caret */
+.faq {
+  margin-top: clamp(40px, 6vh, 64px);
+  max-width: 860px;
+  border-top: 1px solid rgba(176, 141, 87, 0.4);
+}
+.faq details { border-bottom: 1px solid rgba(176, 141, 87, 0.4); }
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  padding: clamp(22px, 3vh, 30px) 46px clamp(22px, 3vh, 30px) 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(19px, 2vw, 23px);
+  line-height: 1.3;
+  color: var(--forest);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.3s var(--ease-out);
+}
+.faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+.faq summary:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+.faq-a {
+  padding: 0 46px clamp(24px, 3.5vh, 32px) 0;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(30, 58, 47, 0.82);
+  max-width: 62ch;
+}
+.faq-a a { color: var(--forest); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+
+/* Inline text link within prose (to hub / grants) */
+.inline-link {
+  color: var(--forest);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 3px;
+  transition: color 0.3s var(--ease-out);
+}
+.inline-link:hover { color: var(--gold); }
+.inline-link:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+
+/* Breadcrumb — quiet Jost micro-label above the H1 on service pages */
+.crumb {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(30, 58, 47, 0.55);
+}
+.crumb a { color: var(--gold); text-decoration: none; }
+.crumb a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.crumb a:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+
+/* Stub pages — "in preparation" note */
+.stub-note {
+  font-family: var(--font-ui);
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(30, 58, 47, 0.8);
+  margin-top: 24px;
+  max-width: 34em;
+}
+
+@media (max-width: 1023px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 767px) {
+  .sec { padding: 72px 24px; }
+  .page-hero { padding: calc(var(--nav-h) + 40px) 24px 56px; }
+  .spec-list { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
 }
