@@ -1,6 +1,7 @@
 /* TRC Homes — navigation behaviour
    1. Transparent-over-hero → solid Deep Pine once the hero has scrolled past.
-   2. Mobile full-screen menu (open/close, Escape, closes on link tap). */
+   2. Mobile full-screen menu (open/close, Escape, closes on link tap).
+   3. Services dropdown: desktop hover/keyboard popover, mobile tap-to-expand. */
 
 (function () {
   'use strict';
@@ -9,6 +10,10 @@
   var hero = document.getElementById('top');
   var toggle = document.querySelector('.nav-toggle');
   var menu = document.getElementById('site-menu');
+
+  var servicesItem = document.querySelector('.nav-item--services');
+  var servicesLink = servicesItem ? servicesItem.querySelector('.nav-link--services') : null;
+  var mqMobile = window.matchMedia('(max-width: 767px)');
 
   /* Solid background once the hero has passed behind the nav bar.
      rootMargin excludes the nav-height strip at the top, so the strip of
@@ -36,15 +41,70 @@
     });
 
     menu.addEventListener('click', function (e) {
-      /* any anchor in the overlay (section links + consultation CTA) closes it */
-      if (e.target.closest('a')) setMenu(false);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
-        setMenu(false);
-        toggle.focus();
-      }
+      var link = e.target.closest('a');
+      if (!link) return;
+      /* On mobile the Services link expands its submenu instead of navigating,
+         so it must NOT close the overlay — its own handler manages the toggle.
+         Every other anchor (sections, sub-links, CTA) closes the overlay. */
+      if (link === servicesLink && mqMobile.matches) return;
+      setMenu(false);
     });
   }
+
+  /* Services dropdown */
+  if (servicesItem && servicesLink) {
+    /* Mobile: tap Services to expand / collapse, don't navigate */
+    servicesLink.addEventListener('click', function (e) {
+      if (mqMobile.matches) {
+        e.preventDefault();
+        e.stopPropagation(); /* keep the overlay open (see menu click handler) */
+        var expanded = servicesItem.classList.toggle('is-expanded');
+        servicesLink.setAttribute('aria-expanded', String(expanded));
+      }
+      /* Desktop: default click navigates to services.html — the panel opens on hover/focus */
+    });
+
+    /* Desktop keyboard: keep aria-expanded in sync with focus, and clear the
+       Escape "collapsed" latch once focus genuinely leaves the item. */
+    servicesItem.addEventListener('focusin', function () {
+      if (!mqMobile.matches) {
+        servicesItem.removeAttribute('data-collapsed');
+        servicesLink.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    servicesItem.addEventListener('focusout', function (e) {
+      if (!servicesItem.contains(e.relatedTarget)) {
+        servicesItem.removeAttribute('data-collapsed');
+        servicesItem.classList.remove('is-expanded');
+        servicesLink.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* Reset state when the viewport crosses the desktop/mobile breakpoint */
+    mqMobile.addEventListener('change', function () {
+      servicesItem.classList.remove('is-expanded');
+      servicesItem.removeAttribute('data-collapsed');
+      servicesLink.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  /* Escape closes the mobile overlay, or the desktop Services dropdown */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+
+    if (menu && menu.classList.contains('is-open')) {
+      setMenu(false);
+      toggle.focus();
+      return;
+    }
+
+    if (servicesItem && servicesLink && !mqMobile.matches &&
+        servicesItem.contains(document.activeElement)) {
+      /* Latch closed while keeping focus on the trigger (CSS reads [data-collapsed]) */
+      servicesItem.setAttribute('data-collapsed', '');
+      servicesLink.setAttribute('aria-expanded', 'false');
+      servicesLink.focus();
+    }
+  });
 })();
