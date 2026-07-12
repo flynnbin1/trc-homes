@@ -6,18 +6,18 @@ Home renovation company in Cork, Ireland. Single-page, scroll-driven marketing s
 
 ## Rules
 
-- Always invoke BOTH the frontend-design skill and the design-taste-frontend skill before writing any frontend code. design-taste-frontend's dials are overridden to match spec §10 restraint (approx. variance 6, motion 3, density 3), and its React/Tailwind defaults are overridden by this project's plain HTML/CSS/JS stack.
-- The taste-skill design skills (design-taste-frontend and variants) may be used for craft — layout quality, spacing, motion polish — but WEBSITE-SPEC.md always wins on any conflict: no dark mode, locked Marcellus/Jost typography and type scale, locked colour palette and 55/15/22/5/3 balance, section 10 forbidden-patterns list, and no design systems or fonts beyond what the spec names. Where taste-skill and the spec disagree, follow the spec and note the conflict.
+- Always invoke the frontend-design skill before writing any frontend code — use it for craft (aesthetic direction, typography, layout quality). This project is plain HTML/CSS/JS with no build step, so ignore any React/Tailwind or design-system defaults it suggests; and WEBSITE-SPEC.md §9/§10 always win on any conflict (see the next rule).
+- The frontend-design skill may be used for craft — layout quality, spacing, motion polish — but WEBSITE-SPEC.md always wins on any conflict: no dark mode, locked Marcellus/Jost typography and type scale, locked colour palette and 55/15/22/5/3 balance, section 10 forbidden-patterns list, and no design systems or fonts beyond what the spec names. Where the frontend-design skill and the spec disagree, follow the spec and note the conflict.
 - Read brand_assets/ before generating any UI.
 - NEVER push to GitHub unless the user explicitly says "push" or "commit this" — no exceptions.
 - Always test on localhost first.
-- Playwright screenshot verification is PAUSED — do not run it unless the user explicitly asks. Verify statically via code/console checks only.
+- Playwright is available for screenshot/UI verification. Use it for static sections and pre-launch quality checks. Do not screenshot animated/scroll-driven sections (the hero) — verify those via console checks.
 - SKIP screenshot comparison for the scroll hero and any animated element — the user reviews those manually.
 - Stop and ask before: deleting any file, installing any dependency, or changing the deployment setup.
 - Plain HTML/CSS/JS only, no frameworks, no build step — must deploy to Vercel as static files.
 - Typography is locked: Marcellus 400 (H1–H3, pull quotes, large numbers only) and Jost 400/500 (everything else), exact scale per WEBSITE-SPEC.md section 9 and brand_assets/TRC Homes Typography Card.pdf. Load no other fonts or weights.
 - Section 10 of WEBSITE-SPEC.md (Design Direction — Premium Standard) is binding for all UI work, including its forbidden-patterns list.
-- Component libraries and UI marketplaces (21st.dev/Magic MCP or similar) may be consulted for interaction-pattern reference ONLY. Never paste or port their markup, CSS, or components into this project — all UI is built from scratch within the spec's system. WEBSITE-SPEC.md sections 9 and 10 override any external pattern.
+- Component libraries and UI marketplaces may be consulted for interaction-pattern reference ONLY. Never paste or port their markup, CSS, or components into this project — all UI is built from scratch within the spec's system. WEBSITE-SPEC.md sections 9 and 10 override any external pattern.
 
 ## Tech notes
 

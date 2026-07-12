@@ -686,7 +686,7 @@ body {
 
 .svc-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* 2×2 — photos need room; ≤767px → 1 col */
   gap: clamp(20px, 2.2vw, 28px);
   margin-top: clamp(56px, 9vh, 96px);
 }
@@ -694,13 +694,43 @@ body {
 .svc-card {
   background: var(--stone);
   border-radius: 2px; /* sharp — brand max */
-  padding: clamp(28px, 3vw, 40px);
+  overflow: hidden;   /* clip the card photo to the 2px corners */
   display: flex;
   flex-direction: column; /* lets .svc-learn sit at the card bottom (margin-top:auto) */
 }
 
+/* Card photo — full-bleed banner across the top. Placeholder renders for now;
+   swap src for real client photography when it arrives (see CLIENT-BRIEF.md),
+   keeping the descriptive alt text. */
+.svc-media {
+  margin: 0;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;              /* sit above the hover fill so the photo stays visible */
+}
+
+.svc-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Body carries the keystone, title, copy and Learn More. Padding lives here now
+   so the photo above can sit edge-to-edge; flex:1 lets Learn More pin to the
+   bottom (margin-top:auto) so it aligns across every card in the row. */
+.svc-body {
+  padding: clamp(28px, 3vw, 40px);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  position: relative;
+  z-index: 1;              /* text rides above the hover fill (fill shows behind it) */
+}
+
 /* the brand keystone carries the design — no icons */
-.svc-card::before {
+.svc-body::before {
   content: '';
   display: block;
   width: 10px;
@@ -799,14 +829,14 @@ body {
   z-index: 0;
 }
 
-/* Keystone + text ride above the fill (relative + z-index, no layout shift) */
-.svc-card::before,
+/* Text rides above the fill (relative + z-index, no layout shift). The photo
+   (.svc-media) and body already sit above the fill via their own z-index:1. */
 .svc-title,
 .svc-copy { position: relative; z-index: 1; }
 
 .svc-title,
 .svc-copy { transition: color 0.35s ease; }
-.svc-card::before { transition: background-color 0.35s ease; } /* ready if keystone recolours */
+.svc-body::before { transition: background-color 0.35s ease; } /* ready if keystone recolours */
 
 /* Keyboard focus — intentionally OUTSIDE @media (hover) so it works on every
    device. Cards are not focusable today (no interactive content / tabindex);
@@ -2550,7 +2580,7 @@ body {
   margin-top: 12px;
 }
 
-/* Hub: the six service cards become links; reuse .svc-grid/.svc-card exactly */
+/* Hub: the four service cards become links; reuse .svc-grid/.svc-card exactly */
 a.svc-card { text-decoration: none; }
 
 /* FAQ — native <details>, fine gold rules, Marcellus questions, quiet caret */

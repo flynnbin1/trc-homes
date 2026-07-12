@@ -24,3 +24,15 @@ assets/keyframes/kling/
 # mobile hero actually ships them.
 assets/hero-video/mobile/
 assets/keyframes/source/
+
+# Raw source clips & stills in assets/ root — heavy AI-generated source media
+# (Higgsfield exports + build/interior stills) used only to produce the
+# committed hero frames/keyframes. Kept local, out of git history — mirrors the
+# hero-video/ and keyframes/ source rules above. Note: the committed
+# assets/how-it-works-timelapse.mp4 is deliberately NOT matched by these.
+assets/hero-timeline-trc.mp4
+assets/hf_*.mp4
+assets/clip*.jpeg
+
+# Local Claude session handoff notes — dev aid, not part of the website.
+SESSION-HANDOFF.md

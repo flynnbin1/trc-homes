@@ -8,7 +8,14 @@
    settle). Two-beat headline crossfades as the finished home arrives, and the
    FREE CONSULTATION button fills solid white once the home is finished.
    Frames are served in two tiers by viewport: 1920px HD ≥768px, 960px <768px.
-   prefers-reduced-motion: static finished-home frame, no pin, no Lenis. */
+   prefers-reduced-motion: static finished-home frame, no pin, no Lenis.
+
+   Decode strategy: draw the browser-decoded <img> frames directly (cheap canvas
+   blit). Each frame is warmed once with img.decode() after load so the browser
+   has it decoded in its own image cache before the scrub reaches it — no lazy
+   first-draw stall, and no manual ImageBitmap windowing (measured: createImageBitmap
+   caused ~1.8s of long-tasks during a scrub). The browser manages decoded-image
+   memory, so there is nothing to pre-allocate or evict here. */
 
 (function () {
   'use strict';
@@ -63,7 +70,7 @@
     canvas.style.height = h + 'px';
   }
 
-  /* object-fit: cover, centred */
+  /* object-fit: cover, centred — draws the already-decoded <img> (cheap blit) */
   function drawFrame(idx) {
     var img = frames[idx];
     if (!img || !img.naturalWidth) return;
@@ -81,6 +88,9 @@
       img.decoding = 'async';
       img.addEventListener('load', function () {
         loaded[idx] = true;
+        /* Warm the browser's decoded-image cache so the first draw of this frame
+           during the scrub is a cheap blit, not a lazy main-thread decode. */
+        if (img.decode) img.decode().catch(function () {});
         if (idx === 0 && lastDrawn === -1) drawFrame(0);
         else render();
       });
@@ -152,7 +162,7 @@
   var lenis = null;
   if (typeof Lenis !== 'undefined') {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    lenis = new Lenis();
+    lenis = new Lenis({ lerp: 0.13 }); /* snappier catch-up than the 0.1 default — keeps the hero scroll fast */
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
@@ -186,7 +196,11 @@
     scrollTrigger: {
       trigger: '.hero',
       start: 'top top',
-      end: isMobile ? '+=100%' : '+=140%',
+      /* Pin distance = how much scroll the hero eats before it releases.
+         Shorter = the whole hero scroll feels faster. First pass: 140%→110%
+         desktop, 100%→85% mobile. Beat/button timing is proportional, so it
+         all still lands correctly — just over less scroll. */
+      end: isMobile ? '+=85%' : '+=110%',
       scrub: 0.1,
       pin: true,
       anticipatePin: 1,
