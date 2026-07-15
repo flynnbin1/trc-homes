@@ -1,7 +1,8 @@
 /* TRC Homes — navigation behaviour
    1. Transparent-over-hero → solid Deep Pine once the hero has scrolled past.
    2. Mobile full-screen menu (open/close, Escape, closes on link tap).
-   3. Services dropdown: desktop hover/keyboard popover, mobile tap-to-expand. */
+   3. Services dropdown: desktop hover/keyboard popover; on mobile the label
+      navigates to the hub and the caret toggles the sub-services. */
 
 (function () {
   'use strict';
@@ -43,25 +44,26 @@
     menu.addEventListener('click', function (e) {
       var link = e.target.closest('a');
       if (!link) return;
-      /* On mobile the Services link expands its submenu instead of navigating,
-         so it must NOT close the overlay — its own handler manages the toggle.
-         Every other anchor (sections, sub-links, CTA) closes the overlay. */
-      if (link === servicesLink && mqMobile.matches) return;
+      /* On mobile, tapping the Services CARET only toggles the sub-menu — keep the
+         overlay open. Every other tap (including the Services label itself, which
+         navigates to the Services hub) closes the overlay. */
+      if (link === servicesLink && mqMobile.matches && e.target.closest('.nav-caret')) return;
       setMenu(false);
     });
   }
 
   /* Services dropdown */
   if (servicesItem && servicesLink) {
-    /* Mobile: tap Services to expand / collapse, don't navigate */
+    /* Mobile: tapping the caret opens/closes the sub-services; tapping the
+       "Services" label itself navigates to the Services hub (default click).
+       Desktop: default click navigates; the panel opens on hover/focus. */
     servicesLink.addEventListener('click', function (e) {
-      if (mqMobile.matches) {
+      if (mqMobile.matches && e.target.closest('.nav-caret')) {
         e.preventDefault();
         e.stopPropagation(); /* keep the overlay open (see menu click handler) */
         var expanded = servicesItem.classList.toggle('is-expanded');
         servicesLink.setAttribute('aria-expanded', String(expanded));
       }
-      /* Desktop: default click navigates to services.html — the panel opens on hover/focus */
     });
 
     /* Desktop keyboard: keep aria-expanded in sync with focus, and clear the

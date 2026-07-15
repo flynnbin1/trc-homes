@@ -1996,20 +1996,35 @@ body {
     margin-top: auto;
   }
 
-  /* Caret affordance on the Services row */
+  /* Caret = a generous 44px tap target that opens/closes the sub-services.
+     Tapping the "Services" label navigates to the hub; tapping this caret toggles
+     the dropdown (js/nav.js). The chevron is drawn by ::before so the whole box is
+     tappable, not just the thin chevron. */
   .nav-caret {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin-left: 16px;
+    display: inline-flex;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    margin-left: 4px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .nav-caret::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 11px;
+    height: 11px;
     border-right: 1px solid var(--gold);
     border-bottom: 1px solid var(--gold);
-    transform: rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
     transition: transform 0.3s var(--ease-out);
   }
 
-  .nav-item--services.is-expanded .nav-caret {
-    transform: rotate(-135deg);
+  .nav-item--services.is-expanded .nav-caret::before {
+    transform: translate(-50%, -50%) rotate(-135deg);
   }
 
   /* Collapsed by default; .is-expanded is toggled by js/nav.js on tap */
@@ -2049,7 +2064,7 @@ body {
 /* Services dropdown honours reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .nav-submenu,
-  .nav-caret,
+  .nav-caret::before,
   .nav-sublink::after {
     transition: none;
   }
