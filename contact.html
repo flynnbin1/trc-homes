@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Free Renovation Consultation — Cork | TRC Homes</title>
+  <meta name="description" content="Book a free, no-obligation renovation consultation in Cork with TRC Homes. Tell us about your renovation, extension or retrofit and get an honest plan and quote — across Cork city and county.">
+  <link rel="canonical" href="https://flynnbin1.github.io/trc-homes/contact.html">
+  <link rel="icon" type="image/svg+xml" href="assets/trc-homes-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-nav">
+    <a class="brand" href="index.html" aria-label="TRC Homes — home">
+      <span class="brand-lockup">
+        <svg class="brand-mark" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+          <path d="M 10 62 L 48 24 L 86 62" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+          <path d="M 10 81 L 86 81" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+          <rect x="43.5" y="62.5" width="9" height="9" fill="#B08D57"/>
+        </svg>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">TRC Homes</span>
+          <span class="brand-locale">Cork &middot; Ireland</span>
+        </span>
+      </span>
+      <svg class="brand-icon" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+        <path d="M 10 62 L 48 24 L 86 62" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+        <path d="M 10 81 L 86 81" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+        <rect x="43.5" y="62.5" width="9" height="9" fill="#F7F5EF"/>
+      </svg>
+    </a>
+
+    <nav class="nav-links" id="site-menu" aria-label="Site sections">
+      <div class="nav-item nav-item--services">
+        <a class="nav-link nav-link--services" href="services.html" aria-haspopup="true" aria-expanded="false" aria-controls="services-submenu">Services<span class="nav-caret" aria-hidden="true"></span></a>
+        <div class="nav-submenu" id="services-submenu">
+          <a class="nav-sublink" href="services/full-renovations.html">Full Renovations</a>
+          <a class="nav-sublink" href="services/extensions.html">Extensions</a>
+          <a class="nav-sublink" href="services/retrofitting.html">Retrofitting</a>
+          <a class="nav-sublink" href="services/grants.html">Grants</a>
+        </div>
+      </div>
+      <a class="nav-link" href="projects.html">Projects</a>
+      <a class="nav-link" href="services/grants.html">Grants</a>
+      <a class="nav-link" href="about.html">About</a>
+      <!-- On the contact page itself the header CTA scrolls to the on-page form,
+           not back to contact.html. Every OTHER page's header CTA points here. -->
+      <a class="btn-consult btn-consult--menu" href="#enquire">Free Consultation</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn-consult btn-consult--bar" href="#enquire">Free Consultation</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">Menu</button>
+    </div>
+  </header>
+
+  <main id="page-top">
+
+    <!-- 1 · COMPACT BANNER — base .svc-banner (60vh, shorter than the service-page
+         .svc-banner--roomy heroes): action, not atmosphere. Deep Pine gradient over
+         the office/meeting-table image (the consultation setting itself). id="top"
+         drives nav.js transparent-over-banner -> solid on scroll.
+         Banner image is a PLACEHOLDER (reused about-page office render) — swap for a
+         real TRC office / consultation photo when the client's photography lands. -->
+    <section class="svc-banner" id="top">
+      <div class="svc-banner-media" aria-hidden="true">
+        <img class="svc-banner-img" src="assets/banners/banner-about.jpg" alt="A bright office with an oak meeting table, house plans and a shelf of material samples — where TRC Homes talks clients through their project." decoding="async">
+        <div class="svc-banner-overlay"></div>
+      </div>
+      <div class="svc-banner-inner">
+        <p class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Contact</p>
+        <p class="eyebrow" style="margin-top:18px;">Free Consultation</p>
+        <h1 class="svc-banner-h1">Book your free consultation.</h1>
+        <p class="svc-banner-sub">No charge, no obligation, no pressure &mdash; just an honest conversation about your renovation, extension or retrofit, and what your home really needs.</p>
+      </div>
+    </section>
+
+    <!-- 2 · CONTACT — reused 3-step enquiry form (js/enquiry-form.js, front-end only,
+         no backend/GHL) on the left; direct-contact details on the right. Two-column
+         .why-split stacks form-first on mobile (source order). id="enquire" so the
+         header CTA and mobile thumb-bar "Enquire" resolve here. Stone ground so the
+         off-white .stepform--card reads as a distinct panel. -->
+    <section class="sec sec--stone" id="enquire">
+      <div class="sec-inner">
+        <p class="eyebrow">Free Renovation Consultation</p>
+        <h2 class="sec-h2">Tell us about your home, and we&rsquo;ll be in touch.</h2>
+        <p class="sec-lead">Answer three quick questions and we&rsquo;ll get back to you to arrange your free consultation &mdash; or reach us directly, whichever suits. New to us? See our <a class="inline-link" href="services.html">renovation, extension and retrofit services</a> and <a class="inline-link" href="projects.html">recent Cork projects</a>.</p>
+
+        <div class="why-split" style="margin-top: clamp(40px, 6vh, 64px); align-items: start;">
+          <!-- LEFT: the shared 3-step form, reused verbatim from the service-page
+               template (.stepform--card skin). No backend — submit shows an honest
+               inline note and never reloads. -->
+          <form class="stepform stepform--card" id="enquiry-form" novalidate aria-label="Request a free consultation">
+            <div class="sf-progress" aria-hidden="true">
+              <span class="sf-dot is-on"></span>
+              <span class="sf-dot"></span>
+              <span class="sf-dot"></span>
+              <span class="sf-step-label">Step 1 of 3</span>
+            </div>
+
+            <!-- Step 1 -->
+            <fieldset class="sf-step" data-step="1">
+              <legend class="sf-q">What are you planning?</legend>
+              <div class="sf-options">
+                <label class="sf-option"><input type="radio" name="planning" value="Full renovation">Full renovation</label>
+                <label class="sf-option"><input type="radio" name="planning" value="Extension">Extension</label>
+                <label class="sf-option"><input type="radio" name="planning" value="Retrofit or upgrade">Retrofit or upgrade</label>
+                <label class="sf-option"><input type="radio" name="planning" value="Not sure yet">Not sure yet</label>
+              </div>
+              <div class="sf-nav">
+                <button type="button" class="btn-consult sf-next">Next</button>
+              </div>
+            </fieldset>
+
+            <!-- Step 2 -->
+            <fieldset class="sf-step" data-step="2" hidden>
+              <legend class="sf-q">Tell us about the house</legend>
+              <div class="enq-field">
+                <label for="sf-about">About the house</label>
+                <textarea id="sf-about" name="about" rows="3" placeholder="1970s semi-d in Douglas, needs a full going-over"></textarea>
+              </div>
+              <div class="enq-field">
+                <label for="sf-area">Where in Cork? (optional)</label>
+                <input id="sf-area" name="area" type="text" placeholder="Douglas, Ballincollig, Glanmire&hellip;">
+              </div>
+              <div class="sf-nav">
+                <button type="button" class="sf-back">Back</button>
+                <button type="button" class="btn-consult sf-next">Next</button>
+              </div>
+            </fieldset>
+
+            <!-- Step 3 -->
+            <fieldset class="sf-step" data-step="3" hidden>
+              <legend class="sf-q">Where will we send your consultation details?</legend>
+              <div class="enq-field">
+                <label for="sf-name">Name</label>
+                <input id="sf-name" name="name" type="text" autocomplete="name">
+              </div>
+              <div class="enq-field">
+                <label for="sf-phone">Phone</label>
+                <input id="sf-phone" name="phone" type="tel" autocomplete="tel">
+              </div>
+              <div class="enq-field">
+                <label for="sf-email">Email</label>
+                <input id="sf-email" name="email" type="email" autocomplete="email">
+              </div>
+              <div class="sf-nav">
+                <button type="button" class="sf-back">Back</button>
+                <button type="submit" class="btn-consult sf-submit">Request My Free Consultation</button>
+              </div>
+            </fieldset>
+
+            <p class="sf-note" role="status" hidden>Thanks &mdash; we&rsquo;ll be in touch. Prefer to talk now? <a href="tel:+353210000000">Call us</a>.</p>
+          </form>
+
+          <!-- RIGHT: direct contact for people who'd rather reach out themselves.
+               CONFIRM WITH ADRIAN — phone (021 000 0000) and email are PLACEHOLDERS
+               pending the real details; kept consistent with the sitewide placeholder
+               number. Do not publish until confirmed. -->
+          <div class="contact-direct">
+            <p class="eyebrow">Prefer to talk?</p>
+            <div class="feature-stack">
+              <div class="st-step">
+                <h3 class="st-title">Call us</h3>
+                <p class="st-copy"><a class="inline-link" href="tel:+353210000000">021&nbsp;000&nbsp;0000</a> &mdash; a real conversation, not a call centre. Monday to Saturday.</p>
+              </div>
+              <div class="st-step">
+                <h3 class="st-title">Email us</h3>
+                <p class="st-copy"><a class="inline-link" href="mailto:info@trchomes.ie">info@trchomes.ie</a> &mdash; send us a line about the house and we&rsquo;ll come back to you.</p>
+              </div>
+              <div class="st-step">
+                <h3 class="st-title">Where we work</h3>
+                <p class="st-copy">Across Cork city and county &mdash; Douglas, Ballincollig, Carrigaline, Blackrock, Glanmire, Bishopstown and the surrounding towns and villages. Consultations at our office or your home.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · WHAT HAPPENS NEXT — three reassurance steps in the homepage How It Works
+         treatment (.st-grid, three-up), with the free consultation centred as the
+         key step (.st-step--key). Off-White ground for rhythm against the Stone form
+         section above and the Deep Pine footer below. Static (no reveal JS needed). -->
+    <section class="sec">
+      <div class="sec-inner">
+        <p class="eyebrow">What Happens Next</p>
+        <h2 class="sec-h2">Three steps, no pressure at any of them.</h2>
+        <ol class="st-grid st-grid--three">
+          <li class="st-step">
+            <p class="st-num">01</p>
+            <h3 class="st-title">We get in touch</h3>
+            <p class="st-copy">Send the form or call, and we&rsquo;ll come back to you to find a time that suits &mdash; no hard sell, no obligation to go further.</p>
+          </li>
+          <li class="st-step st-step--key">
+            <p class="st-num">02</p>
+            <h3 class="st-title">Your free consultation</h3>
+            <p class="st-copy">We meet at our office or your home, at no charge &mdash; often over a few visits. Tell us your budget and your wish list, and we&rsquo;ll tell you honestly what&rsquo;s realistic.</p>
+          </li>
+          <li class="st-step">
+            <p class="st-num">03</p>
+            <h3 class="st-title">An honest plan and quote</h3>
+            <p class="st-copy">You get a clear plan for the work and an itemised quote &mdash; where to spend, where grants fit, and what it really takes &mdash; before you commit to anything.</p>
+          </li>
+        </ol>
+
+        <!-- 4 · TRUST LINE — one line, not a section. One-team message + CIF. -->
+        <p class="sec-body" style="text-align:center; max-width:52em; margin-inline:auto; margin-top: clamp(56px, 8vh, 88px);">One accountable team &mdash; design, costing, engineering and build under one roof &mdash; and a member of the Construction Industry Federation.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand brand--footer" href="#page-top" aria-label="TRC Homes — back to top">
+          <svg class="brand-mark" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+            <path d="M 10 62 L 48 24 L 86 62" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+            <path d="M 10 81 L 86 81" stroke="#F7F5EF" stroke-width="7" fill="none"/>
+            <rect x="43.5" y="62.5" width="9" height="9" fill="#F7F5EF"/>
+          </svg>
+          <span class="brand-divider" aria-hidden="true"></span>
+          <span class="brand-text">
+            <span class="brand-name">TRC Homes</span>
+            <span class="brand-locale brand-locale--footer">Cork &middot; Ireland</span>
+          </span>
+        </a>
+        <p class="footer-tagline">You&rsquo;ve bought the house.<br>Now make it home.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Footer">
+        <p class="footer-label">Explore</p>
+        <a class="footer-link" href="services.html">Services</a>
+        <a class="footer-link" href="projects.html">Projects</a>
+        <a class="footer-link" href="services/grants.html">Grants</a>
+        <a class="footer-link" href="index.html#how-it-works">How It Works</a>
+        <a class="footer-link" href="contact.html">Contact</a>
+      </nav>
+
+      <div class="footer-col">
+        <p class="footer-label">Contact</p>
+        <a class="footer-phone" href="tel:+353210000000">021&nbsp;000&nbsp;0000</a>
+        <p class="footer-area">Serving Cork &mdash; city and county.<br>Free consultations at your home.</p>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <p>&copy; 2026 TRC Homes &middot; Full renovations, extensions and retrofits</p>
+      <a class="footer-top" href="#page-top">Back to top</a>
+    </div>
+  </footer>
+
+  <div class="thumb-bar" aria-hidden="false">
+    <a class="thumb-call" href="tel:+353210000000">Call</a>
+    <a class="thumb-enquire" href="#enquire">Enquire</a>
+  </div>
+
+  <script src="js/nav.js"></script>
+  <script src="js/enquiry-form.js"></script>
+</body>
+</html>

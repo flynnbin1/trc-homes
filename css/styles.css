@@ -1217,6 +1217,11 @@ body {
   align-items: stretch;
 }
 
+/* Reuse-only layout helper: a three-up variant of the step grid (contact.html
+   "What happens next"). Placed before the ≤1023/≤767 .st-grid overrides so those
+   still collapse it to 2-up then 1-up. Layout only — no new colours/type/effects. */
+.st-grid--three { grid-template-columns: repeat(3, 1fr); }
+
 .st-step {
   border-top: 1px solid rgba(176, 141, 87, 0.5); /* fine gold rule, not a card */
   padding: clamp(24px, 3vh, 32px) 0 0;
