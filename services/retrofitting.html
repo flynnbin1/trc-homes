@@ -116,9 +116,9 @@
           <a class="nav-sublink" href="grants.html">Grants</a>
         </div>
       </div>
-      <a class="nav-link" href="../index.html#projects">Projects</a>
+      <a class="nav-link" href="../projects.html">Projects</a>
       <a class="nav-link" href="grants.html">Grants</a>
-      <a class="nav-link" href="../index.html#how-it-works">About</a>
+      <a class="nav-link" href="../about.html">About</a>
       <a class="btn-consult btn-consult--menu" href="#enquire">Free Consultation</a>
     </nav>
 
@@ -135,12 +135,7 @@
          — swap for a real Cork retrofit photo when the client's photography lands. -->
     <section class="svc-banner svc-banner--roomy" id="top">
       <div class="svc-banner-media" aria-hidden="true">
-        <img class="svc-banner-img"
-             src="../assets/keyframes/web/stage-5-finished-1920.webp"
-             srcset="../assets/keyframes/web/stage-5-finished-1284.webp 1284w,
-                     ../assets/keyframes/web/stage-5-finished-1920.webp 1920w,
-                     ../assets/keyframes/web/stage-5-finished-2880.webp 2880w"
-             sizes="100vw" alt="" decoding="async">
+        <img class="svc-banner-img" src="../assets/banners/banner-retrofitting.jpg" alt="A white house with black roof-mounted solar panels and an air-source heat pump unit at the side." decoding="async">
         <div class="svc-banner-overlay"></div>
       </div>
       <div class="svc-banner-inner">
@@ -197,11 +192,19 @@
           <p class="sec-body">An older Cork home &mdash; maybe a 1970s semi in Douglas or a draughty house out in Glanmire &mdash; can be cold in every room, expensive to heat, and stuck on a low energy rating no matter how high you turn the thermostat.</p>
           <p class="sec-body">A home retrofit fixes that from the fabric out. We upgrade the house as a whole &mdash; insulation, airtightness, ventilation, windows, and usually solar and a heat pump &mdash; so it holds its heat, costs far less to run, and climbs from a tired E, F or G toward a warm B2. Same house and street, transformed to live in.</p>
         </div>
-        <!-- PLACEHOLDER photo [awaiting client] -->
-        <figure class="gr-photo" role="img" aria-label="Deep retrofit of a Cork home photograph — awaiting client photography">
-          <span class="gr-photo-keystone" aria-hidden="true"></span>
-          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
-        </figure>
+        <!-- Before/after slider (reusable: .ba-slider CSS + js/before-after.js).
+             Illustrative scene — not a specific TRC project or named client. -->
+        <div class="ba-slider" data-ba-slider>
+          <img class="ba-img ba-img--after" src="../assets/before-after/retrofitting-after.jpg" alt="The same house after a deep retrofit — white insulated render, dark grey windows, roof solar panels and a heat pump at the side." loading="lazy" decoding="async">
+          <div class="ba-clip">
+            <img class="ba-img ba-img--before" src="../assets/before-after/retrofitting-before.jpg" alt="A cold pebble-dash house before retrofit — old timber windows, a mossy roof and a rusting oil tank at the side." loading="lazy" decoding="async">
+          </div>
+          <span class="ba-label ba-label--before" aria-hidden="true">Before</span>
+          <span class="ba-label ba-label--after" aria-hidden="true">After</span>
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Drag to compare the house before and after the retrofit" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <span class="ba-grip" aria-hidden="true"></span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -252,10 +255,11 @@
             </div>
           </div>
         </div>
-        <!-- PLACEHOLDER photo [awaiting client] -->
-        <figure class="gr-photo" role="img" aria-label="TRC Homes team on a Cork retrofit — awaiting client photography">
-          <span class="gr-photo-keystone" aria-hidden="true"></span>
-          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
+        <!-- Illustrative consultation scene (assets/photos/consultation-2.jpg) — not
+             a specific TRC project or real TRC staff. Reuses .gr-photo slot + the
+             .pf-photo cover treatment. Swap for real client photography when it lands. -->
+        <figure class="gr-photo">
+          <img class="pf-photo" src="../assets/photos/consultation-2.jpg" alt="A TRC Homes team member talking a customer through their home-upgrade project at a consultation." loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -266,6 +270,7 @@
       <div class="proof-inner">
         <p class="pf-eyebrow">Our Work</p>
         <h2 class="pf-intro">Built across Cork. Judged by the finish.</h2>
+        <p class="sec-body" style="margin-top:14px;"><a class="inline-link" href="../projects/retrofit-carrigaline.html">See a retrofit case study in detail.</a></p>
         <div class="pf-grid">
           <figure class="pf-tile pf-tile--wide pf-tile--pine">
             <img class="pf-photo" src="../assets/deep-retrofit-cork.webp" alt="Deep retrofit in Cork by TRC Homes — rendered house with black roof-mounted solar panels and an external heat pump" loading="lazy" decoding="async">
@@ -354,10 +359,11 @@
           </ul>
           <a class="gr-link" href="grants.html">See how the grants work</a>
         </div>
-        <!-- PLACEHOLDER photo [awaiting client] -->
-        <figure class="gr-photo" role="img" aria-label="Placeholder for a project photograph — awaiting client photography">
-          <span class="gr-photo-keystone" aria-hidden="true"></span>
-          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
+        <!-- Illustrative consultation scene (assets/photos/consultation-1.jpg) — not
+             a specific TRC project or real TRC staff. Reuses .gr-photo slot + the
+             .pf-photo cover treatment. Swap for real client photography when it lands. -->
+        <figure class="gr-photo">
+          <img class="pf-photo" src="../assets/photos/consultation-1.jpg" alt="A TRC Homes team member talking a customer through home-upgrade plans and grant options at a consultation." loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -497,7 +503,7 @@
       <nav class="footer-col" aria-label="Footer">
         <p class="footer-label">Explore</p>
         <a class="footer-link" href="../services.html">Services</a>
-        <a class="footer-link" href="../index.html#projects">Projects</a>
+        <a class="footer-link" href="../projects.html">Projects</a>
         <a class="footer-link" href="grants.html">Grants</a>
         <a class="footer-link" href="../index.html#how-it-works">How It Works</a>
         <a class="footer-link" href="#enquire">Enquire</a>
@@ -524,5 +530,6 @@
   <script src="../js/nav.js"></script>
   <script src="../js/enquiry-form.js"></script>
   <script src="../js/testimonials.js"></script>
+  <script src="../js/before-after.js"></script>
 </body>
 </html>

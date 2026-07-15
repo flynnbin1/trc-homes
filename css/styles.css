@@ -2838,3 +2838,120 @@ a.svc-card { text-decoration: none; }
   .spec-list { grid-template-columns: 1fr; }
   .feature-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Before / After slider (reusable) ----------
+   Sits in the Problem/Outcome photo slot on the service pages. Two stacked images;
+   a Muted Gold divider wipes between them via clip-path only (no layout thrash).
+   Mouse, touch and keyboard (js/before-after.js). §9/§10: brand tokens only, sharp
+   2px corners, no shadows, no bounce, no icons. Vertical page scroll stays free
+   (touch-action: pan-y on the track); the handle itself captures both axes. */
+.ba-slider {
+  --pos: 50%;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--pine);
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ba-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* Before layer sits over the after, revealed from the left edge to the handle */
+.ba-clip {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+/* Corner labels — Jost 500 caps, off-white on a Deep Pine backing */
+.ba-label {
+  position: absolute;
+  top: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--offwhite);
+  background: rgba(21, 43, 34, 0.72);
+  padding: 5px 10px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+.ba-label--before { left: 14px; }
+.ba-label--after { right: 14px; }
+
+/* Handle — a fine gold divider line with a small circular grip */
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px;
+  margin-left: -1px;
+  background: var(--gold);
+  border: 0;
+  padding: 0;
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+/* Invisible wider hit area so the 2px line is easy to grab (44px) */
+.ba-handle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 44px;
+  transform: translateX(-50%);
+}
+
+.ba-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(21, 43, 34, 0.55);
+  border: 1px solid var(--gold);
+  box-sizing: border-box;
+}
+.ba-grip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.ba-handle:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ba-slider,
+  .ba-handle,
+  .ba-grip { transition: none; }
+}

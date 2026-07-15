@@ -103,9 +103,9 @@
           <a class="nav-sublink" href="grants.html">Grants</a>
         </div>
       </div>
-      <a class="nav-link" href="../index.html#projects">Projects</a>
+      <a class="nav-link" href="../projects.html">Projects</a>
       <a class="nav-link" href="grants.html">Grants</a>
-      <a class="nav-link" href="../index.html#how-it-works">About</a>
+      <a class="nav-link" href="../about.html">About</a>
       <a class="btn-consult btn-consult--menu" href="#enquire">Free Consultation</a>
     </nav>
 
@@ -122,12 +122,7 @@
          --roomy: taller banner so the bottom-anchored copy clears the nav. -->
     <section class="svc-banner svc-banner--roomy" id="top">
       <div class="svc-banner-media" aria-hidden="true">
-        <img class="svc-banner-img"
-             src="../assets/keyframes/web/stage-5-finished-1920.webp"
-             srcset="../assets/keyframes/web/stage-5-finished-1284.webp 1284w,
-                     ../assets/keyframes/web/stage-5-finished-1920.webp 1920w,
-                     ../assets/keyframes/web/stage-5-finished-2880.webp 2880w"
-             sizes="100vw" alt="" decoding="async">
+        <img class="svc-banner-img" src="../assets/banners/banner-full-renovations.jpg" alt="A renovated detached white house with dark grey windows and a tarmac driveway." decoding="async">
         <div class="svc-banner-overlay"></div>
       </div>
       <div class="svc-banner-inner">
@@ -184,10 +179,19 @@
           <p class="sec-body">You bought a solid house on a street you love &mdash; maybe in Douglas, maybe out in Glanmire &mdash; but nothing has been touched in decades. Cold rooms, single-glazed windows, a kitchen from another era and a layout that fights the way your family actually lives.</p>
           <p class="sec-body">A full house renovation is how you keep the house and the location, and change everything else. We handle the whole transformation &mdash; structure, warmth, light and finish &mdash; so the home you pictured when you first walked through the door becomes the one you actually live in.</p>
         </div>
-        <figure class="gr-photo" role="img" aria-label="Renovated Cork home photograph — awaiting client photography">
-          <span class="gr-photo-keystone" aria-hidden="true"></span>
-          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
-        </figure>
+        <!-- Before/after slider (reusable: .ba-slider CSS + js/before-after.js).
+             Illustrative scene — not a specific TRC project or named client. -->
+        <div class="ba-slider" data-ba-slider>
+          <img class="ba-img ba-img--after" src="../assets/before-after/full-renovations-after.jpg" alt="The same Cork house after a full renovation — smooth cream render, dark grey windows, a new roof and a tidy front garden." loading="lazy" decoding="async">
+          <div class="ba-clip">
+            <img class="ba-img ba-img--before" src="../assets/before-after/full-renovations-before.jpg" alt="A dated pebble-dash Cork house before renovation — old timber windows, an overgrown hedge and a weedy drive." loading="lazy" decoding="async">
+          </div>
+          <span class="ba-label ba-label--before" aria-hidden="true">Before</span>
+          <span class="ba-label ba-label--after" aria-hidden="true">After</span>
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Drag to compare the house before and after the renovation" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <span class="ba-grip" aria-hidden="true"></span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -235,9 +239,11 @@
             </div>
           </div>
         </div>
-        <figure class="gr-photo" role="img" aria-label="TRC Homes team on a Cork renovation — awaiting client photography">
-          <span class="gr-photo-keystone" aria-hidden="true"></span>
-          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
+        <!-- Illustrative consultation scene (assets/photos/consultation-1.jpg) — not
+             a specific TRC project or real TRC staff. Reuses .gr-photo slot + the
+             .pf-photo cover treatment. Swap for real client photography when it lands. -->
+        <figure class="gr-photo">
+          <img class="pf-photo" src="../assets/photos/consultation-1.jpg" alt="A TRC Homes team member talking a customer through their renovation project at a consultation." loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -247,6 +253,7 @@
       <div class="proof-inner">
         <p class="pf-eyebrow">Our Work</p>
         <h2 class="pf-intro">Built across Cork. Judged by the finish.</h2>
+        <p class="sec-body" style="margin-top:14px;"><a class="inline-link" href="../projects/full-renovation-douglas.html">See a full renovation case study in detail.</a></p>
         <div class="pf-grid">
           <figure class="pf-tile pf-tile--wide pf-tile--pine">
             <img class="pf-photo" src="../assets/full-renovation-cork.webp" alt="Full home renovation in Cork by TRC Homes — white rendered semi-detached house with black-framed windows and a newly paved driveway" loading="lazy" decoding="async">
@@ -332,9 +339,11 @@
           </ul>
           <a class="gr-link" href="grants.html">See how the grants work</a>
         </div>
-        <figure class="gr-photo" role="img" aria-label="Placeholder for a project photograph — awaiting client photography">
-          <span class="gr-photo-keystone" aria-hidden="true"></span>
-          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
+        <!-- Illustrative consultation scene (assets/photos/consultation-3.jpg) — not
+             a specific TRC project or real TRC staff. Reuses .gr-photo slot + the
+             .pf-photo cover treatment. Swap for real client photography when it lands. -->
+        <figure class="gr-photo">
+          <img class="pf-photo" src="../assets/photos/consultation-3.jpg" alt="A TRC Homes team member talking a customer through renovation plans and grant options at a consultation." loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -470,7 +479,7 @@
       <nav class="footer-col" aria-label="Footer">
         <p class="footer-label">Explore</p>
         <a class="footer-link" href="../services.html">Services</a>
-        <a class="footer-link" href="../index.html#projects">Projects</a>
+        <a class="footer-link" href="../projects.html">Projects</a>
         <a class="footer-link" href="grants.html">Grants</a>
         <a class="footer-link" href="../index.html#how-it-works">How It Works</a>
         <a class="footer-link" href="#enquire">Enquire</a>
@@ -497,5 +506,6 @@
   <script src="../js/nav.js"></script>
   <script src="../js/enquiry-form.js"></script>
   <script src="../js/testimonials.js"></script>
+  <script src="../js/before-after.js"></script>
 </body>
 </html>

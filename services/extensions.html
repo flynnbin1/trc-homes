@@ -107,9 +107,9 @@
           <a class="nav-sublink" href="grants.html">Grants</a>
         </div>
       </div>
-      <a class="nav-link" href="../index.html#projects">Projects</a>
+      <a class="nav-link" href="../projects.html">Projects</a>
       <a class="nav-link" href="grants.html">Grants</a>
-      <a class="nav-link" href="../index.html#how-it-works">About</a>
+      <a class="nav-link" href="../about.html">About</a>
       <a class="btn-consult btn-consult--menu" href="#enquire">Free Consultation</a>
     </nav>
 
@@ -126,12 +126,7 @@
          real Cork extension photo when the client's photography lands. -->
     <section class="svc-banner svc-banner--roomy" id="top">
       <div class="svc-banner-media" aria-hidden="true">
-        <img class="svc-banner-img"
-             src="../assets/keyframes/web/stage-5-finished-1920.webp"
-             srcset="../assets/keyframes/web/stage-5-finished-1284.webp 1284w,
-                     ../assets/keyframes/web/stage-5-finished-1920.webp 1920w,
-                     ../assets/keyframes/web/stage-5-finished-2880.webp 2880w"
-             sizes="100vw" alt="" decoding="async">
+        <img class="svc-banner-img" src="../assets/banners/banner-extensions.jpg" alt="A modern flat-roof glass extension glowing with warm kitchen light, opening onto a garden at golden hour." decoding="async">
         <div class="svc-banner-overlay"></div>
       </div>
       <div class="svc-banner-inner">
@@ -186,11 +181,19 @@
           <p class="sec-body">Your family has grown, the kitchen is cramped, and someone&rsquo;s now working from the corner of a bedroom. The house in Douglas or Glanmire still suits you &mdash; the location, the neighbours, the schools &mdash; it&rsquo;s just run out of room.</p>
           <p class="sec-body">An extension is how you get the space without giving up the home you already love. We design the new rooms around how your family actually lives, tie them cleanly into the existing house, and build the whole thing with one team &mdash; so the kitchen, family room or bedroom you gain feels like it was always meant to be there.</p>
         </div>
-        <!-- PLACEHOLDER photo [awaiting client] -->
-        <figure class="gr-photo" role="img" aria-label="Cork house extension photograph — awaiting client photography">
-          <span class="gr-photo-keystone" aria-hidden="true"></span>
-          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
-        </figure>
+        <!-- Before/after slider (reusable: .ba-slider CSS + js/before-after.js).
+             Illustrative scene — not a specific TRC project or named client. -->
+        <div class="ba-slider" data-ba-slider>
+          <img class="ba-img ba-img--after" src="../assets/before-after/extensions-after.jpg" alt="The same house after a modern flat-roof glass extension — sliding doors onto a paved patio and a warm kitchen-dining room inside." loading="lazy" decoding="async">
+          <div class="ba-clip">
+            <img class="ba-img ba-img--before" src="../assets/before-after/extensions-before.jpg" alt="The rear of a dated house before its extension — a plain back wall, an old stone shed and a rough lawn." loading="lazy" decoding="async">
+          </div>
+          <span class="ba-label ba-label--before" aria-hidden="true">Before</span>
+          <span class="ba-label ba-label--after" aria-hidden="true">After</span>
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Drag to compare the house before and after the extension" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <span class="ba-grip" aria-hidden="true"></span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -240,10 +243,11 @@
             </div>
           </div>
         </div>
-        <!-- PLACEHOLDER photo [awaiting client] -->
-        <figure class="gr-photo" role="img" aria-label="TRC Homes team on a Cork extension — awaiting client photography">
-          <span class="gr-photo-keystone" aria-hidden="true"></span>
-          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
+        <!-- Illustrative consultation scene (assets/photos/consultation-3.jpg) — not
+             a specific TRC project or real TRC staff. Reuses .gr-photo slot + the
+             .pf-photo cover treatment. Swap for real client photography when it lands. -->
+        <figure class="gr-photo">
+          <img class="pf-photo" src="../assets/photos/consultation-3.jpg" alt="A TRC Homes team member talking a customer through their extension project at a consultation." loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -254,6 +258,7 @@
       <div class="proof-inner">
         <p class="pf-eyebrow">Our Work</p>
         <h2 class="pf-intro">Built across Cork. Judged by the finish.</h2>
+        <p class="sec-body" style="margin-top:14px;"><a class="inline-link" href="../projects/extension-ballincollig.html">See an extension case study in detail.</a></p>
         <div class="pf-grid">
           <figure class="pf-tile pf-tile--wide pf-tile--pine">
             <img class="pf-photo" src="../assets/renovation-extension-cork.webp" alt="House extension in Cork by TRC Homes — restored stone cottage with a modern flat-roof glass extension" loading="lazy" decoding="async">
@@ -334,10 +339,11 @@
           <p class="gr-lead">Many extensions are the moment to improve insulation, windows and heating at the same time. Where the work goes far enough to count as an energy upgrade, grant support may apply &mdash; we&rsquo;ll flag what&rsquo;s relevant to your project and point you to the detail.</p>
           <a class="gr-link" href="grants.html">See how grants work</a>
         </div>
-        <!-- PLACEHOLDER photo [awaiting client] -->
-        <figure class="gr-photo" role="img" aria-label="Placeholder for a project photograph — awaiting client photography">
-          <span class="gr-photo-keystone" aria-hidden="true"></span>
-          <figcaption class="gr-photo-note">Photography<br>coming soon</figcaption>
+        <!-- Illustrative consultation scene (assets/photos/consultation-2.jpg) — not
+             a specific TRC project or real TRC staff. Reuses .gr-photo slot + the
+             .pf-photo cover treatment. Swap for real client photography when it lands. -->
+        <figure class="gr-photo">
+          <img class="pf-photo" src="../assets/photos/consultation-2.jpg" alt="A TRC Homes team member talking a customer through extension plans and grant options at a consultation." loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -474,7 +480,7 @@
       <nav class="footer-col" aria-label="Footer">
         <p class="footer-label">Explore</p>
         <a class="footer-link" href="../services.html">Services</a>
-        <a class="footer-link" href="../index.html#projects">Projects</a>
+        <a class="footer-link" href="../projects.html">Projects</a>
         <a class="footer-link" href="grants.html">Grants</a>
         <a class="footer-link" href="../index.html#how-it-works">How It Works</a>
         <a class="footer-link" href="#enquire">Enquire</a>
@@ -501,5 +507,6 @@
   <script src="../js/nav.js"></script>
   <script src="../js/enquiry-form.js"></script>
   <script src="../js/testimonials.js"></script>
+  <script src="../js/before-after.js"></script>
 </body>
 </html>
