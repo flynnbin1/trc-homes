@@ -122,7 +122,7 @@
          --roomy: taller banner so the bottom-anchored copy clears the nav. -->
     <section class="svc-banner svc-banner--roomy" id="top">
       <div class="svc-banner-media" aria-hidden="true">
-        <img class="svc-banner-img" src="../assets/banners/banner-full-renovations.jpg" alt="A renovated detached white house with dark grey windows and a tarmac driveway." decoding="async">
+        <picture><source type="image/webp" srcset="../assets/banners/banner-full-renovations.webp"><img class="svc-banner-img" src="../assets/banners/banner-full-renovations.jpg" alt="A renovated detached white house with dark grey windows and a tarmac driveway." decoding="async"></picture>
         <div class="svc-banner-overlay"></div>
       </div>
       <div class="svc-banner-inner">
@@ -182,7 +182,7 @@
         <!-- Before/after slider (reusable: .ba-slider CSS + js/before-after.js).
              Illustrative scene — not a specific TRC project or named client. -->
         <div class="ba-slider" data-ba-slider>
-          <img class="ba-img ba-img--after" src="../assets/before-after/full-renovations-after.jpg" alt="The same Cork house after a full renovation — smooth cream render, dark grey windows, a new roof and a tidy front garden." loading="lazy" decoding="async">
+          <picture><source type="image/webp" srcset="../assets/before-after/full-renovations-after.webp"><img class="ba-img ba-img--after" src="../assets/before-after/full-renovations-after.jpg" alt="The same Cork house after a full renovation — smooth cream render, dark grey windows, a new roof and a tidy front garden." loading="lazy" decoding="async"></picture>
           <div class="ba-clip">
             <img class="ba-img ba-img--before" src="../assets/before-after/full-renovations-before.jpg" alt="A dated pebble-dash Cork house before renovation — old timber windows, an overgrown hedge and a weedy drive." loading="lazy" decoding="async">
           </div>
@@ -243,7 +243,7 @@
              a specific TRC project or real TRC staff. Reuses .gr-photo slot + the
              .pf-photo cover treatment. Swap for real client photography when it lands. -->
         <figure class="gr-photo">
-          <img class="pf-photo" src="../assets/photos/consultation-1.jpg" alt="A TRC Homes team member talking a customer through their renovation project at a consultation." loading="lazy" decoding="async">
+          <picture><source type="image/webp" srcset="../assets/photos/consultation-1.webp"><img class="pf-photo" src="../assets/photos/consultation-1.jpg" alt="A TRC Homes team member talking a customer through their renovation project at a consultation." loading="lazy" decoding="async"></picture>
         </figure>
       </div>
     </section>
@@ -343,7 +343,7 @@
              a specific TRC project or real TRC staff. Reuses .gr-photo slot + the
              .pf-photo cover treatment. Swap for real client photography when it lands. -->
         <figure class="gr-photo">
-          <img class="pf-photo" src="../assets/photos/consultation-3.jpg" alt="A TRC Homes team member talking a customer through renovation plans and grant options at a consultation." loading="lazy" decoding="async">
+          <picture><source type="image/webp" srcset="../assets/photos/consultation-3.webp"><img class="pf-photo" src="../assets/photos/consultation-3.jpg" alt="A TRC Homes team member talking a customer through renovation plans and grant options at a consultation." loading="lazy" decoding="async"></picture>
         </figure>
       </div>
     </section>
@@ -416,14 +416,22 @@
 
           <!-- Step 2 -->
           <fieldset class="sf-step" data-step="2" hidden>
-            <legend class="sf-q">Tell us about the house</legend>
-            <div class="enq-field">
-              <label for="sf-about">About the house</label>
-              <textarea id="sf-about" name="about" rows="3" placeholder="1970s semi-d in Douglas, needs a full going-over"></textarea>
+            <legend class="sf-q">Roughly when are you hoping to start?</legend>
+            <div class="sf-options">
+              <label class="sf-option"><input type="radio" name="timing" value="ASAP">ASAP</label>
+              <label class="sf-option"><input type="radio" name="timing" value="Within 3 months">Within 3 months</label>
+              <label class="sf-option"><input type="radio" name="timing" value="3&ndash;6 months">3&ndash;6 months</label>
+              <label class="sf-option"><input type="radio" name="timing" value="Just planning ahead">Just planning ahead</label>
             </div>
-            <div class="enq-field">
-              <label for="sf-area">Where in Cork? (optional)</label>
-              <input id="sf-area" name="area" type="text" placeholder="Douglas, Ballincollig, Glanmire&hellip;">
+            <p class="sf-q" style="margin-top: clamp(28px, 4vh, 36px);">Is it a home you already own?</p>
+            <div class="sf-options">
+              <label class="sf-option"><input type="radio" name="ownership" value="Already own it">Already own it</label>
+              <label class="sf-option"><input type="radio" name="ownership" value="Buying">Buying</label>
+              <label class="sf-option"><input type="radio" name="ownership" value="Considering buying">Considering buying</label>
+            </div>
+            <div class="enq-field" style="margin-top: clamp(28px, 4vh, 36px);">
+              <label for="sf-notes">Anything else about the project? (optional)</label>
+              <textarea id="sf-notes" name="notes" rows="3" placeholder="Optional &mdash; a line or two if you&rsquo;d like"></textarea>
             </div>
             <div class="sf-nav">
               <button type="button" class="sf-back">Back</button>
@@ -445,6 +453,10 @@
             <div class="enq-field">
               <label for="sf-email">Email</label>
               <input id="sf-email" name="email" type="email" autocomplete="email">
+            </div>
+            <div class="enq-field">
+              <label for="sf-eircode">Eircode (optional)</label>
+              <input id="sf-eircode" name="eircode" type="text" autocomplete="postal-code">
             </div>
             <div class="sf-nav">
               <button type="button" class="sf-back">Back</button>

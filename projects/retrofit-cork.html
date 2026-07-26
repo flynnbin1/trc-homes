@@ -71,7 +71,7 @@
     <!-- 1 · BANNER HERO — the "after" exterior (illustrative). Type + Cork only. -->
     <section class="svc-banner svc-banner--roomy" id="top">
       <div class="svc-banner-media" aria-hidden="true">
-        <img class="svc-banner-img" src="../assets/projects/retrofit-example/retrofit-after.jpg" alt="A retrofitted Cork home — off-white insulation render, anthracite windows, black solar panels on the roof and a heat pump beside the door." decoding="async">
+        <picture><source type="image/webp" srcset="../assets/projects/retrofit-example/retrofit-after.webp"><img class="svc-banner-img" src="../assets/projects/retrofit-example/retrofit-after.jpg" alt="A retrofitted Cork home — off-white insulation render, anthracite windows, black solar panels on the roof and a heat pump beside the door." decoding="async"></picture>
         <div class="svc-banner-overlay"></div>
       </div>
       <div class="svc-banner-inner">
@@ -91,9 +91,9 @@
         <h2 class="sec-h2">From cold and dated to warm and efficient.</h2>
         <p class="sec-lead">Drag the handle to see the same house before and after a deep retrofit &mdash; new render, windows, solar and a heat pump. <em>Illustrative of the type of work &mdash; not a specific project.</em></p>
         <div class="ba-slider" data-ba-slider>
-          <img class="ba-img ba-img--after" src="../assets/projects/retrofit-example/retrofit-after.jpg" alt="The house after the retrofit — off-white insulation render, anthracite windows, black roof solar panels and a heat pump where the oil tank used to be." loading="lazy" decoding="async">
+          <picture><source type="image/webp" srcset="../assets/projects/retrofit-example/retrofit-after.webp"><img class="ba-img ba-img--after" src="../assets/projects/retrofit-example/retrofit-after.jpg" alt="The house after the retrofit — off-white insulation render, anthracite windows, black roof solar panels and a heat pump where the oil tank used to be." loading="lazy" decoding="async"></picture>
           <div class="ba-clip">
-            <img class="ba-img ba-img--before" src="../assets/projects/retrofit-example/retrofit-before.jpg" alt="The same house before — grey pebble-dash, old white uPVC windows, a mossy roof and a black oil tank by the door." loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="../assets/projects/retrofit-example/retrofit-before.webp"><img class="ba-img ba-img--before" src="../assets/projects/retrofit-example/retrofit-before.jpg" alt="The same house before — grey pebble-dash, old white uPVC windows, a mossy roof and a black oil tank by the door." loading="lazy" decoding="async"></picture>
           </div>
           <span class="ba-label ba-label--before" aria-hidden="true">Before</span>
           <span class="ba-label ba-label--after" aria-hidden="true">After</span>
@@ -147,17 +147,17 @@
         <h2 class="pf-intro">Warm, quiet and comfortable.</h2>
         <div class="pf-grid">
           <figure class="pf-tile pf-tile--tall pf-tile--stone">
-            <img class="pf-photo" src="../assets/projects/retrofit-example/retrofit-living.jpg" alt="A warm living room after the retrofit — a wood-burning stove, a large anthracite window holding the heat, and soft evening light." loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="../assets/projects/retrofit-example/retrofit-living.webp"><img class="pf-photo" src="../assets/projects/retrofit-example/retrofit-living.jpg" alt="A warm living room after the retrofit — a wood-burning stove, a large anthracite window holding the heat, and soft evening light." loading="lazy" decoding="async"></picture>
             <span class="pf-keystone" aria-hidden="true"></span>
             <figcaption class="pf-caption">Living room</figcaption>
           </figure>
           <figure class="pf-tile pf-tile--tall pf-tile--stone">
-            <img class="pf-photo" src="../assets/projects/retrofit-example/retrofit-detail.jpg" alt="A window detail — a new triple-glazed anthracite window set into a deep, well-insulated reveal with a stone sill." loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="../assets/projects/retrofit-example/retrofit-detail.webp"><img class="pf-photo" src="../assets/projects/retrofit-example/retrofit-detail.jpg" alt="A window detail — a new triple-glazed anthracite window set into a deep, well-insulated reveal with a stone sill." loading="lazy" decoding="async"></picture>
             <span class="pf-keystone" aria-hidden="true"></span>
             <figcaption class="pf-caption">Glazing detail</figcaption>
           </figure>
           <figure class="pf-tile pf-tile--tall pf-tile--stone">
-            <img class="pf-photo" src="../assets/projects/retrofit-example/retrofit-kitchen.jpg" alt="A warm, comfortable kitchen with oak worktops, a vertical radiator and a new anthracite window over the sink." loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="../assets/projects/retrofit-example/retrofit-kitchen.webp"><img class="pf-photo" src="../assets/projects/retrofit-example/retrofit-kitchen.jpg" alt="A warm, comfortable kitchen with oak worktops, a vertical radiator and a new anthracite window over the sink." loading="lazy" decoding="async"></picture>
             <span class="pf-keystone" aria-hidden="true"></span>
             <figcaption class="pf-caption">Kitchen</figcaption>
           </figure>
@@ -194,14 +194,22 @@
           </fieldset>
 
           <fieldset class="sf-step" data-step="2" hidden>
-            <legend class="sf-q">Tell us about the house</legend>
-            <div class="enq-field">
-              <label for="sf-about">About the house</label>
-              <textarea id="sf-about" name="about" rows="3" placeholder="1970s semi-d in Douglas, needs a full going-over"></textarea>
+            <legend class="sf-q">Roughly when are you hoping to start?</legend>
+            <div class="sf-options">
+              <label class="sf-option"><input type="radio" name="timing" value="ASAP">ASAP</label>
+              <label class="sf-option"><input type="radio" name="timing" value="Within 3 months">Within 3 months</label>
+              <label class="sf-option"><input type="radio" name="timing" value="3&ndash;6 months">3&ndash;6 months</label>
+              <label class="sf-option"><input type="radio" name="timing" value="Just planning ahead">Just planning ahead</label>
             </div>
-            <div class="enq-field">
-              <label for="sf-area">Where in Cork? (optional)</label>
-              <input id="sf-area" name="area" type="text" placeholder="Douglas, Ballincollig, Glanmire&hellip;">
+            <p class="sf-q" style="margin-top: clamp(28px, 4vh, 36px);">Is it a home you already own?</p>
+            <div class="sf-options">
+              <label class="sf-option"><input type="radio" name="ownership" value="Already own it">Already own it</label>
+              <label class="sf-option"><input type="radio" name="ownership" value="Buying">Buying</label>
+              <label class="sf-option"><input type="radio" name="ownership" value="Considering buying">Considering buying</label>
+            </div>
+            <div class="enq-field" style="margin-top: clamp(28px, 4vh, 36px);">
+              <label for="sf-notes">Anything else about the project? (optional)</label>
+              <textarea id="sf-notes" name="notes" rows="3" placeholder="Optional &mdash; a line or two if you&rsquo;d like"></textarea>
             </div>
             <div class="sf-nav">
               <button type="button" class="sf-back">Back</button>
@@ -222,6 +230,10 @@
             <div class="enq-field">
               <label for="sf-email">Email</label>
               <input id="sf-email" name="email" type="email" autocomplete="email">
+            </div>
+            <div class="enq-field">
+              <label for="sf-eircode">Eircode (optional)</label>
+              <input id="sf-eircode" name="eircode" type="text" autocomplete="postal-code">
             </div>
             <div class="sf-nav">
               <button type="button" class="sf-back">Back</button>

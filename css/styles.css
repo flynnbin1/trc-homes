@@ -24,6 +24,10 @@
   box-sizing: border-box;
 }
 
+/* WebP-with-JPEG-fallback wrappers: keep <picture> layout-neutral so the inner
+   <img> stays the exact layout box (no visual/layout change from wrapping). */
+picture { display: contents; }
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-h);
