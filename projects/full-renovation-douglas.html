@@ -91,24 +91,83 @@
       </div>
     </section>
 
-    <!-- 2 · THE STORY — the PHOTOS are real; these WORDS are PLACEHOLDER. TRC voice,
-         no invented client names, dates, costs or figures. [awaiting client] -->
+    <!-- 1b · BEFORE / AFTER — REAL before/after of the front, using the shared slider
+         (.ba-slider + js/before-after.js). Before = the dated front we found
+         (exterior-before.jpg, a straight-on survey shot); after = the finished front
+         (exterior.jpg). Framings differ slightly, so the wipe isn't a pixel morph. -->
     <section class="sec">
+      <div class="sec-inner sec-inner--narrow">
+        <p class="eyebrow">Before &amp; After</p>
+        <h2 class="sec-h2">The same terrace, transformed.</h2>
+        <p class="sec-lead">Drag the handle to wipe between the house as we found it and the finished renovation.</p>
+        <div class="ba-slider" data-ba-slider>
+          <img class="ba-img ba-img--after" src="../assets/projects/alexandra-villas/exterior.jpg" alt="The finished front of the terraced house at Alexandra Villas — smooth green render, cream surrounds and dark grey windows." loading="lazy" decoding="async">
+          <div class="ba-clip">
+            <img class="ba-img ba-img--before" src="../assets/projects/alexandra-villas/exterior-before.jpg" alt="The same house before renovation — cracked, peeling render and dated timber windows." loading="lazy" decoding="async">
+          </div>
+          <span class="ba-label ba-label--before" aria-hidden="true">Before</span>
+          <span class="ba-label ba-label--after" aria-hidden="true">After</span>
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Drag to compare the house before and after the renovation" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <span class="ba-grip" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 · THE STORY — REAL story (Conor's renovation), written in TRC's voice from
+         the facts provided. No embellishment, no invented figures.
+         CONFIRM WITH ADRIAN — SLUG/LOCATION: TRC's OFFICE is in St Luke's (named
+         below). Whether the PROJECT itself is in St Luke's is NOT confirmed — do not
+         infer the project location from the office. The slug/URL is kept as-is
+         (full-renovation-douglas.html) and the key-details location stays
+         "[area to confirm]" until Adrian confirms.
+         NOTE (wording): the banner still calls this "a traditional terraced home"
+         while the story says "1970s house" — reconcile once the era is confirmed
+         (the strip-out photos look older than 1970s).
+         NOTE (naming): the client is named by first name (Conor) per the brief; if
+         seeking his okay on the testimonial below, confirm he's happy to be named
+         in this story too. -->
+    <section class="sec sec--stone">
       <div class="sec-inner why-split">
         <div class="why-copy">
           <p class="eyebrow">The Story</p>
-          <h2 class="sec-h2">A traditional terrace, made to work for modern life.</h2>
-          <p class="tsl-note">Placeholder story &mdash; the real details of this project (the family, the brief, the timeline) will go here once confirmed. The photography is real; the words are not yet. [awaiting client]</p>
-          <p class="sec-body"><strong>What the house was.</strong> A traditional Cork terraced home with good bones but a dated, closed-in layout &mdash; the kind of older house that needs bringing up to how a family lives today.</p>
-          <p class="sec-body"><strong>What was wanted.</strong> A warmer, brighter, more open home &mdash; a proper kitchen and living space, updated bathrooms, and a finish that would last &mdash; without the stress of managing a renovation across separate trades.</p>
-          <p class="sec-body"><strong>What TRC did.</strong> We handled the whole renovation in-house &mdash; layout, kitchen, living and dining, a new shower room, flooring and finishes throughout &mdash; with one team and one point of contact from first walk-through to final snag. The finished house is below.</p>
+          <h2 class="sec-h2">From the top floor to the whole home.</h2>
+          <p class="sec-body">Conor first called to our office in St Luke&rsquo;s about his 1970s house &mdash; he wanted to take the top floor and bring it up to date. We did that work, and a couple of years later he came back, this time ready to fully design and renovate the ground floor.</p>
+          <p class="sec-body">He&rsquo;d already had an architect price the ground floor, and the budget had come back at roughly double what he&rsquo;d planned to spend. We took the design on ourselves and made it work &mdash; and picked everything in the house with him, down to the light fittings, the tiles, the floors and the paint.</p>
+          <p class="sec-body">The result is the home in these photographs: gutted and rebuilt, designed and finished by one team.</p>
           <p class="sec-body">It&rsquo;s the same approach behind every <a class="inline-link" href="../services/full-renovations.html">full renovation</a> we take on across Cork.</p>
         </div>
-        <!-- Real front exterior of the project — grounds the story as a real Cork
-             terrace. Reuses the editorial-split .gr-photo slot + .pf-photo cover. -->
+        <!-- Real strip-out photo — grounds "what the house was" in the actual works.
+             Reuses the editorial-split .gr-photo slot + .pf-photo cover. -->
         <figure class="gr-photo">
-          <img class="pf-photo" src="../assets/projects/alexandra-villas/exterior.jpg" alt="The front of the renovated terraced house at Alexandra Villas, Cork — muted green render, cream window surrounds and dark grey windows behind a small railed garden." loading="lazy" decoding="async">
+          <img class="pf-photo" src="../assets/projects/alexandra-villas/during-3.jpg" alt="The house mid-renovation — stripped back to bare stone walls and joists, with steel props holding the structure during the works." loading="lazy" decoding="async">
         </figure>
+      </div>
+    </section>
+
+    <!-- 2b · DURING THE BUILD — REAL construction photos (strip-out to first fix).
+         Reuses the .proof / .pf-grid bento (three tall tiles). [real client photos] -->
+    <section class="proof">
+      <div class="proof-inner">
+        <p class="pf-eyebrow">During the Build</p>
+        <h2 class="pf-intro">Taken back to the bones, then rebuilt.</h2>
+        <div class="pf-grid">
+          <figure class="pf-tile pf-tile--tall pf-tile--pine">
+            <img class="pf-photo" src="../assets/projects/alexandra-villas/during-1.jpg" alt="The interior stripped out — bare stone walls, exposed joists and steel props, with the old fireplace opened up." loading="lazy" decoding="async">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">Strip-out</figcaption>
+          </figure>
+          <figure class="pf-tile pf-tile--tall pf-tile--pine">
+            <img class="pf-photo" src="../assets/projects/alexandra-villas/during-2.jpg" alt="The rear of the house opened up to the courtyard during the works, walls stripped back to stone." loading="lazy" decoding="async">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">Opened up</figcaption>
+          </figure>
+          <figure class="pf-tile pf-tile--tall pf-tile--pine">
+            <img class="pf-photo" src="../assets/projects/alexandra-villas/during-6.jpg" alt="The house at first fix — new plasterboard up, the staircase in and a cement mixer on site." loading="lazy" decoding="async">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">First fix</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -204,16 +263,37 @@
             <span class="pf-keystone" aria-hidden="true"></span>
             <figcaption class="pf-caption">Living space</figcaption>
           </figure>
+
+          <figure class="pf-tile pf-tile--tall pf-tile--stone">
+            <img class="pf-photo" src="../assets/projects/alexandra-villas/bedroom-1.jpg" alt="The main bedroom after renovation — soft grey walls, a mirrored wardrobe and a garden view." loading="lazy" decoding="async">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">Main bedroom</figcaption>
+          </figure>
+          <figure class="pf-tile pf-tile--tall pf-tile--stone">
+            <img class="pf-photo" src="../assets/projects/alexandra-villas/bedroom-2.jpg" alt="A second bedroom set up as a bedroom and home office, with a built-in desk." loading="lazy" decoding="async">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">Bedroom / office</figcaption>
+          </figure>
+          <figure class="pf-tile pf-tile--tall pf-tile--stone">
+            <img class="pf-photo" src="../assets/projects/alexandra-villas/bedroom-3.jpg" alt="A bright double bedroom with a fitted wardrobe and warm grey tones." loading="lazy" decoding="async">
+            <span class="pf-keystone" aria-hidden="true"></span>
+            <figcaption class="pf-caption">Bedroom</figcaption>
+          </figure>
         </div>
-        <p class="pf-note">Real photography of this project. The written case study &mdash; the family&rsquo;s story and their words &mdash; will follow. [awaiting client]</p>
+        <p class="pf-note">Real photography of this completed Cork renovation.</p>
       </div>
     </section>
 
-    <!-- 5 · TESTIMONIAL — real client, NO invented quote. [awaiting client] -->
+    <!-- 5 · TESTIMONIAL — REAL client review, published verbatim with the client's
+         permission. Do NOT edit the customer's words. The quiet clarifying line notes
+         TRC's former company name so the "the renovation centre" reference isn't
+         confusing. Uses the site's existing .tsl-quote / .tsl-attr / .tsl-note styles. -->
     <section class="sec sec--stone">
       <div class="sec-inner sec-inner--narrow">
         <p class="eyebrow">In Their Words</p>
-        <p class="tsl-note">A word from the homeowner will go here once we have it &mdash; no quote is invented. [awaiting client]</p>
+        <blockquote class="tsl-quote">&ldquo;I have had my whole house gutted and re-done by the renovation centre. The finished result is beautiful. More importantly, Adrian, Fiona, Kieran and the whole gang are brilliant to deal with. Can&rsquo;t recommend enough.&rdquo;</blockquote>
+        <p class="tsl-attr">Conor Linehan, 2020</p>
+        <p class="tsl-note">TRC Homes was formerly The Renovation Centre.</p>
       </div>
     </section>
 
@@ -333,6 +413,7 @@
   </div>
 
   <script src="../js/nav.js"></script>
+  <script src="../js/before-after.js"></script>
   <script src="../js/enquiry-form.js"></script>
 </body>
 </html>
