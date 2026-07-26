@@ -1353,6 +1353,40 @@ body {
   }
 }
 
+/* ---------- Meet the Team — real studio headshots (About page) ----------
+   Layout + existing tokens only: no new colours, fonts, effects or radii.
+   The row itself reuses the .st-grid 4→2→1 responsive grid. Names use the
+   sanctioned Marcellus H3 size (as .st-title); roles use the gold Jost caps
+   already used by .eyebrow / .st-media-caption. */
+.team-photo {
+  display: block;
+  width: 100%;
+  height: auto; /* neutralise the width/height HTML attrs so aspect-ratio wins */
+  aspect-ratio: 4 / 5; /* portrait headshot; object-fit:cover trims side bg, head stays centred */
+  object-fit: cover;
+  border-radius: 2px;
+  background: var(--stone);
+}
+
+.team-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 27px; /* H3 */
+  line-height: 1.2;
+  color: var(--forest);
+  margin-top: clamp(18px, 2.4vh, 24px);
+}
+
+.team-role {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 8px;
+}
+
 /* ---------- Proof / Projects — placeholder gallery ---------- */
 
 .proof {
