@@ -2631,6 +2631,23 @@ body {
 .stepform--card .sf-note { color: var(--forest); }
 .stepform--card .sf-note a { color: var(--forest); text-decoration-color: var(--gold); }
 
+/* Validation feedback (every question/field is required). Restrained brick tone
+   — shown only while a step is incomplete; clears as soon as it's answered. */
+.sf-error {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.4;
+  color: #a23b2f;
+  margin-top: 16px;
+}
+.sf-options.is-invalid {
+  outline: 1px solid #a23b2f;
+  outline-offset: 8px;
+  border-radius: 2px;
+}
+.stepform .enq-field.is-invalid input,
+.stepform .enq-field.is-invalid textarea { border-color: #a23b2f; }
+
 /* Hero breathing room (services/full-renovations.html only). The banner copy is
    bottom-anchored (align-items: flex-end, matching the hub), so the lever for
    clear space above the heading is the banner height — raised here on the same

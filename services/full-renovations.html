@@ -438,8 +438,8 @@
               <label class="sf-option"><input type="radio" name="ownership" value="Considering buying">Considering buying</label>
             </div>
             <div class="enq-field" style="margin-top: clamp(28px, 4vh, 36px);">
-              <label for="sf-notes">Anything else about the project? (optional)</label>
-              <textarea id="sf-notes" name="notes" rows="3" placeholder="Optional &mdash; a line or two if you&rsquo;d like"></textarea>
+              <label for="sf-notes">Tell us a bit about the project</label>
+              <textarea id="sf-notes" name="notes" rows="3" required placeholder="What you&rsquo;re planning, rough size or scope, anything else we should know"></textarea>
             </div>
             <div class="sf-nav">
               <button type="button" class="sf-back">Back</button>
@@ -452,19 +452,19 @@
             <legend class="sf-q">Where will we send your consultation details?</legend>
             <div class="enq-field">
               <label for="sf-name">Name</label>
-              <input id="sf-name" name="name" type="text" autocomplete="name">
+              <input id="sf-name" name="name" type="text" autocomplete="name" required>
             </div>
             <div class="enq-field">
               <label for="sf-phone">Phone</label>
-              <input id="sf-phone" name="phone" type="tel" autocomplete="tel">
+              <input id="sf-phone" name="phone" type="tel" autocomplete="tel" required>
             </div>
             <div class="enq-field">
               <label for="sf-email">Email</label>
-              <input id="sf-email" name="email" type="email" autocomplete="email">
+              <input id="sf-email" name="email" type="email" autocomplete="email" required>
             </div>
             <div class="enq-field">
-              <label for="sf-eircode">Eircode (optional)</label>
-              <input id="sf-eircode" name="eircode" type="text" autocomplete="postal-code">
+              <label for="sf-eircode">Eircode</label>
+              <input id="sf-eircode" name="eircode" type="text" autocomplete="postal-code" required>
             </div>
             <div class="sf-nav">
               <button type="button" class="sf-back">Back</button>
