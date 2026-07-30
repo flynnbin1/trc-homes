@@ -128,18 +128,78 @@
     if (e.target.matches('textarea, input')) clearInvalid(steps[current]);
   });
 
-  /* Submit — gated on a complete final step; then honest inline note, no backend */
+  /* GoHighLevel inbound webhook + thank-you redirect. The form has no backend, so on
+     submit we POST the collected answers to GHL, then send the browser to the
+     dedicated thank-you page (where the conversion pixels fire). The redirect happens
+     the moment the POST settles — success OR failure — with a short fallback timer so
+     a slow or hung request can never trap the user on the form. keepalive lets the
+     POST finish during/after navigation, so the lead is never lost; any error is
+     logged to the console only, never shown to the user. */
+  var WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/KdkkX8xmRBvInWZ1D6ne/webhook-trigger/bbd91ee2-4b24-4b9b-b3c5-224cb3afb59a';
+  var THANK_YOU_URL = '/thank-you.html';
+
+  function submitEnquiry() {
+    var redirected = false;
+    function goToThankYou() {
+      if (redirected) return;
+      redirected = true;
+      window.location.assign(THANK_YOU_URL);
+    }
+    try {
+      var data = new FormData(form);
+      var g = function (k) { return (data.get(k) || '').toString().trim(); };
+      var fullName = g('name');
+      var sp = fullName.indexOf(' ');
+      var payload = {
+        name: fullName,
+        first_name: sp === -1 ? fullName : fullName.slice(0, sp),
+        last_name: sp === -1 ? '' : fullName.slice(sp + 1).trim(),
+        email: g('email'),
+        phone: g('phone'),
+        eircode: g('eircode'),
+        project_type: g('planning'),   /* Step 1 */
+        timeline: g('timing'),         /* Step 2 — start timing */
+        budget: g('project_budget'),   /* Step 2 — rough budget */
+        ownership: g('ownership'),      /* Step 2 — own / buying */
+        notes: g('notes'),             /* Step 2 — optional detail box */
+        source: 'TRC Homes website enquiry form',
+        page_url: window.location.href,
+        page_path: window.location.pathname,
+        page_title: document.title
+      };
+      /* Content-Type text/plain is CORS-safelisted, so this is a "simple request"
+         and the browser skips the preflight (application/json triggered an OPTIONS
+         preflight that GHL doesn't answer, which silently dropped the POST). The body
+         is still the JSON string — GHL's inbound webhook parses it as JSON regardless. */
+      var fallback = setTimeout(goToThankYou, 1500);
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).then(function (res) {
+        if (!res.ok) console.error('[enquiry-form] GHL webhook responded ' + res.status);
+      }, function (err) {
+        console.error('[enquiry-form] GHL webhook POST failed:', err);
+      }).then(function () {
+        clearTimeout(fallback);
+        goToThankYou();
+      });
+    } catch (err) {
+      console.error('[enquiry-form] could not build/send GHL payload:', err);
+      goToThankYou();
+    }
+  }
+
+  /* Submit — gated on a complete final step. Fire the GHL webhook, then redirect to
+     the thank-you page. There is no inline note any more: the thank-you page IS the
+     confirmation (and the conversion-tracking trigger). */
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var stepEl = steps[current];
     var bad = collectInvalid(stepEl);
     if (bad.length) { flagInvalid(stepEl, bad); return; }
-    form.classList.add('is-done');
-    if (note) {
-      note.hidden = false;
-      note.setAttribute('tabindex', '-1');
-      note.focus();
-    }
+    submitEnquiry();
   });
 
   /* Hero quick-start → set the choice, advance to step 2, scroll to the form */

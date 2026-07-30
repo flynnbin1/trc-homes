@@ -38,6 +38,22 @@ Whichever route is used, every old URL above must issue an HTTP **301** to its
 new target. **This is a launch-time task** — it happens when the domains are
 switched over, not before, and not inside these page files.
 
+## Implemented in vercel.json
+
+The mapping above is now configured as **301 redirects** in `vercel.json`
+(`redirects` array, each `"permanent": true`), plus one internal redirect for the
+renamed project slug so any old link still resolves:
+
+- `/projects/full-renovation-douglas.html` → `/projects/full-renovation-alexandra-villas-cork.html`
+
+**These cross-domain redirects only take effect once `therenovationcentre.ie` is
+added to this Vercel project and pointed at it via DNS at launch.** The rules live
+on the Vercel deployment and fire on requests Vercel actually receives — so until
+the old domain's DNS is switched to resolve to this project, they sit dormant and
+nothing happens on the old site. The old URLs are matched exactly as listed
+(trailing slash included). Destinations are relative paths, so each request lands
+on the matching new page on whichever domain served it.
+
 ## Still to confirm with Adrian
 
 1. **Old domain ownership / access.** Confirm Adrian controls and can log in to

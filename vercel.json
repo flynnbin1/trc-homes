@@ -1,0 +1,13 @@
+{
+  "redirects": [
+    { "source": "/about/", "destination": "/about.html", "permanent": true },
+    { "source": "/service/", "destination": "/services.html", "permanent": true },
+    { "source": "/projects/", "destination": "/projects.html", "permanent": true },
+    { "source": "/testimonials/", "destination": "/projects.html", "permanent": true },
+    { "source": "/contact/", "destination": "/contact.html", "permanent": true },
+    { "source": "/renovation/", "destination": "/services/full-renovations.html", "permanent": true },
+    { "source": "/house-building/", "destination": "/services.html", "permanent": true },
+    { "source": "/interior/", "destination": "/services.html", "permanent": true },
+    { "source": "/projects/full-renovation-douglas.html", "destination": "/projects/full-renovation-alexandra-villas-cork.html", "permanent": true }
+  ]
+}
