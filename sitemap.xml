@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TRC Homes sitemap. Real pages only (demo/archival files excluded).
+     LAUNCH NOTE: every <loc> below switches from the GitHub Pages origin to
+     https://trchomes.ie/... when the site moves to its real domain. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://flynnbin1.github.io/trc-homes/</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/services.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/services/full-renovations.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/services/extensions.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/services/retrofitting.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/services/grants.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/projects.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/projects/full-renovation-alexandra-villas-cork.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/projects/full-renovation-cork.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/projects/extension-cork.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/projects/retrofit-cork.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/about.html</loc></url>
+  <url><loc>https://flynnbin1.github.io/trc-homes/contact.html</loc></url>
+</urlset>

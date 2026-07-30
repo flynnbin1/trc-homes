@@ -2321,15 +2321,16 @@ body {
 
 /* Two-column split (used by the Why TRC strip): copy left, photo placeholder
    right, vertically centred — same copy-weighted split as the grants band.
-   Stacks below 768px (copy on top, placeholder below). Layout only: reuses
-   .gr-photo for the placeholder, adds no new colours, type or effects. */
+   Stacks at 900px and below (copy on top, placeholder below), matching the
+   grants band so the fixed-size photo never overflows the tablet width. Layout
+   only: reuses .gr-photo for the placeholder, adds no new colours, type or effects. */
 .why-split {
   display: grid;
   grid-template-columns: 1.3fr 0.85fr;
   gap: clamp(32px, 6vw, 80px);
   align-items: center;
 }
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .why-split { grid-template-columns: 1fr; }
 }
 
@@ -2401,7 +2402,7 @@ body {
   margin-top: clamp(28px, 4vh, 40px);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .why-split--rev { grid-template-columns: 1fr; }
   .why-split--rev > .why-copy,
   .why-split--rev > .gr-photo { order: 0; }
@@ -2704,6 +2705,19 @@ body {
   color: var(--gold);
 }
 .tsl-attr::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+/* Reviews — real Google reviews (verbatim). The homepage and service pages both
+   use the .tslider carousel treatment below; this adds only the Google rating line. */
+.reviews-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: var(--forest);
+}
+.reviews-stars { color: var(--gold); letter-spacing: 3px; }
 .tsl-controls {
   display: flex;
   align-items: center;
