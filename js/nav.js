@@ -14,7 +14,7 @@
 
   var servicesItem = document.querySelector('.nav-item--services');
   var servicesLink = servicesItem ? servicesItem.querySelector('.nav-link--services') : null;
-  var mqMobile = window.matchMedia('(max-width: 767px)');
+  var mqMobile = window.matchMedia('(max-width: 768px)');
 
   /* Solid background once the hero has passed behind the nav bar.
      rootMargin excludes the nav-height strip at the top, so the strip of

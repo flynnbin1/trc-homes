@@ -286,8 +286,8 @@ body {
    A quiet submenu on the Services nav item only. §9/§10: Deep Pine panel,
    off-white Jost links matching .nav-link, a 1px Muted Gold hairline top edge
    plus a gold rule before "View all services", sharp 2px corners, no shadow,
-   opacity fade only. Desktop (768px+) = hover/keyboard popover; mobile =
-   tap-to-expand accordion inside the existing overlay (max-width:767px block). */
+   opacity fade only. Desktop (769px+) = hover/keyboard popover; mobile =
+   tap-to-expand accordion inside the existing overlay (max-width:768px block). */
 
 .nav-sublink {
   text-decoration: none;
@@ -299,7 +299,7 @@ body {
 /* Caret is a mobile-overlay affordance only — desktop nav appearance unchanged */
 .nav-caret { display: none; }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .nav-item--services {
     position: relative;
     display: inline-flex;
@@ -371,7 +371,7 @@ body {
 }
 
 /* Hover-open is guarded so touch devices never get a stuck-open panel */
-@media (hover: hover) and (min-width: 768px) {
+@media (hover: hover) and (min-width: 769px) {
   .nav-item--services:hover .nav-submenu {
     opacity: 1;
     visibility: visible;
@@ -1919,7 +1919,7 @@ body {
 
 /* ---------- Mobile ---------- */
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .site-nav {
     grid-template-columns: auto auto;
     justify-content: space-between;
@@ -2029,7 +2029,7 @@ body {
 }
 
 /* ---------- Services dropdown — mobile (tap-to-expand in the overlay) ---------- */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .nav-item--services {
     display: flex;
     flex-direction: column;
@@ -2214,9 +2214,11 @@ body {
    the section lets nav.js run the same transparent→solid nav behaviour. */
 .svc-banner {
   position: relative;
-  height: 60vh;
-  min-height: 460px;
-  max-height: 660px;
+  /* min-height (not a fixed height) so a tall crumb + eyebrow + headline stack grows
+     the banner instead of riding up under the fixed nav. clamp keeps the old 60vh
+     proportion with the same 460/660 floor + cap; when copy needs more room the flex
+     box grows past the cap and the inner's top padding holds the nav clearance. */
+  min-height: clamp(460px, 60vh, 660px);
   display: flex;
   align-items: flex-end; /* copy anchors to the bottom */
   overflow: hidden;
@@ -2250,7 +2252,10 @@ body {
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
-  padding: 0 clamp(24px, 5vw, 64px) clamp(44px, 8vh, 76px);
+  /* Top padding reserves clearance under the fixed nav (the mobile block sets its own
+     below). For tall copy the banner grows and this becomes the gap under the nav; for
+     short copy the stack stays bottom-anchored and this padding is simply absorbed. */
+  padding: clamp(108px, 13vh, 140px) clamp(24px, 5vw, 64px) clamp(44px, 8vh, 76px);
 }
 .svc-banner-h1 {
   font-family: var(--font-display);
@@ -2654,9 +2659,7 @@ body {
    clear space above the heading is the banner height — raised here on the same
    vh scale the base banner uses. Scoped so the hub banner is untouched. */
 .svc-banner--roomy {
-  height: 70vh;
-  min-height: 560px;
-  max-height: 760px;
+  min-height: clamp(560px, 70vh, 760px);
 }
 @media (max-width: 767px) {
   .svc-banner--roomy { height: auto; min-height: 500px; max-height: none; }
