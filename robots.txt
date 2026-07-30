@@ -1,7 +1,6 @@
 # TRC Homes — robots.txt
-# LAUNCH NOTE: switch the Sitemap URL below to https://trchomes.ie/sitemap.xml
-# when the site moves to its real domain.
+# Live domain https://trchomes.ie.
 User-agent: *
 Allow: /
 
-Sitemap: https://flynnbin1.github.io/trc-homes/sitemap.xml
+Sitemap: https://trchomes.ie/sitemap.xml
