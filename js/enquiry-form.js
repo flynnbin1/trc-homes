@@ -129,76 +129,99 @@
   });
 
   /* GoHighLevel inbound webhook + thank-you redirect. The form has no backend, so on
-     submit we POST the collected answers to GHL, then send the browser to the
-     dedicated thank-you page (where the conversion pixels fire). The redirect happens
-     the moment the POST settles — success OR failure — with a short fallback timer so
-     a slow or hung request can never trap the user on the form. keepalive lets the
-     POST finish during/after navigation, so the lead is never lost; any error is
-     logged to the console only, never shown to the user. */
+     submit we POST the collected answers to GHL. Payload keys are named to match the
+     TRC GHL sub-account's custom fields exactly. Delivery uses mode:'no-cors' so the
+     fetch RESOLVES once the POST actually completes (GHL returns an opaque response we
+     don't need to read) — a real delivery sends the browser to /thank-you, where
+     the conversion pixels fire. A genuine network failure REJECTS, and we keep the
+     user on the form with an honest error instead of a false thank-you (option C). */
   var WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/KdkkX8xmRBvInWZ1D6ne/webhook-trigger/eb7b38e3-3961-47b3-bb2e-26ae33144080';
-  var THANK_YOU_URL = '/thank-you.html';
+  var THANK_YOU_URL = '/thank-you';
 
   function submitEnquiry() {
-    var redirected = false;
-    function goToThankYou() {
-      if (redirected) return;
-      redirected = true;
-      window.location.assign(THANK_YOU_URL);
+    var submitBtn = form.querySelector('.sf-submit');
+    var settled = false;
+    var timer;
+    function finish(action) {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      action();
     }
+    function goToThankYou() { window.location.assign(THANK_YOU_URL); }
+    function showFailure() {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        if (submitBtn.dataset.label) submitBtn.textContent = submitBtn.dataset.label;
+      }
+      var stepEl = steps[current];
+      var msg = errorEl(stepEl);
+      msg.textContent = 'Sorry — we couldn’t send that just now. Please try again, or call us on +353 21 202 1167.';
+      msg.hidden = false;
+      (msg.scrollIntoView ? msg : stepEl).scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'center' });
+    }
+
+    var payload;
     try {
       var data = new FormData(form);
       var g = function (k) { return (data.get(k) || '').toString().trim(); };
       var fullName = g('name');
       var sp = fullName.indexOf(' ');
-      var payload = {
+      payload = {
         name: fullName,
         first_name: sp === -1 ? fullName : fullName.slice(0, sp),
         last_name: sp === -1 ? '' : fullName.slice(sp + 1).trim(),
         email: g('email'),
         phone: g('phone'),
-        eircode: g('eircode'),
-        project_type: g('planning'),   /* Step 1 */
-        timeline: g('timing'),         /* Step 2 — start timing */
-        budget: g('project_budget'),   /* Step 2 — rough budget */
-        ownership: g('ownership'),      /* Step 2 — own / buying */
-        notes: g('notes'),             /* Step 2 — optional detail box */
+        eircode: g('eircode'),                                 /* Step 3 */
+        what_are_you_planning: g('planning'),                  /* Step 1 */
+        whats_your_rough_budget: g('project_budget'),          /* Step 2 — budget */
+        roughly_when_are_you_hoping_to_start: g('timing'),     /* Step 2 — timing */
+        is_it_a_home_you_already_own: g('ownership'),          /* Step 2 — ownership */
+        anything_else_about_the_project: g('notes'),           /* Step 2 — detail box */
         source: 'TRC Homes website enquiry form',
-        page_url: window.location.href,
-        page_path: window.location.pathname,
-        page_title: document.title
+        page_url: window.location.href
       };
-      /* Content-Type text/plain is CORS-safelisted, so this is a "simple request"
-         and the browser skips the preflight (application/json triggered an OPTIONS
-         preflight that GHL doesn't answer, which silently dropped the POST). The body
-         is still the JSON string — GHL's inbound webhook parses it as JSON regardless. */
-      var fallback = setTimeout(goToThankYou, 1500);
-      fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-        body: JSON.stringify(payload),
-        keepalive: true
-      }).then(function (res) {
-        if (!res.ok) console.error('[enquiry-form] GHL webhook responded ' + res.status);
-      }, function (err) {
-        console.error('[enquiry-form] GHL webhook POST failed:', err);
-      }).then(function () {
-        clearTimeout(fallback);
-        goToThankYou();
-      });
     } catch (err) {
-      console.error('[enquiry-form] could not build/send GHL payload:', err);
-      goToThankYou();
+      console.error('[enquiry-form] could not build GHL payload:', err);
+      showFailure();
+      return;
     }
+
+    if (submitBtn) {
+      submitBtn.dataset.label = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+    }
+
+    /* Content-Type text/plain is CORS-safelisted, so no-cors permits it and there is
+       no preflight; GHL parses the JSON body regardless. keepalive lets the request
+       finish if the redirect races it. The 8s timer treats a hang as a failure (honest
+       error), never a false success. */
+    timer = setTimeout(function () { finish(showFailure); }, 8000);
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).then(function () {
+      finish(goToThankYou);
+    }, function (err) {
+      console.error('[enquiry-form] GHL webhook POST failed:', err);
+      finish(showFailure);
+    });
   }
 
-  /* Submit — gated on a complete final step. Fire the GHL webhook, then redirect to
-     the thank-you page. There is no inline note any more: the thank-you page IS the
-     confirmation (and the conversion-tracking trigger). */
+  /* Submit — gated on a complete final step. Clear any prior send-error, then fire the
+     GHL webhook; a confirmed delivery redirects to the thank-you page (which is the
+     confirmation + conversion trigger), a failure keeps the user here with an error. */
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var stepEl = steps[current];
     var bad = collectInvalid(stepEl);
     if (bad.length) { flagInvalid(stepEl, bad); return; }
+    clearInvalid(stepEl);
     submitEnquiry();
   });
 
