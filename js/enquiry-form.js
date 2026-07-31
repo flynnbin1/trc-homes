@@ -129,12 +129,12 @@
   });
 
   /* GoHighLevel inbound webhook + thank-you redirect. The form has no backend, so on
-     submit we POST the collected answers to GHL. Payload keys are named to match the
-     TRC GHL sub-account's custom fields exactly. Delivery uses mode:'no-cors' so the
-     fetch RESOLVES once the POST actually completes (GHL returns an opaque response we
-     don't need to read) — a real delivery sends the browser to /thank-you, where
-     the conversion pixels fire. A genuine network failure REJECTS, and we keep the
-     user on the form with an honest error instead of a false thank-you (option C). */
+     submit we POST the collected answers to GHL as application/json. Payload keys are
+     named to match the TRC GHL sub-account's custom fields exactly. GHL answers the
+     CORS preflight and returns a CORS-enabled response, so cors mode lets us read the
+     REAL HTTP status: a 2xx delivery sends the browser to /thank-you (where conversion
+     pixels fire); a non-2xx or a network failure keeps the user on the form with an
+     honest error instead of a false thank-you (option C). */
   var WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/KdkkX8xmRBvInWZ1D6ne/webhook-trigger/eb7b38e3-3961-47b3-bb2e-26ae33144080';
   var THANK_YOU_URL = '/thank-you';
 
