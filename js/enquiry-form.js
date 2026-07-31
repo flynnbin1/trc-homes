@@ -194,19 +194,26 @@
       submitBtn.textContent = 'Sending…';
     }
 
-    /* Content-Type text/plain is CORS-safelisted, so no-cors permits it and there is
-       no preflight; GHL parses the JSON body regardless. keepalive lets the request
-       finish if the redirect races it. The 8s timer treats a hang as a failure (honest
-       error), never a false success. */
+    /* POST application/json in cors mode. GHL answers the CORS preflight (ACAO: *) and
+       returns a readable, CORS-enabled response, so we check the REAL HTTP status: a
+       2xx redirects to /thank-you; anything else — or a network failure — keeps the
+       user on the form with an honest error (the strongest "no false thank-you"). This
+       matches the EGR survey's pattern. We redirect only after the response is in, so
+       the POST always completes before navigation; keepalive is belt-and-braces. The
+       8s timer treats a hang as a failure, never a false success. */
     timer = setTimeout(function () { finish(showFailure); }, 8000);
     fetch(WEBHOOK_URL, {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
       keepalive: true
-    }).then(function () {
-      finish(goToThankYou);
+    }).then(function (res) {
+      if (res && res.ok) {
+        finish(goToThankYou);
+      } else {
+        console.error('[enquiry-form] GHL webhook responded ' + (res && res.status));
+        finish(showFailure);
+      }
     }, function (err) {
       console.error('[enquiry-form] GHL webhook POST failed:', err);
       finish(showFailure);
