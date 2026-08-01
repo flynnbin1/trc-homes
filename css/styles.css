@@ -2003,9 +2003,17 @@ label.cc-cat-head { cursor: pointer; }
 .cc-panel .cc-btn--primary:hover { background: var(--gold); border-color: var(--gold); color: var(--pine); }
 
 @media (max-width: 767px) {
-  .cc-bar { bottom: 57px; } /* sits above the mobile thumb bar */
+  /* Sits above the mobile thumb bar. The hidden state must clear BOTH the bar height
+     and that 57px offset, or a sliver stays on screen (and lingers on every page once
+     consent is stored). */
+  .cc-bar { bottom: 57px; transform: translateY(calc(100% + 57px)); }
   .cc-bar-inner { flex-direction: column; align-items: stretch; gap: 14px; padding: 16px 20px; }
-  .cc-actions .cc-btn { flex: 1 1 auto; }
+  /* Reject + Accept share the top row (equal prominence); Manage sits full-width below. */
+  .cc-actions { gap: 10px; }
+  .cc-actions .cc-btn { flex: 1 1 0; min-width: 0; }
+  .cc-actions .cc-btn[data-cc="reject"] { order: 1; }
+  .cc-actions .cc-btn[data-cc="accept"] { order: 2; }
+  .cc-actions .cc-btn[data-cc="manage"] { order: 3; flex-basis: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cc-bar { transition: none; }
