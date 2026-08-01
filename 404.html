@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thanks — Enquiry Received | TRC Homes</title>
-  <meta name="description" content="Thanks for your enquiry — the TRC Homes team will be in touch to arrange your free consultation.">
-  <!-- Post-conversion page: not for search. Kept out of sitemap.xml and noindexed. -->
+  <title>Page Not Found | TRC Homes</title>
+  <meta name="description" content="The page you were looking for can’t be found. Head back to the TRC Homes home page or explore our renovation, extension and retrofit services in Cork.">
+  <!-- Error page: not for search. Vercel serves this file for unmatched routes. Noindexed and kept out of sitemap.xml. -->
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml" href="assets/trc-homes-icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Marcellus&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-
-  <!-- CONVERSION TRACKING: Google Ads / Facebook Pixel conversion tags go here
-       (base pixel + page-view/conversion event). This page loads only after a
-       successful enquiry submit, so it is the conversion trigger. Do NOT add real
-       tracking IDs until they are provided. -->
-
 </head>
 <body>
 
@@ -66,50 +60,20 @@
 
   <main id="page-top">
 
-    <!-- 1 · COMPACT BANNER — base .svc-banner (60vh), same treatment as the contact
-         page. Deep Pine gradient over the office/consultation image; id="top" drives
-         nav.js transparent-over-banner -> solid on scroll. Reuses banner-about
-         (the consultation setting) — the same placeholder as contact.html. -->
-    <section class="svc-banner" id="top">
+    <!-- 404 — .svc-banner with a finished-home image + Deep Pine overlay, same
+         treatment as the other pages. id="top" drives nav.js transparent -> solid.
+         Off-white copy over the overlay; helpful links reuse the gold .crumb style. -->
+    <section class="svc-banner svc-banner--roomy" id="top">
       <div class="svc-banner-media" aria-hidden="true">
-        <picture><source type="image/webp" srcset="assets/banners/banner-about.webp"><img class="svc-banner-img" src="assets/banners/banner-about.jpg" alt="A bright office with an oak meeting table, house plans and a shelf of material samples — where TRC Homes talks clients through their project." decoding="async"></picture>
+        <picture><source type="image/webp" srcset="assets/banners/banner-full-renovations.webp"><img class="svc-banner-img" src="assets/banners/banner-full-renovations.jpg" alt="A renovated detached home in Cork by TRC Homes." decoding="async"></picture>
         <div class="svc-banner-overlay"></div>
       </div>
       <div class="svc-banner-inner">
-        <p class="crumb"><a href="/">Home</a> &nbsp;/&nbsp; Thank you</p>
-        <p class="eyebrow" style="margin-top:18px;">Enquiry received</p>
-        <h1 class="svc-banner-h1">Thanks &mdash; we&rsquo;ve got your enquiry.</h1>
-        <p class="svc-banner-sub">Your details are with us and a member of the team will be in touch to arrange your free consultation. No hard sell, no obligation &mdash; just an honest conversation about your home.</p>
-        <a class="btn-consult svc-banner-cta" href="tel:+353212021167">Rather talk now? Call +353&nbsp;21&nbsp;202&nbsp;1167</a>
-      </div>
-    </section>
-
-    <!-- 2 · WHAT HAPPENS NEXT — reuses the contact page's three-step reassurance
-         treatment (.st-grid--three, free consultation centred as the key step),
-         adjusted to past-submit wording. Off-White ground; static (no reveal JS). -->
-    <section class="sec">
-      <div class="sec-inner">
-        <p class="eyebrow">What Happens Next</p>
-        <h2 class="sec-h2">Here&rsquo;s what happens now.</h2>
-        <ol class="st-grid st-grid--three">
-          <li class="st-step">
-            <p class="st-num">01</p>
-            <h3 class="st-title">We&rsquo;re in touch</h3>
-            <p class="st-copy">We&rsquo;ve got your enquiry and we&rsquo;ll come back to you to find a time that suits &mdash; no hard sell, no obligation to go further.</p>
-          </li>
-          <li class="st-step st-step--key">
-            <p class="st-num">02</p>
-            <h3 class="st-title">Your free consultation</h3>
-            <p class="st-copy">We meet at our office or your home, at no charge &mdash; often over a few visits. Tell us your budget and your wish list, and we&rsquo;ll tell you honestly what&rsquo;s realistic.</p>
-          </li>
-          <li class="st-step">
-            <p class="st-num">03</p>
-            <h3 class="st-title">An honest plan and quote</h3>
-            <p class="st-copy">You get a clear plan for the work and an itemised quote &mdash; where to spend, where grants fit, and what it really takes &mdash; before you commit to anything.</p>
-          </li>
-        </ol>
-
-        <p class="sec-body" style="text-align:center; max-width:52em; margin-inline:auto; margin-top: clamp(56px, 8vh, 88px);">In the meantime, take a look at our <a class="inline-link" href="/projects">recent Cork projects</a>, or head <a class="inline-link" href="/">back to home</a>. Prefer to talk it through now? Call <a class="inline-link" href="tel:+353212021167">+353&nbsp;21&nbsp;202&nbsp;1167</a> &mdash; a real conversation, not a call centre.</p>
+        <p class="eyebrow">Error 404</p>
+        <h1 class="svc-banner-h1">Page not found.</h1>
+        <p class="svc-banner-sub">The page you&rsquo;re looking for might have moved, or it may never have existed &mdash; let&rsquo;s get you back on track.</p>
+        <a class="btn-consult svc-banner-cta" href="/">Back to home</a>
+        <p class="crumb" style="margin-top:26px;">Or head to <a href="/services">Services</a>, <a href="/projects">Projects</a>, <a href="/about">About</a> or <a href="/contact">Contact</a>.</p>
       </div>
     </section>
   </main>
@@ -161,10 +125,5 @@
   </div>
 
   <script src="js/nav.js"></script>
-
-  <!-- CONVERSION TRACKING: Google Ads / Facebook Pixel conversion event scripts go
-       here (the <body>-level event fire). Do NOT add real tracking IDs until they
-       are provided. -->
-
 </body>
 </html>
