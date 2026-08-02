@@ -60,11 +60,21 @@
        gtag('config', 'AW-XXXXXXXXX');            // Google Ads    */
   }
 
-  /* === PASTE META (FACEBOOK) PIXEL HERE — runs only on Marketing consent === */
+  /* Meta (Facebook) Pixel — loaded ONLY after Marketing consent, never before. The
+     <noscript> image fallback from Meta's snippet is intentionally omitted: it can't be
+     consent-gated, and a no-JS visitor can't be shown the consent banner anyway. */
   function loadMarketing() {
     if (marketingLoaded) return;
     marketingLoaded = true;
-    /* e.g. the standard Meta Pixel base code with your Pixel ID, then fbq('track','PageView'); */
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '3748919445262473');
+    fbq('track', 'PageView');
   }
 
   /* ---------- UI ---------- */
