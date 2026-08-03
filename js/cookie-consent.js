@@ -13,19 +13,12 @@
 
   var STORE_KEY = 'trc-cookie-consent-v1';
 
-  /* ---- Google Consent Mode v2 — default everything to DENIED before any Google
-     tag could load (add gtag.js AFTER this script). ---- */
+  /* ---- Google Consent Mode v2 ----
+     The DENIED defaults are set inline in each page's <head>, BEFORE the Google Tag
+     Manager snippet, so they apply before any tag can load. Here we only keep a
+     dataLayer/gtag reference to push the consent UPDATE when the visitor chooses. */
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
-  gtag('consent', 'default', {
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-    analytics_storage: 'denied',
-    functionality_storage: 'granted',
-    security_storage: 'granted',
-    wait_for_update: 500
-  });
 
   function readConsent() {
     try { return JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) { return null; }
