@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Consent Mode v2 defaults (denied) — set BEFORE Google Tag Manager so consent-
+       gated tags never fire before the visitor accepts (managed by /js/cookie-consent.js). -->
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});</script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NLLFX367');</script>
+  <!-- End Google Tag Manager -->
+  <title>Your free renovation consultation — TRC Homes, Cork</title>
+  <meta name="description" content="Answer a few quick questions and TRC Homes will prepare your free, no-obligation renovation consultation. Premium home renovations, extensions &amp; retrofits across Cork.">
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/trc-homes-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/survey.css">
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLLFX367" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="app">
+    <header class="app-header">
+      <div class="app-header__bar">
+        <button class="back-btn" id="backBtn" type="button" hidden aria-label="Go back to the previous question">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          <span>Back</span>
+        </button>
+        <a class="app-header__brand" href="/" aria-label="TRC Homes — home">
+          <svg class="brand-mark" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+            <path d="M 10 62 L 48 24 L 86 62" stroke="#1E3A2F" stroke-width="7" fill="none"/>
+            <path d="M 10 81 L 86 81" stroke="#1E3A2F" stroke-width="7" fill="none"/>
+            <rect x="43.5" y="62.5" width="9" height="9" fill="#B08D57"/>
+          </svg>
+          <span class="brand-word">TRC&nbsp;Homes</span>
+        </a>
+        <span class="app-header__locale">Cork&nbsp;&middot;&nbsp;Ireland</span>
+      </div>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Survey progress">
+        <div class="progress__fill" id="progressFill"></div>
+      </div>
+      <span class="progress__label" id="progressLabel">Step 1</span>
+    </header>
+
+    <main class="stage" id="stage" aria-live="polite">
+      <!-- Steps are rendered here by js/quiz.js -->
+    </main>
+  </div>
+
+  <!-- Shared cookie-consent from the main site root (same origin on trchomes.ie).
+       Its .cc-* styles are ported into survey.css so the banner renders on-brand. -->
+  <script src="/js/cookie-consent.js" defer></script>
+  <script src="js/quiz.js" defer></script>
+</body>
+</html>
