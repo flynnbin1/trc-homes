@@ -286,7 +286,9 @@ function updateChrome() {
   const pct = step.type === "thankyou" ? 100 : Math.round((index / ANSWERABLE) * 100);
   progressFill.style.transform = "scaleX(" + (pct / 100) + ")";
   progressBar.setAttribute("aria-valuenow", String(pct));
-  progressLabel.textContent = step.type === "thankyou" ? "Complete" : `Step ${index + 1} of ${ANSWERABLE}`;
+  progressLabel.innerHTML = step.type === "thankyou"
+    ? "Complete"
+    : `Step <span class="progress__num">${index + 1}</span> of ${ANSWERABLE}`;
 }
 
 /* ----- Step behaviour ------------------------------------------------------ */
